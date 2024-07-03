@@ -26,34 +26,27 @@ def sort_by_consonant_count(string_list):
             elif letter in "aeiou":
                 if len(adjacent_string) > adjacent_counter:
                     adjacent_counter = len(adjacent_string)
-                    adjacent_string = ""
 
-                else:
-                    adjacent_string = ""
+                adjacent_string = ""
 
         if adjacent_counter == 1:
-            adjacent_counter -= 1
-            return adjacent_counter
+            adjacent_counter = 0
 
         return adjacent_counter
-
 
     for s in string_list:
         count = adjacent_consonant_count(s)
         tuple_list.append((s, count))
-
 
     def get_tuple_object(tuples):
         return -tuples[1]
 
     sorted_tuple_list = sorted(tuple_list, key=get_tuple_object)
 
-
     for i in range(len(sorted_tuple_list)):
         new_string_list.append(sorted_tuple_list[i][0])
 
     return new_string_list
-
 
 my_list = ['aa', 'baa', 'ccaa', 'dddaa']
 print(sort_by_consonant_count(my_list) == ['dddaa', 'ccaa', 'aa', 'baa'])
