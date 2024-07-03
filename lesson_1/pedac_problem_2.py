@@ -6,6 +6,10 @@ using sorted() with a custom key function. This led to my solution below. Good
 practice with custom keys, since I haven't actually implemented them before.
 Additionally, the use of -tuples[1] in the custom key function to get a
 descending order was new.
+
+Update: After comparing with the LS implementation, it seems that my code uses a
+lot more memory. Interestingly, I ran into the same problem when writing my code
+that LS used to demonstrate debugging.
 '''
 
 def sort_by_consonant_count(string_list):
