@@ -162,37 +162,188 @@
 
 # print(word_sizes('') == {})
 
-# Letter Swap
-# https://launchschool.com/exercises/81a9b8ef
-def swap(string):
-    word_list = string.split()
-    swapped_list = []
-    temp_string = ""
+# # Letter Swap
+# # https://launchschool.com/exercises/81a9b8ef
+# def swap(string):
+#     word_list = string.split()
+#     swapped_list = []
+#     temp_string = ""
 
-    for word in word_list:
-        if len(word) > 2:
-            temp_string += word[-1]
-            for i in range(len(word) - 1):
-                if i > 0:
-                    temp_string += word[i]
+#     for word in word_list:
+#         if len(word) > 2:
+#             temp_string += word[-1]
+#             for i in range(len(word) - 1):
+#                 if i > 0:
+#                     temp_string += word[i]
 
-            temp_string += word[0]
-            swapped_list.append(temp_string)
-            temp_string = ""
+#             temp_string += word[0]
+#             swapped_list.append(temp_string)
+#             temp_string = ""
 
-        elif len(word) == 1:
-            swapped_list.append(word)
+#         elif len(word) == 1:
+#             swapped_list.append(word)
 
-        else:
-            temp_string += word[-1]
-            temp_string += word[0]
-            swapped_list.append(temp_string)
-            temp_string = ""
+#         else:
+#             temp_string += word[-1]
+#             temp_string += word[0]
+#             swapped_list.append(temp_string)
+#             temp_string = ""
 
-    new_string = ' '.join(swapped_list)
-    return new_string
+#     new_string = ' '.join(swapped_list)
+#     return new_string
 
-print(swap('Oh what a wonderful day it is')
-      == "hO thaw a londerfuw yad ti si")  # True
-print(swap('Abcde') == "ebcdA")            # True
-print(swap('a') == "a")                    # True
+# print(swap('Oh what a wonderful day it is')
+#       == "hO thaw a londerfuw yad ti si")  # True
+# print(swap('Abcde') == "ebcdA")            # True
+# print(swap('a') == "a")                    # True
+
+# # Convert a String to a Number
+# # https://launchschool.com/exercises/097dfb47?track=python
+# def string_to_integer(string):
+#     integer_value = 0
+#     place_value = 1
+#     multiply_value = 0
+
+#     for char in reversed(string):
+#         match char:
+#             case '0':
+#                 multiply_value = 0
+#             case '1':
+#                 multiply_value = 1
+#             case '2':
+#                 multiply_value = 2
+#             case '3':
+#                 multiply_value = 3
+#             case '4':
+#                 multiply_value = 4
+#             case '5':
+#                 multiply_value = 5
+#             case '6':
+#                 multiply_value = 6
+#             case '7':
+#                 multiply_value = 7
+#             case '8':
+#                 multiply_value = 8
+#             case '9':
+#                 multiply_value = 9
+
+#         integer_value += multiply_value * place_value
+#         place_value *= 10
+
+#     return integer_value
+
+# print(string_to_integer("4321") == 4321)  # True
+# print(string_to_integer("570") == 570)    # True
+
+# # Convert a String to a Signed Number
+# # https://launchschool.com/exercises/2de3afe3?track=python
+# def string_to_signed_integer(string):
+#     string_list = list(string)
+
+#     DIGITS = {
+#         '0': 0,
+#         '1': 1,
+#         '2': 2,
+#         '3': 3,
+#         '4': 4,
+#         '5': 5,
+#         '6': 6,
+#         '7': 7,
+#         '8': 8,
+#         '9': 9,
+#     }
+
+#     value = 0
+
+#     if string_list[0] == "+":
+#         string_list.remove("+")
+
+#         for char in string_list:
+#             value = (10 * value) + DIGITS[char]
+
+#         return value
+
+#     elif string_list[0] == "-":
+#         string_list.remove("-")
+
+#         for char in string_list:
+#             value = (10 * value) + DIGITS[char]
+
+#         value *= -1
+
+#         return value
+
+#     else:
+#         for char in string_list:
+#             value = (10 * value) + DIGITS[char]
+
+#         return value
+
+# print(string_to_signed_integer("4321") == 4321)  # True
+# print(string_to_signed_integer("-570") == -570)  # True
+# print(string_to_signed_integer("+100") == 100)   # True
+
+# Convert a Number to a String
+# https://launchschool.com/exercises/6134db97?track=python
+def integer_to_string(number):
+    if number == 0:
+        return "0"
+
+    multiplier = 10
+    i = 1
+    current_value = 0
+    new_list = []
+
+    DIGITS = {
+        1: "1",
+        2: "2",
+        3: "3",
+        4: "4",
+        5: "5",
+        6: "6",
+        7: "7",
+        8: "8",
+        9: "9",
+        0: "0",
+
+    }
+
+    while True:
+        current_value = divmod(number, multiplier)[1]
+
+        if current_value < (1 * i):
+            new_list.append(DIGITS[0])
+        elif current_value < (2 * i):
+            new_list.append(DIGITS[1])
+        elif current_value < (3 * i):
+            new_list.append(DIGITS[2])
+        elif current_value < (4 * i):
+            new_list.append(DIGITS[3])
+        elif current_value < (5 * i):
+            new_list.append(DIGITS[4])
+        elif current_value < (6 * i):
+            new_list.append(DIGITS[5])
+        elif current_value < (7 * i):
+            new_list.append(DIGITS[6])
+        elif current_value < (8 * i):
+            new_list.append(DIGITS[7])
+        elif current_value < (9 * i):
+            new_list.append(DIGITS[8])
+        elif current_value >= (9 * i):
+            new_list.append(DIGITS[9])
+
+        if current_value == number:
+            break
+
+        multiplier *= 10
+        i *= 10
+
+    new_list = new_list[::-1]
+    number_string = ''.join(new_list)
+
+    return number_string
+
+print(integer_to_string(0) == "0")                    # True
+print(integer_to_string(4921) == "4921")              # True
+print(integer_to_string(5000) == "5000")              # True
+print(integer_to_string(1234567890) == "1234567890")  # True
