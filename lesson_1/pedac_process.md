@@ -275,7 +275,7 @@ Rules:
     - Calculate result using the characters in the string
     - All characters in the string are numeric
 - Implicit:
-    -
+    - None
 
 Questions:
 - None
@@ -390,10 +390,10 @@ Rules:
     - Not allowed to use standard conversion functions such as str()
     - Only positive integer values
 - Implicit:
-    -
+    - None
 
 Questions:
--
+- None
 
 Data Structures:
 - A list to store each place in the integer
