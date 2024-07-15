@@ -568,3 +568,115 @@ Notes:
   rusty from the weekend...
 
   Edit: Added further exploration. Took about 1 minute.
+
+### Combining Lists
+Write a function that takes two lists as arguments and returns a set that
+contains the union of the values from the two lists. You may assume that both
+arguments will always be lists.
+
+- Input: Two lists
+- Output: A set containing the union of the values of both lists
+
+Rules:
+- Explicit:
+    - Arguments will always be lists
+    -
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A new list to concatenate the 2 lists
+- A set to coerce and return
+
+Programmatic Algorithm:
+1. Start
+    - define function "union"
+    - "new list" = list1 + list2
+    - "new set" = set("new list")
+2. return "new set"
+
+Notes:
+- Did the above first, but refactored because this looked nicer.
+
+
+### Halvsies
+Write a function that takes a list as an argument and returns a list that
+contains two elements, both of which are lists. Put the first half of the
+original list elements in the first element of the return value and put the
+second half in the second element. If the original list contains an odd number
+of elements, place the middle element in the first half list.
+
+- Input: A list
+- Output: A list containing the list parameter split in half
+
+Rules:
+- Explicit:
+    - If the input list is odd length, the first list should be the longer list
+    -
+- Implicit:
+    - If an empty list is input, it should return a list containing 2 empty lists
+    - if the length of the input list is 1, it should return a a list with a
+        list containing that value, along with an empty list
+
+Questions:
+- None
+
+Data Structures:
+- A new list to append the lists to and then return
+
+Programmatic Algorithm:
+1. Start
+    - define function "halvsies"
+    - if the length of the list is odd:
+        - append list containing the elements up to the half way point + 1, to
+            the return list
+    - else:
+        - append list containing remaining elements from the half way point, to
+            the return list
+    - return return list
+
+
+### Find the Duplicate
+Given an unordered list and the information that exactly one value in the list
+occurs twice (every other value occurs exactly once), determine which value
+occurs twice. Write a function that finds and returns the duplicate value.
+
+You may assume that the input list will always have exactly one duplicate value.
+
+- Input: A list of numbers
+- Output: An integer of the duplicate value
+
+Rules:
+- Explicit:
+    - The input list will always have exactly one duplicate value
+    -
+- Implicit:
+    - Cannot be an empty list
+
+Questions:
+- None
+
+Data Structures:
+- A dictionary to hold key:values of the number and its count
+
+Programmatic Algorithm:
+1. Start
+    - define function "find dup"
+    - number_dict = {}
+    - for each number in numbers:
+        - if the number is in number dict:
+            - add 1 to its key
+        - else:
+            - set key equal to 1
+    - for each key:value pair in number_dict.items():
+        - if value is 2:
+            - return key
+
+Notes:
+- I noticed that while the LS version used a set for the "seen" values, probably
+    to drill in the fact that sets can hold only unique values, but a list, etc.
+    works as well since you're only checking if the element is in the collection.
+

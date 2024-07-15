@@ -373,63 +373,127 @@
 # print(signed_integer_to_string(-123) == "-123")   # True
 # print(signed_integer_to_string(0) == "0")         # True
 
-# Cute Angles
-# https://launchschool.com/exercises/3292ee85?track=python
-DEGREES = "\u00B0"
-MINUTES = "'"
-SECONDS = '"'
+# # Cute Angles
+# # https://launchschool.com/exercises/3292ee85?track=python
+# DEGREES = "\u00B0"
+# MINUTES = "'"
+# SECONDS = '"'
 
-def dms(number):
-    while number < 0:
-        number += 360
+# def dms(number):
+#     while number < 0:
+#         number += 360
 
-    while number > 360:
-        number -= 360
+#     while number > 360:
+#         number -= 360
 
-    number_list = str(number).split(".")
+#     number_list = str(number).split(".")
 
-    if len(number_list) == 1:
-        return f'{number_list[0] + DEGREES + "00" + MINUTES + "00" + SECONDS}'
+#     if len(number_list) == 1:
+#         return f'{number_list[0] + DEGREES + "00" + MINUTES + "00" + SECONDS}'
 
-    else:
-        degrees_value = str(number_list[0])
+#     else:
+#         degrees_value = str(number_list[0])
 
-        if number_list[1] in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-            minutes_value = str(60 * int(number_list[1]) // 10 - 1)
-            seconds_value = "59"
+#         if number_list[1] in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+#             minutes_value = str(60 * int(number_list[1]) // 10 - 1)
+#             seconds_value = "59"
 
+#         else:
+#             minutes_value = str(60 * float("." + number_list[1]))
+
+#             if float(minutes_value) < 10:
+#                 minutes_value = "0" + str(minutes_value)
+#                 minutes_list = str(minutes_value).split(".")
+
+#             else:
+#                 minutes_list = str(minutes_value).split(".")
+
+#             if minutes_list[1] in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+#                 minutes_value = minutes_list[0]
+#                 seconds_value = str(int(60 * float("." + minutes_list[1])))
+
+#             else:
+#                 minutes_value = minutes_list[0]
+#                 print(minutes_list[1])
+#                 seconds_value = str(60 * float("." + minutes_list[1]))
+#                 if int(float(seconds_value)) < 10:
+#                     seconds_value = "0" + str(int(float(seconds_value)))
+
+#         return f'{degrees_value}{DEGREES}{minutes_value}{MINUTES}{seconds_value}{SECONDS}'
+
+# # All of these examples should print True
+# print(dms(93.034773) == "93°02'05\"")
+# print(dms(30) == "30°00'00\"")
+# print(dms(76.73) == "76°43'48\"")
+# print(dms(254.6) == "254°35'59\"")
+# print(dms(0) == "0°00'00\"")
+# print(dms(360) == "360°00'00\"" or dms(360) == "0°00'00\"")
+# # Further exploration
+# print(dms(-1))   # 359°00'00"
+# print(dms(400))  # 40°00'00"
+# print(dms(-40))  # 320°00'00"
+# print(dms(-420)) # 300°00'00"
+
+# # Combining Lists
+# # https://launchschool.com/exercises/9db45ac4?track=python
+
+# def union(list1, list2):
+#     return set(list1) | set(list2)
+
+# print(union([1, 3, 5], [3, 6, 9]) == {1, 3, 5, 6, 9}) # True
+
+# # Halvsies
+# # https://launchschool.com/exercises/6c0ff432?track=python
+
+# def halvsies(numbers):
+#     numbers_length = len(numbers)
+#     return_list = []
+
+#     if numbers_length % 2 == 1:
+#         half = (numbers_length // 2 + 1)
+#         return_list.append(numbers[0:half])
+#         return_list.append(numbers[half::])
+
+#     else:
+#         half = numbers_length // 2
+#         return_list.append(numbers[0:half])
+#         return_list.append(numbers[half::])
+
+#     return return_list
+
+# # All of these examples should print True
+# print(halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]])
+# print(halvsies([1, 5, 2, 4, 3]) == [[1, 5, 2], [4, 3]])
+# print(halvsies([5]) == [[5], []])
+# print(halvsies([]) == [[], []])
+
+# Find the Duplicate
+# https://launchschool.com/exercises/b024fd71?track=python
+
+def find_dup(numbers):
+    number_dict = {}
+
+    for num in numbers:
+        if num in number_dict:
+            number_dict[num] += 1
         else:
-            minutes_value = str(60 * float("." + number_list[1]))
+            number_dict[num] = 1
 
-            if float(minutes_value) < 10:
-                minutes_value = "0" + str(minutes_value)
-                minutes_list = str(minutes_value).split(".")
+    for key, value in number_dict.items():
+        if value == 2:
+            return key
 
-            else:
-                minutes_list = str(minutes_value).split(".")
+print(find_dup([1, 5, 3, 1]) == 1) # True
 
-            if minutes_list[1] in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-                minutes_value = minutes_list[0]
-                seconds_value = str(int(60 * float("." + minutes_list[1])))
-
-            else:
-                minutes_value = minutes_list[0]
-                print(minutes_list[1])
-                seconds_value = str(60 * float("." + minutes_list[1]))
-                if int(float(seconds_value)) < 10:
-                    seconds_value = "0" + str(int(float(seconds_value)))
-
-        return f'{degrees_value}{DEGREES}{minutes_value}{MINUTES}{seconds_value}{SECONDS}'
-
-# All of these examples should print True
-print(dms(93.034773) == "93°02'05\"")
-print(dms(30) == "30°00'00\"")
-print(dms(76.73) == "76°43'48\"")
-print(dms(254.6) == "254°35'59\"")
-print(dms(0) == "0°00'00\"")
-print(dms(360) == "360°00'00\"" or dms(360) == "0°00'00\"")
-# Further exploration
-print(dms(-1))   # 359°00'00"
-print(dms(400))  # 40°00'00"
-print(dms(-40))  # 320°00'00"
-print(dms(-420)) # 300°00'00"
+print(find_dup([
+                  18,  9, 36, 96, 31, 19, 54, 75, 42, 15,
+                  38, 25, 97, 92, 46, 69, 91, 59, 53, 27,
+                  14, 61, 90, 81,  8, 63, 95, 99, 30, 65,
+                  78, 76, 48, 16, 93, 77, 52, 49, 37, 29,
+                  89, 10, 84,  1, 47, 68, 12, 33, 86, 60,
+                  41, 44, 83, 35, 94, 73, 98,  3, 64, 82,
+                  55, 79, 80, 21, 39, 72, 13, 50,  6, 70,
+                  85, 87, 51, 17, 66, 20, 28, 26,  2, 22,
+                  40, 23, 71, 62, 73, 32, 43, 24,  4, 56,
+                  7, 34, 57, 74, 45, 11, 88, 67,  5, 58,
+              ]) == 73)       # True
