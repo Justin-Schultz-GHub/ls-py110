@@ -252,9 +252,9 @@ Programmatic Algorithm:
 
 Notes:
 - For some reason, I mixed up the syntax to slice the string (used a comma
-    instead of a colon), and this caused me to resort to the range function to
-    iterate over the word, instead of just concatenating with slicing. It works,
-    but it is quite the amalgamation...
+  instead of a colon), and this caused me to resort to the range function to
+  iterate over the word, instead of just concatenating with slicing. It works,
+  but it is quite the amalgamation...
 
 
 ### Convert a String to a Number
@@ -297,12 +297,12 @@ Programmatic Algorithm:
 
 Notes:
 - Used a match case statement, but I liked the LS method of using a dictionary.
-    Less code and the method for creating the integer uses a lot less memory it
-    seems. I wonder if this is because the match case statement is checking the
-    match value against every case statement until it finds the match, whereas
-    the dictionary simply uses the value of the key.
-    Incidentally, I spaced when writing the programmatic algorithm, thinking I
-    could just multiply the number despite not being able to use int().
+  Less code and the method for creating the integer uses a lot less memory it
+  seems. I wonder if this is because the match case statement is checking the
+  match value against every case statement until it finds the match, whereas
+  the dictionary simply uses the value of the key.
+  Incidentally, I spaced when writing the programmatic algorithm, thinking I
+  could just multiply the number despite not being able to use int().
 
 
 ### Convert a String to a Signed Number
@@ -365,9 +365,9 @@ Programmatic Algorithm:
 
 Notes:
 - I opted to use 1 function, with if/elif statements and rewrote the LS code, as,
-    I wanted to try using a dictionary instead of match/case statement. The LS
-    version called the previous function in the solution to this problem, which
-    seems much better imo.
+  I wanted to try using a dictionary instead of match/case statement. The LS
+  version called the previous function in the solution to this problem, which
+  seems much better imo.
 
 
 ### Convert a Number to a String
@@ -404,7 +404,7 @@ Programmatic Algorithm:
 1. Start
     - define function "integer to string"
     - if number == 0:
-        - return number
+        - return "0"
     - "multiplier" = 10
     - i = 1
     - "current value" = 0
@@ -423,16 +423,147 @@ Programmatic Algorithm:
 
 Notes:
 - Haven't used the divmod() function before, so this was new. I wasn't really
-    sure how I should go about using it at first and so it regrettably turned
-    into a bit of a hack and slash while trying to figure out how to proceed
-    with the tuples. Looking at the LS solution, I'm not sure why I used a
-    dictionary instead of a list or simply the string "0123456789"... Naturally,
-    due to my inexperience, my solution is immensely more memory intensive.
+  sure how I should go about using it at first and so it regrettably turned
+  into a bit of a hack and slash while trying to figure out how to proceed
+  with the tuples. Looking at the LS solution, I'm not sure why I used a
+  dictionary instead of a list or simply the string "0123456789"... Naturally,
+  due to my inexperience, my solution is immensely more memory intensive.
 
-    Additionally, I think the variables in my solution are somewhat unclear or
-    confusing.
+  Additionally, I think the variables in my solution are somewhat unclear or
+  confusing.
 
-    Furthermore, because my programmatic algorithm was completely wrong, I
-    decided to rewrite it to reflect my solution. This is backwards, but it's
-    still good practice.
+  Furthermore, because my programmatic algorithm was completely wrong, I
+  decided to rewrite it to reflect my solution. This is backwards, but it's
+  still good practice.
+
+### Convert a Signed Number to a String
+In the previous exercise, you developed a function that converts non-negative
+numbers to strings. In this exercise, you're going to extend that function by
+adding the ability to represent negative numbers as well.
+
+Write a function that takes an integer and converts it to a string
+representation.
+
+You may not use any of the standard conversion functions available in Python,
+such as str. You may, however, use integer_to_string from the previous exercise.
+
+- Input: An integer value
+- Output: A signed string representation of the integer value
+
+Rules:
+- Explicit:
+    - Not allowed to use standard conversion functions such as str()
+    -
+- Implicit:
+    - String representation should contain a + or - at the front, unless the
+        value is 0
+
+Questions:
+- None
+
+Data Structures:
+- A list to store each place in the integer
+- A dictionary for values and their string representations
+- A new list to append values to and eventually join
+
+Programmatic Algorithm:
+1. Start
+    - define function "signed integer to string"
+    - if number > 0:
+        - positive = "+"
+        - string = integer_to_string(number)
+        - positive_string = positive + string
+        - return positive_string
+    - "multiplier" = 10
+    - elif number > 0:
+        - negative = "-"
+        - string = integer_to_string(number * -1)
+        - negative_string = negative + string
+        - return negative_string
+    - else:
+        - return integer_to_string(number)
+2. while True:
+    - "current_value" = divmod(number, multiplier)[1]
+    - if "current_value" < (x * i):
+    - append DIGITS[y] to "new_list"
+6. if "current_value" == number:
+    - break
+8. multiplier *= 10
+9. i *= 10
+10. set "new_list" = to a reverse slice of itself
+11. set "number_string" = "new_list" joined
+
+Notes:
+- Pretty quick solve. LS used f-strings, which may or may not be "better", but I
+    do prefer the use of f-strings, as it circumvents the somewhat unnecessary
+    use of variables.
+
+
+### Cute Angles
+Write a function that takes a floating point number representing an angle
+between 0 and 360 degrees and returns a string representing that angle in
+degrees, minutes, and seconds. You should use a degree symbol (°) to represent
+degrees, a single quote (') to represent minutes, and a double quote (") to
+represent seconds. There are 60 minutes in a degree, and 60 seconds in a minute.
+
+Note: You can use the following constant to represent the degree symbol:
+DEGREE = "\u00B0"
+
+- Input: A floating point number representing an angle between 0 and 360 degrees
+- Output: A string representing the floating point number in degrees, minutes,
+    and seconds
+
+Rules:
+- Explicit:
+    - Returns a string
+    - Use a degree symbol (°) to represent degrees, a single quote (') to
+        represent minutes, and a double quote (") to represent seconds
+- Implicit:
+    -
+
+Questions:
+- I'm not familiar with DMS calculations, so I don't understand why 254.6 is
+    converted to 254°35'59" instead of 254°36'00". Maybe if there are 0 seconds
+    the conversion is such that you subtract a minute and add 59 seconds?
+
+Data Structures:
+- A list to split at decimals
+
+Programmatic Algorithm:
+1. Start
+    - DEGREES = "\u00B0"
+    - MINUTES = '"'
+    - SECONDS = "'"
+    - define function "dms"
+    - "number list" = parameter number split at decimal
+2. If the length of "number list" is 1:
+    - return f'{number list[0] + DEGREES + "00" + MINUTES + "00" + SECONDS}'
+3. Else:
+    - "degrees value" = "number list[0]" as a string
+    - if "number list[0]" in [10, 20, 30, 40, 50, 60, 70, 80, 90]:
+        - "minutes value" = str((60 * (numbers list[1] / 100)) - 1)
+        - "seconds value" = "59"
+    - else:
+        - "minutes value" = str(60 * (numbers list[1] / 10))
+        - "minutes list" = "minutes value" split at decimal
+        - "seconds value" = str(60 * (minutes list[1] / 10))
+    return f'{degrees value + DEGREES + minutes value + MINUTES + seconds value + SECONDS}'
+
+Notes:
+- Well, I'm not proud of the code... But I didn't give up, so that's something.
+  It's far more hideous than anything I've written thus far, I believe, but
+  it does work...
+  Incidentally, it uses less memory than the LS version, but I think that's
+  because it uses if statements to cover so many different outliers...
+
+  Using constants for the 60 minutes in an hour and 60 seconds in a minute,
+  like LS did, is probably best practice.
+
+  LS use of another function to add zeroes was somewhat funny, because when I
+  was adding zeroes I thought "there's no way this is how I should be adding
+  them."
+
+  Subtracting the int(parameter) from the float(parameter), instead of using
+  lists to split it, should have been obvious. I'll chop up missing it to being
+  rusty from the weekend...
 

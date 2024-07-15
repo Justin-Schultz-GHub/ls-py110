@@ -283,67 +283,142 @@
 # print(string_to_signed_integer("-570") == -570)  # True
 # print(string_to_signed_integer("+100") == 100)   # True
 
-# Convert a Number to a String
-# https://launchschool.com/exercises/6134db97?track=python
-def integer_to_string(number):
-    if number == 0:
-        return "0"
+# # Convert a Number to a String
+# # https://launchschool.com/exercises/6134db97?track=python
+# def integer_to_string(number):
+#     if number == 0:
+#         return "0"
 
-    multiplier = 10
-    i = 1
-    current_value = 0
-    new_list = []
+#     multiplier = 10
+#     i = 1
+#     current_value = 0
+#     new_list = []
 
-    DIGITS = {
-        1: "1",
-        2: "2",
-        3: "3",
-        4: "4",
-        5: "5",
-        6: "6",
-        7: "7",
-        8: "8",
-        9: "9",
-        0: "0",
+#     DIGITS = {
+#         1: "1",
+#         2: "2",
+#         3: "3",
+#         4: "4",
+#         5: "5",
+#         6: "6",
+#         7: "7",
+#         8: "8",
+#         9: "9",
+#         0: "0",
 
-    }
+#     }
 
-    while True:
-        current_value = divmod(number, multiplier)[1]
+#     while True:
+#         current_value = divmod(number, multiplier)[1]
 
-        if current_value < (1 * i):
-            new_list.append(DIGITS[0])
-        elif current_value < (2 * i):
-            new_list.append(DIGITS[1])
-        elif current_value < (3 * i):
-            new_list.append(DIGITS[2])
-        elif current_value < (4 * i):
-            new_list.append(DIGITS[3])
-        elif current_value < (5 * i):
-            new_list.append(DIGITS[4])
-        elif current_value < (6 * i):
-            new_list.append(DIGITS[5])
-        elif current_value < (7 * i):
-            new_list.append(DIGITS[6])
-        elif current_value < (8 * i):
-            new_list.append(DIGITS[7])
-        elif current_value < (9 * i):
-            new_list.append(DIGITS[8])
-        elif current_value >= (9 * i):
-            new_list.append(DIGITS[9])
+#         if current_value < (1 * i):
+#             new_list.append(DIGITS[0])
+#         elif current_value < (2 * i):
+#             new_list.append(DIGITS[1])
+#         elif current_value < (3 * i):
+#             new_list.append(DIGITS[2])
+#         elif current_value < (4 * i):
+#             new_list.append(DIGITS[3])
+#         elif current_value < (5 * i):
+#             new_list.append(DIGITS[4])
+#         elif current_value < (6 * i):
+#             new_list.append(DIGITS[5])
+#         elif current_value < (7 * i):
+#             new_list.append(DIGITS[6])
+#         elif current_value < (8 * i):
+#             new_list.append(DIGITS[7])
+#         elif current_value < (9 * i):
+#             new_list.append(DIGITS[8])
+#         elif current_value >= (9 * i):
+#             new_list.append(DIGITS[9])
 
-        if current_value == number:
-            break
+#         if current_value == number:
+#             break
 
-        multiplier *= 10
-        i *= 10
+#         multiplier *= 10
+#         i *= 10
 
-    new_list = new_list[::-1]
-    number_string = ''.join(new_list)
+#     new_list = new_list[::-1]
+#     number_string = ''.join(new_list)
 
-    return number_string
+#     return number_string
 
-print(integer_to_string(0) == "0")                    # True
-print(integer_to_string(4921) == "4921")              # True
-print(integer_to_string(5000) == "5000")              # True
-print(integer_to_string(1234567890) == "1234567890")  # True
+# # print(integer_to_string(0) == "0")                    # True
+# # print(integer_to_string(4921) == "4921")              # True
+# # print(integer_to_string(5000) == "5000")              # True
+# # print(integer_to_string(1234567890) == "1234567890")  # True
+
+# # Convert a Signed Number to a String
+# # https://launchschool.com/exercises/634f48e3?track=python
+# # Requires the above function to work
+# def signed_integer_to_string(number):
+#     if number > 0:
+#         positive = "+"
+#         string = integer_to_string(number)
+#         positive_string = positive + string
+
+#         return positive_string
+
+#     elif number < 0:
+#         negative = "-"
+#         string = integer_to_string(number * -1)
+#         negative_string = negative + string
+
+#         return negative_string
+
+#     else:
+#         return integer_to_string(number)
+
+# print(signed_integer_to_string(4321) == "+4321")  # True
+# print(signed_integer_to_string(-123) == "-123")   # True
+# print(signed_integer_to_string(0) == "0")         # True
+
+# Cute Angles
+# https://launchschool.com/exercises/3292ee85?track=python
+DEGREES = "\u00B0"
+MINUTES = "'"
+SECONDS = '"'
+
+def dms(number):
+    number_list = str(number).split(".")
+
+    if len(number_list) == 1:
+        return f'{number_list[0] + DEGREES + "00" + MINUTES + "00" + SECONDS}'
+
+    else:
+        degrees_value = str(number_list[0])
+
+        if number_list[1] in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            minutes_value = str(60 * int(number_list[1]) // 10 - 1)
+            seconds_value = "59"
+
+        else:
+            minutes_value = str(60 * float("." + number_list[1]))
+
+            if float(minutes_value) < 10:
+                minutes_value = "0" + str(minutes_value)
+                minutes_list = str(minutes_value).split(".")
+
+            else:
+                minutes_list = str(minutes_value).split(".")
+
+            if minutes_list[1] in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+                minutes_value = minutes_list[0]
+                seconds_value = str(int(60 * float("." + minutes_list[1])))
+
+            else:
+                minutes_value = minutes_list[0]
+                print(minutes_list[1])
+                seconds_value = str(60 * float("." + minutes_list[1]))
+                if int(float(seconds_value)) < 10:
+                    seconds_value = "0" + str(int(float(seconds_value)))
+
+        return f'{degrees_value}{DEGREES}{minutes_value}{MINUTES}{seconds_value}{SECONDS}'
+
+# All of these examples should print True
+print(dms(93.034773) == "93°02'05\"")
+print(dms(30) == "30°00'00\"")
+print(dms(76.73) == "76°43'48\"")
+print(dms(254.6) == "254°35'59\"")
+print(dms(0) == "0°00'00\"")
+print(dms(360) == "360°00'00\"" or dms(360) == "0°00'00\"")
