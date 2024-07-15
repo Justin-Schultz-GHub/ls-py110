@@ -567,3 +567,4 @@ Notes:
   lists to split it, should have been obvious. I'll chop up missing it to being
   rusty from the weekend...
 
+  Edit: Added further exploration. Took about 1 minute.
