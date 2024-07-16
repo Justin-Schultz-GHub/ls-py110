@@ -677,6 +677,214 @@ Programmatic Algorithm:
 
 Notes:
 - I noticed that while the LS version used a set for the "seen" values, probably
-    to drill in the fact that sets can hold only unique values, but a list, etc.
-    works as well since you're only checking if the element is in the collection.
+  to drill in the fact that sets can hold only unique values, a list, etc.
+  works as well since you're only checking if the element is in the collection.
 
+
+### Combine Two Lists
+Write a function that combines two lists passed as arguments and returns a new
+list that contains all elements from both list arguments, with each element
+taken in alternation.
+
+You may assume that both input lists are non-empty, and that they have the same
+number of elements.
+
+- Input: Two lists
+- Output: A list containing the elements of both lists in alternating order
+
+Rules:
+- Explicit:
+    - Lists can not be empty
+    - Lists have the same number of elements
+- Implicit:
+    - The first element should be element 1 of list 1
+
+Questions:
+- None
+
+Data Structures:
+- A new list to append values and return
+
+Programmatic Algorithm:
+1. Start
+    - define function "interleave"
+    - combined_list = []
+    - for i in range len(list1):
+        - combined_list.append(list1[i])
+        - combined_list.append(list2[i])
+
+Notes:
+- Should have used extend to add the elements with a single line, like the LS
+  method. Regardless, pretty simple. The further exploration with the zip
+  method only took a moment as well.
+
+
+### Multiplicative Average
+Write a function that takes a list of positive integers as input, multiplies all
+of the integers together, divides the result by the number of entries in the
+list, and returns the result as a string with the value rounded to three decimal
+places.
+
+- Input: A list containing 2 integers
+- Output: A string representation of the quotient of the product of all numbers
+    in the original list, rounded to 3 decimal places
+
+Rules:
+- Explicit:
+    - None
+- Implicit:
+    - No empty lists
+    - Input lists will have at least 2 values
+
+Questions:
+- None
+
+Data Structures:
+- A list to split the value at the decimal?
+
+Programmatic Algorithm:
+1. Start
+    - define function "multiplicative_average"
+    - product = 1
+    - for number in numbers:
+        - product *= number
+    - quotient = product / length of numbers
+    - string_value = str(round(quotient, 3))
+    - return string_value
+
+Notes:
+- Could have solved with some abhorrent code, but I didn't want to spend a lot of
+  time on this so I looked at the LS code. I haven't used find() before, but
+  it seems like a good way to solve something like this, instead of defaulting
+  to trying to split the number at the decimal and solve it from there as I've
+  been doing. Also, the Format Specification Mini-Language was interesting to
+  see. Seems very useful.
+
+
+### Multiply Lists
+Write a function that takes two list arguments, each containing a list of
+numbers, and returns a new list that contains the product of each pair of numbers
+from the arguments that have the same index. You may assume that the arguments
+contain the same number of elements.
+
+- Input: Two lists of numbers
+- Output: A list containing the products of the corresponding indexes from each
+    list
+
+Rules:
+- Explicit:
+    - Lists are the same length
+    - No empty lists
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A new list to append to and return
+
+Programmatic Algorithm:
+1. Start
+    - define function "multiply lists"
+    - product_list = []
+    - product = 0
+    - for i in range(len(list1)):
+        - product_list.append(list1[i] * list2[i])
+    - return product_list
+
+
+### List of Digits
+Write a function that takes one argument, a positive integer, and returns a list
+of the digits in the number.
+
+- Input: A postive integer
+- Output: A list containing each digit in the input integer
+
+Rules:
+- Explicit:
+    - None
+- Implicit:
+    - Input list has length of at least 1
+
+Questions:
+- None
+
+Data Structures:
+- A list to append to and return
+
+Programmatic Algorithm:
+1. Start
+    - Too simple to waste time on
+
+Notes:
+- I originally started with a normal for loop, but figured that since the LS
+  solution have been using a lot of list comprehension lately, I should change
+  mine to list comprehension as well. Not sure why I used range. I guess it made
+  more sense at the time. Still works just as good, just very slightly longer.
+
+
+### How Many?
+Write a function that counts the number of occurrences of each element in a
+given list. Once counted, print each element alongside the number of occurrences.
+Consider the words case sensitive e.g. ("suv" != "SUV").
+
+- Input: A list of vehicles
+- Output: All of the vehicles printed with their appearance count
+
+Rules:
+- Explicit:
+    - Count should be printed alongside the vehicle
+    - Vehicle names are case sensitive (SUV != suv)
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A dictionary to hold key:value pairs of vehicles and their count
+
+Programmatic Algorithm:
+1. Start
+    - define function "count occurrences"
+    - vehicles_dictionary = {}
+    - for vehicle in vehicles:
+        - if vehicle not in vehicles_dictionary:
+            - vehicles_dictionary[vehicle] = 1
+        - else:
+            - vehicles_dictionary[vehicle] += 1
+    - for vehicle, count in vehicles_dictionary.items():
+        - print(f'{vehicle}: {count}')
+
+Notes:
+- Originally had it all in one function, but I need to get into the habit of
+    extracting processes to other functions for readability, etc.
+
+
+### List Average
+Write a function that takes one argument, a list of integers, and returns the
+average of all the integers in the list, rounded down to the integer component
+of the average. The list will never be empty, and the numbers will always be
+positive integers.
+
+- Input: A list of integers
+- Output: The floored mean of the numbers
+
+Rules:
+- Explicit:
+    - No empty lists
+    - Numbers always positive
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- None
+
+Programmatic Algorithm:
+1. Start
+    - print the sum of the numbers list floor divided by the length of the
+        numbers list

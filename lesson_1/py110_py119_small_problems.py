@@ -436,7 +436,6 @@
 
 # # Combining Lists
 # # https://launchschool.com/exercises/9db45ac4?track=python
-
 # def union(list1, list2):
 #     return set(list1) | set(list2)
 
@@ -467,33 +466,138 @@
 # print(halvsies([5]) == [[5], []])
 # print(halvsies([]) == [[], []])
 
-# Find the Duplicate
-# https://launchschool.com/exercises/b024fd71?track=python
+# # Find the Duplicate
+# # https://launchschool.com/exercises/b024fd71?track=python
+# def find_dup(numbers):
+#     number_dict = {}
 
-def find_dup(numbers):
-    number_dict = {}
+#     for num in numbers:
+#         if num in number_dict:
+#             number_dict[num] += 1
+#         else:
+#             number_dict[num] = 1
 
-    for num in numbers:
-        if num in number_dict:
-            number_dict[num] += 1
-        else:
-            number_dict[num] = 1
+#     for key, value in number_dict.items():
+#         if value == 2:
+#             return key
 
-    for key, value in number_dict.items():
-        if value == 2:
-            return key
+# print(find_dup([1, 5, 3, 1]) == 1) # True
 
-print(find_dup([1, 5, 3, 1]) == 1) # True
+# print(find_dup([
+#                   18,  9, 36, 96, 31, 19, 54, 75, 42, 15,
+#                   38, 25, 97, 92, 46, 69, 91, 59, 53, 27,
+#                   14, 61, 90, 81,  8, 63, 95, 99, 30, 65,
+#                   78, 76, 48, 16, 93, 77, 52, 49, 37, 29,
+#                   89, 10, 84,  1, 47, 68, 12, 33, 86, 60,
+#                   41, 44, 83, 35, 94, 73, 98,  3, 64, 82,
+#                   55, 79, 80, 21, 39, 72, 13, 50,  6, 70,
+#                   85, 87, 51, 17, 66, 20, 28, 26,  2, 22,
+#                   40, 23, 71, 62, 73, 32, 43, 24,  4, 56,
+#                   7, 34, 57, 74, 45, 11, 88, 67,  5, 58,
+#               ]) == 73)       # True
 
-print(find_dup([
-                  18,  9, 36, 96, 31, 19, 54, 75, 42, 15,
-                  38, 25, 97, 92, 46, 69, 91, 59, 53, 27,
-                  14, 61, 90, 81,  8, 63, 95, 99, 30, 65,
-                  78, 76, 48, 16, 93, 77, 52, 49, 37, 29,
-                  89, 10, 84,  1, 47, 68, 12, 33, 86, 60,
-                  41, 44, 83, 35, 94, 73, 98,  3, 64, 82,
-                  55, 79, 80, 21, 39, 72, 13, 50,  6, 70,
-                  85, 87, 51, 17, 66, 20, 28, 26,  2, 22,
-                  40, 23, 71, 62, 73, 32, 43, 24,  4, 56,
-                  7, 34, 57, 74, 45, 11, 88, 67,  5, 58,
-              ]) == 73)       # True
+# # Combine Two Lists
+# # https://launchschool.com/exercises/513e4379?track=python
+# def interleave(list1, list2):
+#     combined_list = []
+
+#     # for i in range(len(list1)):
+#     #     combined_list.append(list1[i])
+#     #     combined_list.append(list2[i])
+
+#     # return combined_list
+#     for item in zip(list1, list2):
+#         combined_list += [*item]
+
+#     return combined_list
+
+# list1 = [1, 2, 3]
+# list2 = ['a', 'b', 'c']
+# expected = [1, "a", 2, "b", 3, "c"]
+# print(interleave(list1, list2) == expected)      # True
+
+# # Multiplicative Average
+# # https://launchschool.com/exercises/f7b9d1a1?track=python
+# def multiplicative_average(numbers):
+#     product = 1
+
+#     for number in numbers:
+#         product *= number
+
+#     quotient = product / len(numbers)
+
+#     string_value = f'{quotient:.3f}'
+
+#     # string_value = pad_zeroes(string_value)
+
+#     return string_value
+
+# # All of these examples should print True
+# print(multiplicative_average([3, 5]) == "7.500")
+# print(multiplicative_average([2, 5, 8]) == "26.667")
+# print(multiplicative_average([2, 5]) == "5.000")
+# print(multiplicative_average([1, 1, 1, 1]) == "0.250")
+# print(multiplicative_average([2, 5, 7, 11, 13, 17]) == "28361.667")
+
+# # Multiply Lists
+# # https://launchschool.com/exercises/fc642f09?track=python
+# def multiply_lists(list1, list2):
+#     product_list = []
+#     product = 0
+
+#     # for i in range(len(list1)):
+#     #     product_list.append(list1[i] * list2[i])
+
+#     # return product_list
+
+#     return [num1 * num2 for num1, num2 in zip(list1, list2)]
+
+# list1 = [3, 5, 7]
+# list2 = [9, 10, 11]
+# print(multiply_lists(list1, list2) == [27, 50, 77])  # True
+
+# # List of Digits
+# # https://launchschool.com/exercises/1c3a7301?track=python
+# def digit_list(number):
+#     number_string = str(number)
+#     number_list = []
+
+#     return [int(number_string[i]) for i in range(len(number_string))]
+
+# print(digit_list(12345) == [1, 2, 3, 4, 5])       # True
+# print(digit_list(7) == [7])                       # True
+# print(digit_list(375290) == [3, 7, 5, 2, 9, 0])   # True
+# print(digit_list(444) == [4, 4, 4])               # True
+
+# # How Many?
+# # https://launchschool.com/exercises/6051b11c?track=python
+# def count_occurrences(vehicles):
+#     # comment out the following line for non-case sensitive version
+#     vehicles = [vehicle.casefold() for vehicle in vehicles]
+#     vehicle_dictionary = {}
+
+#     for vehicle in vehicles:
+#         if vehicle not in vehicle_dictionary:
+#             vehicle_dictionary[vehicle] = 1
+#         else:
+#             vehicle_dictionary[vehicle] += 1
+
+#     print_occurrences(vehicle_dictionary)
+
+# def print_occurrences(vehicle_dictionary):
+#     for vehicle, count in vehicle_dictionary.items():
+#         print(f'{vehicle}: {count}')
+
+# vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck',
+#             'motorcycle', 'motorcycle', 'car', 'truck', 'suv']
+
+# count_occurrences(vehicles)
+
+# List Average
+# https://launchschool.com/exercises/d6505dcf?track=python
+def average(numbers):
+    print(sum(numbers) // len(numbers))
+
+print(average([1, 5, 87, 45, 8, 8]) == 25)        # True
+print(average([9, 47, 23, 95, 16, 52]) == 40)     # True
+print(average([7]) == 7)                          # True
