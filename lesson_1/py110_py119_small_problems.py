@@ -593,11 +593,92 @@
 
 # count_occurrences(vehicles)
 
-# List Average
-# https://launchschool.com/exercises/d6505dcf?track=python
-def average(numbers):
-    print(sum(numbers) // len(numbers))
+# # List Average
+# # https://launchschool.com/exercises/d6505dcf?track=python
+# def average(numbers):
+#     print(sum(numbers) // len(numbers))
 
-print(average([1, 5, 87, 45, 8, 8]) == 25)        # True
-print(average([9, 47, 23, 95, 16, 52]) == 40)     # True
-print(average([7]) == 7)                          # True
+# print(average([1, 5, 87, 45, 8, 8]) == 25)        # True
+# print(average([9, 47, 23, 95, 16, 52]) == 40)     # True
+# print(average([7]) == 7)                          # True
+
+# # After Midnight (Part 1)
+# # https://launchschool.com/exercises/86822507?track=python
+# def time_of_day(number):
+#     if number >= 0:
+#         hours_and_minutes = {'hours': 0,
+#                             'minutes': 0,
+
+#         }
+
+#         while number >= 60:
+#             number -= 60
+#             if hours_and_minutes['hours'] >= 24:
+#                 hours_and_minutes['hours'] = 0
+
+#             hours_and_minutes['hours'] += 1
+
+#         hours_and_minutes['minutes'] += number
+
+#     if number < 0:
+#         hours_and_minutes = {'hours': 23,
+#                             'minutes': 60,
+
+#         }
+
+#         while number <= -60:
+#             number += 60
+#             if hours_and_minutes['hours'] <= 0:
+#                 hours_and_minutes['hours'] = 24
+
+#             hours_and_minutes['hours'] -= 1
+
+#         if hours_and_minutes['hours'] == 24:
+#             hours_and_minutes['hours'] = 0
+#             hours_and_minutes['minutes'] = 60
+
+#         hours_and_minutes['minutes'] += number
+
+#     hours = pad_zeroes(hours_and_minutes['hours'])
+#     minutes = pad_zeroes(hours_and_minutes['minutes'])
+
+#     return f'{hours}:{minutes}'
+
+# def pad_zeroes(number):
+#     if number < 10:
+#         number_string = "0" + str(number)
+#     else:
+#         number_string = str(number)
+
+#     return number_string
+
+# print(time_of_day(0) == "00:00")        # True
+# print(time_of_day(-3) == "23:57")       # True
+# print(time_of_day(35) == "00:35")       # True
+# print(time_of_day(-1437) == "00:03")    # True
+# print(time_of_day(3000) == "02:00")     # True
+# print(time_of_day(800) == "13:20")      # True
+# print(time_of_day(-4231) == "01:29")    # True
+
+# After Midnight (Part 2)
+# https://launchschool.com/exercises/44718e8c?track=python
+HOURS_PER_DAY = 24
+MINUTES_PER_HOUR = 60
+MINUTES_PER_DAY = HOURS_PER_DAY * MINUTES_PER_HOUR
+
+def after_midnight(time):
+    number = ((int(time[:2]) * MINUTES_PER_HOUR) + int(time[3:])) % MINUTES_PER_DAY
+
+    return number
+
+def before_midnight(time):
+    number = (MINUTES_PER_DAY - after_midnight(time)) % MINUTES_PER_DAY
+
+    return number
+
+print(after_midnight("00:00") == 0)     # True
+print(before_midnight("00:00") == 0)    # True
+print(after_midnight("12:34") == 754)   # True
+print(before_midnight("12:34") == 686)  # True
+print(after_midnight("24:00") == 0)     # True
+print(before_midnight("24:00") == 0)    # True

@@ -849,12 +849,12 @@ Programmatic Algorithm:
 1. Start
     - define function "count occurrences"
     - vehicles_dictionary = {}
-    - for vehicle in vehicles:
-        - if vehicle not in vehicles_dictionary:
-            - vehicles_dictionary[vehicle] = 1
-        - else:
-            - vehicles_dictionary[vehicle] += 1
-    - for vehicle, count in vehicles_dictionary.items():
+2. for vehicle in vehicles:
+    - if vehicle not in vehicles_dictionary:
+        - vehicles_dictionary[vehicle] = 1
+    - else:
+        - vehicles_dictionary[vehicle] += 1
+3. - for vehicle, count in vehicles_dictionary.items():
         - print(f'{vehicle}: {count}')
 
 Notes:
@@ -888,3 +888,152 @@ Programmatic Algorithm:
 1. Start
     - print the sum of the numbers list floor divided by the length of the
         numbers list
+
+
+### After Midnight (Part 1)
+The time of day can be represented as the number of minutes before or after
+midnight. If the number of minutes is positive, the time is after midnight. If
+the number of minutes is negative, the time is before midnight.
+
+Write a function that takes a time using this minute-based format and returns
+the time of day in 24-hour format (hh:mm). Your function should work with any
+integer input.
+
+You may not use Python's datetime module.
+
+- Input: A number
+- Output: The time of day in 24-hour format (hh:mm)
+
+Rules:
+- Explicit:
+    - Cannot use datetime module
+    - Number can be positive or negative
+    - Ignore daylight savings
+- Implicit:
+    - Output should be a string
+    - Number can be 0
+
+Questions:
+- None
+
+Data Structures:
+- A dictionary to hold key:value pairs of the hour and minute
+
+Programmatic Algorithm:
+1. Start
+    - define function "time of day"
+2. if number is greater than or equal to 0:
+    - "hours and minutes" = {"hours": 0,
+                            "minutes": 0,
+                        }
+    - while number is greater than or equal to 60:
+        - subtract 60 from number and reassign new number to number
+        - if "hours and minutes"[hours] is greater than 24:
+            - "hours and minutes"[hours] = 0
+        - add one to "hour and minutes"[hour]
+    - "hours and minutes"[minutes] = number
+3. if number is less than 0:
+    - "hours and minutes" = {"hours": 24,
+                            "minutes": 60,
+                        }
+    - while number is less than or equal to -60:
+        - add 60 to number and reassign new number to number
+        - if "hours and minutes"[hours] is greater than 0:
+            - "hours and minutes"[hours] = 24
+        - subtract one from "hour and minutes"[hour]
+    - "hours and minutes"[minutes] = number
+
+4. hours = pad_zeroes("hours and minutes"[hours])
+5. minutes = pad_zeroes("hours and minutes"[minutes])
+6. return f'{hours}:{minutes}'
+7. define function "pad zeroes"
+8. if number is less than 10:
+        - stringify number and add zero to front
+    - else:
+        - stringify number
+9. return number
+
+Notes:
+- This one took a bit to fix all the small bugs with >= problems, etc. Looking at
+  the LS solution, I definitel should have used constants for minutes/hour and
+  hours/day instead of having all of these magic numbers in mine. Also, I should
+  have used Format Specification Mini-Language inside of the pad_zeroes()
+  function instead of how I did it.
+
+
+### After Midnight (Part 2)
+As seen in the previous exercise, the time of day can be represented as the
+number of minutes before or after midnight. If the number of minutes is positive,
+the time is after midnight. If the number of minutes is negative, the time is
+before midnight.
+
+Write two functions that each take a time of day in 24 hour format, and return
+the number of minutes before and after midnight, respectively. Both functions
+should return a value in the range 0 through 1439.
+
+You may not use Python's datetime module.
+
+- Input: A string of the time of day in 24 hour format
+- Output: The number of minutes before and after midnight
+
+Rules:
+- Explicit:
+    - Cannot use datetime module
+    - Must write two functions, one for before midnight, and one for after
+    midnight
+    - Ignore daylight savings
+- Implicit:
+    - Output should be a number
+
+Questions:
+- None
+
+Data Structures:
+- None
+
+Programmatic Algorithm:
+1. Start
+    - define function "after midnight"
+    - MINUTES_PER_HOUR = 60
+2. if time == "00:00" or time == "24:00":
+        - return 0
+3. number = multiply the first 2 digits of time by MINUTES_PER_HOUR
+4. Add the last 2 digits of time to number
+5. return number
+6. define function "before midnight"
+    - MINUTES_PER_DAY = 1440
+7. number = "after midnight"(time)
+8. number = MINUTES_PER_DAY -= number
+9. return number
+
+Notes:
+- Originally I used an if statement to catch the '24:00' and '00:00' outliers,
+  but I wasn't satisfied with this and opted to refactor to use modulo, as I
+  should be doing anyways. I feel like the mental block is just my lack of
+  experience using modulo
+
+
+###
+
+- Input:
+- Output:
+
+Rules:
+- Explicit:
+    -
+    -
+- Implicit:
+    -
+
+Questions:
+-
+
+Data Structures:
+-
+
+Programmatic Algorithm:
+1. Start
+    -
+
+Notes:
+-
