@@ -872,6 +872,15 @@ def is_balanced(string):
         and (parenthese_counter['double_quotes'] % 2 == 0))
 
 
+# print(is_balanced("What (is) this?") == True)        # True
+# print(is_balanced("What is) this?") == False)        # True
+# print(is_balanced("What (is this?") == False)        # True
+# print(is_balanced("((What) (is this))?") == True)    # True
+# print(is_balanced("((What)) (is this))?") == False)  # True
+# print(is_balanced("Hey!") == True)                   # True
+# print(is_balanced(")Hey!(") == False)                # True
+# print(is_balanced("What ((is))) up(") == False)      # True
+
 print(is_balanced("{}") == True)
 print(is_balanced("[]") == True)
 print(is_balanced("()") == True)
