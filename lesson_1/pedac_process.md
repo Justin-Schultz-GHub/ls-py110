@@ -1010,7 +1010,314 @@ Notes:
 - Originally I used an if statement to catch the '24:00' and '00:00' outliers,
   but I wasn't satisfied with this and opted to refactor to use modulo, as I
   should be doing anyways. I feel like the mental block is just my lack of
-  experience using modulo
+  experience using modulo.
+
+
+### Double Char (Part 1)
+Write a function that takes a string, doubles every character in the string,
+then returns the result as a new string.
+
+- Input: A string
+- Output: A string with every character from the original string doubled
+
+Rules:
+- Explicit:
+    - None
+- Implicit:
+    - An empty string should output an empty string
+    - Spaces should also be doubled
+
+Questions:
+- None
+
+Data Structures:
+- A new string
+
+Programmatic Algorithm:
+1. Start
+    - define function "repeater"
+    - doubled = ""
+2. for character in string:
+3. doubled += character * 2
+4. return doubled
+
+Notes:
+- Wrote it with a for loop, and then wrote it using list comprehension and join,
+  just to use both methods. Funny that LS used the same exact code basically.
+
+
+### Double Char (Part 2)
+Write a function that takes a string, doubles every consonant in the string, and
+returns the result as a new string. The function should not double vowels
+('a','e','i','o','u'), digits, punctuation, or whitespace.
+
+You may assume that only ASCII characters will be included in the argument.
+
+- Input: A string
+- Output: A string with every consonant doubled
+
+Rules:
+- Explicit:
+    - All characters are ascii character
+- Implicit:
+    - Empty strings return an empty string
+
+Questions:
+- None
+
+Data Structures:
+- A new string
+
+Programmatic Algorithm:
+1. Start
+    - define function "double consonants"
+    - CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
+    - new_string
+2. for character in string:
+    - if character.lower() in CONSONANTS:
+        - new_string += character * 2
+    - else:
+        - new_string += character
+3. return new_string
+
+
+### Reverse Number
+Write a function that takes a positive integer as an argument and returns that
+number with its digits reversed.
+
+- Input: A positive integer
+- Output: That number with its digits reversed
+
+Rules:
+- Explicit:
+    - Only positive integers
+    - Single digit integers are possible
+- Implicit:
+    - Leading 0's should be deleted, naturally
+
+Questions:
+- None
+
+Data Structures:
+- A list to store the digits and reverse it
+
+Programmatic Algorithm:
+1. Start
+    - define function "reverse_number"
+    - digit_list = [character for character in str(number)]
+2. reverse digit_list
+3. join digit_list
+4. coerce digit_list to int
+5. return digit_list
+
+Notes:
+- Should have just sliced the stringified integer backwards like LS. Removed my
+  code and rewrote it because this is way better. Need to get into the habit of
+  slicing strings.
+
+
+### Counting Up
+Write a function that takes an integer argument and returns a list containing all
+integers between 1 and the argument (inclusive), in ascending order.
+
+You may assume that the argument will always be a positive integer.
+
+- Input: A positive integer
+- Output: A list of all numbers preceding that integer
+
+Rules:
+- Explicit:
+    - List contains all numbers up to and including the input integer
+    - Ascending order
+    - Input is always a positive integer
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to hold the integers and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'sequence'
+    - number_list = []
+2. for num in range(1, number + 1)
+    - number_list.append(num)
+3. return number_list
+
+Notes:
+- Need to practice writing more concise code like LS solutions. Most of what I
+  write can be condensed. That being said, I haven't used range() much outside
+  of looping, so it's still kind of new to me.
+
+
+### Name Swapping
+Write a function that takes a string argument consisting of a first name, a
+space, and a last name. The function should return a new string consisting of the
+last name, a comma, a space, and the first name.
+
+- Input: A string containing a first and last name
+- Output: A string with the first and last name swapped and separated by a comma
+    and a space
+
+Rules:
+- Explicit:
+    - Names don't include suffixes, etc.
+
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to store the names
+
+Programmatic Algorithm:
+1. Start
+    - define function 'swap_name'
+    - name_list = [name for name in full_name.split()]
+2. return name_list[1] + ', ' + name_list[0]
+
+Notes:
+- Originally wrote it with the above algorithm, but wanted to practice writing
+  more consise code, and so I refactored it to the current version. Matches LS
+  as well.
+
+
+### Sequence Count
+Create a function that takes two integers as arguments. The first argument is a
+count, and the second is the starting number of a sequence that your function
+will create. The function should return a list containing the same number of
+elements as the count argument. The value of each element should be a multiple
+of the starting number.
+
+You may assume that count will always be an integer greater than or equal to 0.
+The starting number can be any integer. If the count is 0, the function should
+return an empty list.
+
+- Input: Two integers - A count and a startign number
+- Output: A list containing the same number of elements as the count argument,
+    with each element being a multiple of the starting number.
+
+Rules:
+- Explicit:
+    - Count integer will always be >= 0
+    - Starting number can be any integer
+    - If the count is 0, return an empty list
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to hold the integers and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'sequence'
+    - step_value = start_value
+    - number_list = []
+2. while count > 0:
+    - number_list.append(start_value)
+    - start_value += step_value
+    - count -= 1
+3. return number_list
+
+Notes:
+- my method worked, but again it was too long. Refeactored to make it as short
+  as possible, but got hung up on the 0 count.
+
+
+### Reversed Lists
+Write a function that takes a list as an argument and reverses its elements, in
+place. That is, mutate the list passed into the function. The returned object
+should be the same object used as the argument.
+
+You may not use the list.reverse method nor may you use a slice ([::-1]).
+
+- Input: A list
+- Output: The input list reversed, not a new list
+
+Rules:
+- Explicit:
+    - Cannot use reverse slicing or reverse methods
+- Implicit:
+    - An empty list should return an empty list
+
+Questions:
+- I assume we're not allowed to use reversed() either?
+
+Data Structures:
+- A new list to append elements to and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'reverse_list'
+    - new_list = []
+2. while len(input_list) > 0:
+    - new_list = input_list.pop()
+3. for element in new_list:
+    - input_list.append(element)
+4. return input_list
+
+Notes:
+- LS method seems good, but my method of popping to another list and appending
+  seems fine as well. Khaled Jaafar did what I wanted to do originally with
+  the range function, but I didn't think of using the insert() method like he
+  did.
+
+
+### Matching Parenthesis?
+Write a function that takes a string as an argument and returns True if all
+parentheses in the string are properly balanced, False otherwise. To be properly
+balanced, parentheses must occur in matching '(' and ')' pairs.
+
+- Input: A string
+- Output: True or False based on whether or not the parentheses in the string are
+    balanced
+
+Rules:
+- Explicit:
+    - To be properly balanced, parentheses must occur in matching '(' and ')'
+    pairs.
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A dictionary to hold the counts of each parentheses type
+
+Programmatic Algorithm:
+1. Start
+    - define function 'is_balanced'
+    - parentheses_counter = {'left': 0,
+                            'right': 0,
+                            }
+2. for char in string:
+    - if char == '(':
+        - parentheses_counter['left'] += 1
+    - elif char == ')':
+        - parentheses_counter['right'] += 1
+        - if parentheses_counter['right'] > parentheses_counter['left']:
+            - return False
+3. return parentheses_counter['left'] == parentheses_counter['right']
+
+Notes:
+- Was easy enough. I did the further exploration and opted to use match:case
+  statements. All of my test cases passed except for is_balanced("{[}]") == False.
+  However, like Cody Reimers pointed out in his comment, "the further exploration
+  didn't ask to validate grouping, just that each individual pair of symbols were
+  properly balanced," and I was coding with the same thought process. As such,
+  I changed the "is_balanced("{[}]") == False" line to "is_balanced("{[}]") == True".
+
+  Admittedly, it's a bit verbose, perhaps, but I think match:case statements
+  look nice and are easy to read.
 
 
 ###

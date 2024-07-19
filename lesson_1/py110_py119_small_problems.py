@@ -1,5 +1,5 @@
 # # Searching 101
-# # https://launchschool.com/exercises/a1c4fed5?track=python
+# # https://launchschool.com/exercises/a1c4fed5
 # numbers_list = []
 
 # def get_numbers():
@@ -34,7 +34,7 @@
 #     print(f'{sixth_number} is not in the first 5 numbers')
 
 # # Palindromic Strings (Part 1)
-# # https://launchschool.com/exercises/407bf4aa?track=python
+# # https://launchschool.com/exercises/407bf4aa
 # def is_palindrome():
 #     input_string = input('Please enter palindrome check text: ')
 #     character_list = []
@@ -47,7 +47,7 @@
 # print(is_palindrome() == True)
 
 # # Palindromic Strings (Part 2)
-# # https://launchschool.com/exercises/4f333858?track=python
+# # https://launchschool.com/exercises/4f333858
 # def is_real_palindrome(string):
 #     new_string = ''.join([character.lower() for character in string if
 #         character.isalpha() is True or character.isdigit() is True])
@@ -69,7 +69,7 @@
 # print(is_real_palindrome("Madam, I'm Adam") is True) # True
 
 # # Running Totals
-# # https://launchschool.com/exercises/8e9d667a?track=python
+# # https://launchschool.com/exercises/8e9d667a
 # def running_total(numbers):
 #     running_total_list = []
 #     running_count = 0
@@ -198,7 +198,7 @@
 # print(swap('a') == "a")                    # True
 
 # # Convert a String to a Number
-# # https://launchschool.com/exercises/097dfb47?track=python
+# # https://launchschool.com/exercises/097dfb47
 # def string_to_integer(string):
 #     integer_value = 0
 #     place_value = 1
@@ -236,7 +236,7 @@
 # print(string_to_integer("570") == 570)    # True
 
 # # Convert a String to a Signed Number
-# # https://launchschool.com/exercises/2de3afe3?track=python
+# # https://launchschool.com/exercises/2de3afe3
 # def string_to_signed_integer(string):
 #     string_list = list(string)
 
@@ -284,7 +284,7 @@
 # print(string_to_signed_integer("+100") == 100)   # True
 
 # # Convert a Number to a String
-# # https://launchschool.com/exercises/6134db97?track=python
+# # https://launchschool.com/exercises/6134db97
 # def integer_to_string(number):
 #     if number == 0:
 #         return "0"
@@ -349,7 +349,7 @@
 # # print(integer_to_string(1234567890) == "1234567890")  # True
 
 # # Convert a Signed Number to a String
-# # https://launchschool.com/exercises/634f48e3?track=python
+# # https://launchschool.com/exercises/634f48e3
 # # Requires the above function to work
 # def signed_integer_to_string(number):
 #     if number > 0:
@@ -374,7 +374,7 @@
 # print(signed_integer_to_string(0) == "0")         # True
 
 # # Cute Angles
-# # https://launchschool.com/exercises/3292ee85?track=python
+# # https://launchschool.com/exercises/3292ee85
 # DEGREES = "\u00B0"
 # MINUTES = "'"
 # SECONDS = '"'
@@ -435,14 +435,14 @@
 # print(dms(-420)) # 300°00'00"
 
 # # Combining Lists
-# # https://launchschool.com/exercises/9db45ac4?track=python
+# # https://launchschool.com/exercises/9db45ac4
 # def union(list1, list2):
 #     return set(list1) | set(list2)
 
 # print(union([1, 3, 5], [3, 6, 9]) == {1, 3, 5, 6, 9}) # True
 
 # # Halvsies
-# # https://launchschool.com/exercises/6c0ff432?track=python
+# # https://launchschool.com/exercises/6c0ff432
 
 # def halvsies(numbers):
 #     numbers_length = len(numbers)
@@ -467,7 +467,7 @@
 # print(halvsies([]) == [[], []])
 
 # # Find the Duplicate
-# # https://launchschool.com/exercises/b024fd71?track=python
+# # https://launchschool.com/exercises/b024fd71
 # def find_dup(numbers):
 #     number_dict = {}
 
@@ -497,7 +497,7 @@
 #               ]) == 73)       # True
 
 # # Combine Two Lists
-# # https://launchschool.com/exercises/513e4379?track=python
+# # https://launchschool.com/exercises/513e4379
 # def interleave(list1, list2):
 #     combined_list = []
 
@@ -517,7 +517,7 @@
 # print(interleave(list1, list2) == expected)      # True
 
 # # Multiplicative Average
-# # https://launchschool.com/exercises/f7b9d1a1?track=python
+# # https://launchschool.com/exercises/f7b9d1a1
 # def multiplicative_average(numbers):
 #     product = 1
 
@@ -540,7 +540,7 @@
 # print(multiplicative_average([2, 5, 7, 11, 13, 17]) == "28361.667")
 
 # # Multiply Lists
-# # https://launchschool.com/exercises/fc642f09?track=python
+# # https://launchschool.com/exercises/fc642f09
 # def multiply_lists(list1, list2):
 #     product_list = []
 #     product = 0
@@ -557,7 +557,7 @@
 # print(multiply_lists(list1, list2) == [27, 50, 77])  # True
 
 # # List of Digits
-# # https://launchschool.com/exercises/1c3a7301?track=python
+# # https://launchschool.com/exercises/1c3a7301
 # def digit_list(number):
 #     number_string = str(number)
 #     number_list = []
@@ -570,7 +570,7 @@
 # print(digit_list(444) == [4, 4, 4])               # True
 
 # # How Many?
-# # https://launchschool.com/exercises/6051b11c?track=python
+# # https://launchschool.com/exercises/6051b11c
 # def count_occurrences(vehicles):
 #     # comment out the following line for non-case sensitive version
 #     vehicles = [vehicle.casefold() for vehicle in vehicles]
@@ -594,7 +594,7 @@
 # count_occurrences(vehicles)
 
 # # List Average
-# # https://launchschool.com/exercises/d6505dcf?track=python
+# # https://launchschool.com/exercises/d6505dcf
 # def average(numbers):
 #     print(sum(numbers) // len(numbers))
 
@@ -603,7 +603,7 @@
 # print(average([7]) == 7)                          # True
 
 # # After Midnight (Part 1)
-# # https://launchschool.com/exercises/86822507?track=python
+# # https://launchschool.com/exercises/86822507
 # def time_of_day(number):
 #     if number >= 0:
 #         hours_and_minutes = {'hours': 0,
@@ -660,25 +660,225 @@
 # print(time_of_day(800) == "13:20")      # True
 # print(time_of_day(-4231) == "01:29")    # True
 
-# After Midnight (Part 2)
-# https://launchschool.com/exercises/44718e8c?track=python
-HOURS_PER_DAY = 24
-MINUTES_PER_HOUR = 60
-MINUTES_PER_DAY = HOURS_PER_DAY * MINUTES_PER_HOUR
+# # After Midnight (Part 2)
+# # https://launchschool.com/exercises/44718e8c
+# HOURS_PER_DAY = 24
+# MINUTES_PER_HOUR = 60
+# MINUTES_PER_DAY = HOURS_PER_DAY * MINUTES_PER_HOUR
 
-def after_midnight(time):
-    number = ((int(time[:2]) * MINUTES_PER_HOUR) + int(time[3:])) % MINUTES_PER_DAY
+# def after_midnight(time):
+#     number = ((int(time[:2]) * MINUTES_PER_HOUR) + int(time[3:])) % MINUTES_PER_DAY
 
-    return number
+#     return number
 
-def before_midnight(time):
-    number = (MINUTES_PER_DAY - after_midnight(time)) % MINUTES_PER_DAY
+# def before_midnight(time):
+#     number = (MINUTES_PER_DAY - after_midnight(time)) % MINUTES_PER_DAY
 
-    return number
+#     return number
 
-print(after_midnight("00:00") == 0)     # True
-print(before_midnight("00:00") == 0)    # True
-print(after_midnight("12:34") == 754)   # True
-print(before_midnight("12:34") == 686)  # True
-print(after_midnight("24:00") == 0)     # True
-print(before_midnight("24:00") == 0)    # True
+# print(after_midnight("00:00") == 0)     # True
+# print(before_midnight("00:00") == 0)    # True
+# print(after_midnight("12:34") == 754)   # True
+# print(before_midnight("12:34") == 686)  # True
+# print(after_midnight("24:00") == 0)     # True
+# print(before_midnight("24:00") == 0)    # True
+
+# # Double Char (Part 1)
+# # https://launchschool.com/exercises/2797f3e7
+# def repeater(string):
+#     doubled = ''
+
+#     for character in string:
+#         doubled += character * 2
+
+#     # return "".join([character * 2 for character in string])
+
+#     return doubled
+
+
+
+# print(repeater('Hello') == "HHeelllloo")              # True
+# print(repeater('Good job!') == "GGoooodd  jjoobb!!")  # True
+# print(repeater('') == "")                             # True
+
+# # Double Char (Part 2)
+# # https://launchschool.com/exercises/157bb2c4
+# CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
+
+# def double_consonants(string):
+#     new_string = ''
+
+#     for character in string:
+#         if character.lower() in CONSONANTS:
+#             new_string += character * 2
+#         else:
+#             new_string += character
+
+#     return new_string
+
+# # All of these examples should print True
+# print(double_consonants('String') == "SSttrrinngg")
+# print(double_consonants('Hello-World!') == "HHellllo-WWorrlldd!")
+# print(double_consonants('July 4th') == "JJullyy 4tthh")
+# print(double_consonants('') == "")
+
+# # Reverse Number
+# # https://launchschool.com/exercises/eee9cc52
+# def reverse_number(number):
+#     digit_list = int(str(number)[::-1])
+
+#     return digit_list
+
+# print(reverse_number(12345) == 54321)   # True
+# print(reverse_number(12213) == 31221)   # True
+# print(reverse_number(456) == 654)       # True
+# print(reverse_number(1) == 1)           # True
+# print(reverse_number(12000) == 21)      # True
+
+# # Counting Up
+# # https://launchschool.com/exercises/d08b9889
+# def sequence(number):
+#     number_list = []
+
+#     for num in range(1, number + 1):
+#         number_list.append(num)
+
+#     return number_list
+#     # return list(range(1, number + 1))
+
+# print(sequence(5) == [1, 2, 3, 4, 5])   # True
+# print(sequence(3) == [1, 2, 3])         # True
+# print(sequence(1) == [1])               # True
+
+# # Name Swapping
+# # https://launchschool.com/exercises/e744aa30
+# def swap_name(full_name):
+#     return ', '.join(full_name.split()[::-1])
+
+# print(swap_name('Joe Roberts') == "Roberts, Joe")   # True
+
+# # Sequence Count
+# # https://launchschool.com/exercises/35e0285a
+# def sequence(count, start_value):
+#     # step_value = start_value
+#     # number_list = []
+
+#     # while count > 0:
+#     #     number_list.append(start_value)
+#     #     start_value += step_value
+#     #     count -= 1
+
+#     # return number_list
+
+#     return [start_value * num for num in range(1, count + 1)]
+
+# print(sequence(5, 1) == [1, 2, 3, 4, 5])          # True
+# print(sequence(4, -7) == [-7, -14, -21, -28])     # True
+# print(sequence(3, 0) == [0, 0, 0])                # True
+# print(sequence(0, 1000000) == [])                 # True
+
+# # Reversed Lists
+# # https://launchschool.com/exercises/a598aef9
+# def reverse_list(input_list):
+#     new_list = []
+
+#     while len(input_list) > 0:
+#         new_list.append(input_list.pop())
+
+#     for element in new_list:
+#         input_list.append(element)
+
+#     return input_list
+
+# list1 = [1, 2, 3, 4]
+# result = reverse_list(list1)
+# print(result == [4, 3, 2, 1])               # True
+# print(list1 is result)                      # True
+
+# list2 = ["a", "b", "c", "d", "e"]
+# result2 = reverse_list(list2)
+# print(result2 == ['e', 'd', 'c', 'b', 'a']) # True
+# print(list2 is result2)                     # True
+
+# list3 = ["abc"]
+# result3 = reverse_list(list3)
+# print(result3 == ['abc'])                   # True
+# print(list3 is result3)                     # True
+
+# list4 = []
+# result4 = reverse_list(list4)
+# print(result4 == [])                        # True
+# print(list4 is result4)                     # True
+
+# Matching Parenthesis?
+# https://launchschool.com/exercises/9e90e4a5
+def is_balanced(string):
+    # parenthese_counter = {
+    #     'left': 0,
+    #     'right': 0,
+    # }
+
+    # for char in string:
+    #     if char == '(':
+    #         parenthese_counter['left'] += 1
+    #     elif char == ')':
+    #         parenthese_counter['right'] += 1
+
+    #         if parenthese_counter['right'] > parenthese_counter['left']:
+    #             return False
+
+    # return parenthese_counter['left'] == parenthese_counter['right']
+    parenthese_counter = {
+        'left_paren': 0,
+        'right_paren': 0,
+        'left_bracket': 0,
+        'right_bracket': 0,
+        'left_brace': 0,
+        'right_brace': 0,
+        'single_quotes': 0,
+        'double_quotes': 0,
+    }
+
+    for char in string:
+        match char:
+            case '(':
+                parenthese_counter['left_paren'] += 1
+            case '[':
+                parenthese_counter['left_bracket'] += 1
+            case '{':
+                parenthese_counter['left_brace'] += 1
+            case '\'':
+                parenthese_counter['single_quotes'] += 1
+            case '\"':
+                parenthese_counter['double_quotes'] += 1
+
+            case ')':
+                parenthese_counter['right_paren'] += 1
+                if parenthese_counter['right_paren'] > parenthese_counter['left_paren']:
+                    return False
+            case ']':
+                parenthese_counter['right_bracket'] += 1
+                if parenthese_counter['right_bracket'] > parenthese_counter['left_bracket']:
+                    return False
+            case '}':
+                parenthese_counter['right_brace'] += 1
+                if parenthese_counter['right_brace'] > parenthese_counter['left_brace']:
+                    return False
+
+    return ((parenthese_counter['left_paren'] == parenthese_counter['right_paren'])
+        and (parenthese_counter['left_bracket'] == parenthese_counter['right_bracket'])
+        and (parenthese_counter['left_brace'] == parenthese_counter['right_brace'])
+        and (parenthese_counter['single_quotes'] % 2 == 0)
+        and (parenthese_counter['double_quotes'] % 2 == 0))
+
+
+print(is_balanced("{}") == True)
+print(is_balanced("[]") == True)
+print(is_balanced("()") == True)
+print(is_balanced("{[({})]}") == True)
+print(is_balanced("\"{[('')]}\"") == True)
+print(is_balanced("Hello [Python] (asdf).") == True)
+print(is_balanced("{[()stacks]} are {kool[()]}") == True)
+print(is_balanced("{[}]") == True)
+print(is_balanced("({[})") == False)
+print(is_balanced("][") == False)
