@@ -810,84 +810,112 @@
 # print(result4 == [])                        # True
 # print(list4 is result4)                     # True
 
-# Matching Parenthesis?
-# https://launchschool.com/exercises/9e90e4a5
-def is_balanced(string):
-    # parenthese_counter = {
-    #     'left': 0,
-    #     'right': 0,
-    # }
+# # Matching Parenthesis?
+# # https://launchschool.com/exercises/9e90e4a5
+# def is_balanced(string):
+#     # parenthese_counter = {
+#     #     'left': 0,
+#     #     'right': 0,
+#     # }
 
-    # for char in string:
-    #     if char == '(':
-    #         parenthese_counter['left'] += 1
-    #     elif char == ')':
-    #         parenthese_counter['right'] += 1
+#     # for char in string:
+#     #     if char == '(':
+#     #         parenthese_counter['left'] += 1
+#     #     elif char == ')':
+#     #         parenthese_counter['right'] += 1
 
-    #         if parenthese_counter['right'] > parenthese_counter['left']:
-    #             return False
+#     #         if parenthese_counter['right'] > parenthese_counter['left']:
+#     #             return False
 
-    # return parenthese_counter['left'] == parenthese_counter['right']
-    parenthese_counter = {
-        'left_paren': 0,
-        'right_paren': 0,
-        'left_bracket': 0,
-        'right_bracket': 0,
-        'left_brace': 0,
-        'right_brace': 0,
-        'single_quotes': 0,
-        'double_quotes': 0,
-    }
+#     # return parenthese_counter['left'] == parenthese_counter['right']
+#     parenthese_counter = {
+#         'left_paren': 0,
+#         'right_paren': 0,
+#         'left_bracket': 0,
+#         'right_bracket': 0,
+#         'left_brace': 0,
+#         'right_brace': 0,
+#         'single_quotes': 0,
+#         'double_quotes': 0,
+#     }
 
-    for char in string:
-        match char:
-            case '(':
-                parenthese_counter['left_paren'] += 1
-            case '[':
-                parenthese_counter['left_bracket'] += 1
-            case '{':
-                parenthese_counter['left_brace'] += 1
-            case '\'':
-                parenthese_counter['single_quotes'] += 1
-            case '\"':
-                parenthese_counter['double_quotes'] += 1
+#     for char in string:
+#         match char:
+#             case '(':
+#                 parenthese_counter['left_paren'] += 1
+#             case '[':
+#                 parenthese_counter['left_bracket'] += 1
+#             case '{':
+#                 parenthese_counter['left_brace'] += 1
+#             case '\'':
+#                 parenthese_counter['single_quotes'] += 1
+#             case '\"':
+#                 parenthese_counter['double_quotes'] += 1
 
-            case ')':
-                parenthese_counter['right_paren'] += 1
-                if parenthese_counter['right_paren'] > parenthese_counter['left_paren']:
-                    return False
-            case ']':
-                parenthese_counter['right_bracket'] += 1
-                if parenthese_counter['right_bracket'] > parenthese_counter['left_bracket']:
-                    return False
-            case '}':
-                parenthese_counter['right_brace'] += 1
-                if parenthese_counter['right_brace'] > parenthese_counter['left_brace']:
-                    return False
+#             case ')':
+#                 parenthese_counter['right_paren'] += 1
+#                 if parenthese_counter['right_paren'] > parenthese_counter['left_paren']:
+#                     return False
+#             case ']':
+#                 parenthese_counter['right_bracket'] += 1
+#                 if parenthese_counter['right_bracket'] > parenthese_counter['left_bracket']:
+#                     return False
+#             case '}':
+#                 parenthese_counter['right_brace'] += 1
+#                 if parenthese_counter['right_brace'] > parenthese_counter['left_brace']:
+#                     return False
 
-    return ((parenthese_counter['left_paren'] == parenthese_counter['right_paren'])
-        and (parenthese_counter['left_bracket'] == parenthese_counter['right_bracket'])
-        and (parenthese_counter['left_brace'] == parenthese_counter['right_brace'])
-        and (parenthese_counter['single_quotes'] % 2 == 0)
-        and (parenthese_counter['double_quotes'] % 2 == 0))
+#     return ((parenthese_counter['left_paren'] == parenthese_counter['right_paren'])
+#         and (parenthese_counter['left_bracket'] == parenthese_counter['right_bracket'])
+#         and (parenthese_counter['left_brace'] == parenthese_counter['right_brace'])
+#         and (parenthese_counter['single_quotes'] % 2 == 0)
+#         and (parenthese_counter['double_quotes'] % 2 == 0))
 
 
-# print(is_balanced("What (is) this?") == True)        # True
-# print(is_balanced("What is) this?") == False)        # True
-# print(is_balanced("What (is this?") == False)        # True
-# print(is_balanced("((What) (is this))?") == True)    # True
-# print(is_balanced("((What)) (is this))?") == False)  # True
-# print(is_balanced("Hey!") == True)                   # True
-# print(is_balanced(")Hey!(") == False)                # True
-# print(is_balanced("What ((is))) up(") == False)      # True
+# # print(is_balanced("What (is) this?") == True)        # True
+# # print(is_balanced("What is) this?") == False)        # True
+# # print(is_balanced("What (is this?") == False)        # True
+# # print(is_balanced("((What) (is this))?") == True)    # True
+# # print(is_balanced("((What)) (is this))?") == False)  # True
+# # print(is_balanced("Hey!") == True)                   # True
+# # print(is_balanced(")Hey!(") == False)                # True
+# # print(is_balanced("What ((is))) up(") == False)      # True
 
-print(is_balanced("{}") == True)
-print(is_balanced("[]") == True)
-print(is_balanced("()") == True)
-print(is_balanced("{[({})]}") == True)
-print(is_balanced("\"{[('')]}\"") == True)
-print(is_balanced("Hello [Python] (asdf).") == True)
-print(is_balanced("{[()stacks]} are {kool[()]}") == True)
-print(is_balanced("{[}]") == True)
-print(is_balanced("({[})") == False)
-print(is_balanced("][") == False)
+# print(is_balanced("{}") == True)
+# print(is_balanced("[]") == True)
+# print(is_balanced("()") == True)
+# print(is_balanced("{[({})]}") == True)
+# print(is_balanced("\"{[('')]}\"") == True)
+# print(is_balanced("Hello [Python] (asdf).") == True)
+# print(is_balanced("{[()stacks]} are {kool[()]}") == True)
+# print(is_balanced("{[}]") == True)
+# print(is_balanced("({[})") == False)
+# print(is_balanced("][") == False)
+
+# https://launchschool.com/exercises/eaf97eee
+# Alphabetical Numbers
+def alphabetic_number_sort(number_list):
+    my_list = sorted([(0, "zero"), (1, "one"), (2, "two"), (3, "three"), (4, "four"),
+                (5, "five"), (6, "six"), (7, "seven"), (8, "eight"), (9, "nine"),
+                (10, "ten"), (11, "eleven"), (12, "twelve"), (13, "thirteen"),
+                (14, "fourteen"), (15, "fifteen"), (16, "sixteen"),
+                (17, "seventeen"), (18, "eighteen"), (19, "nineteen")],
+                key=lambda number: number[1])
+
+    new_nums = []
+
+    for integer, word in my_list:
+        for num in number_list:
+            if num == integer:
+                new_nums.append(num)
+
+    return new_nums
+
+input_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+              10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+expected_result = [8, 18, 11, 15, 5, 4, 14, 9, 19, 1,
+                   7, 17, 6, 16, 10, 13, 3, 12, 2, 0]
+
+print(alphabetic_number_sort(input_list) == expected_result)
+# Prints True

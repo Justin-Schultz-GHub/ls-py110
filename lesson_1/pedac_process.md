@@ -1320,27 +1320,52 @@ Notes:
   look nice and are easy to read.
 
 
-###
+### Alphabetical Numbers
+Write a function that takes a list of integers between 0 and 19 and returns a
+list of those integers sorted based on the English word for each number:
 
-- Input:
-- Output:
+zero, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve,
+thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen
+
+```Python
+input_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+              10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+expected_result = [8, 18, 11, 15, 5, 4, 14, 9, 19, 1,
+                   7, 17, 6, 16, 10, 13, 3, 12, 2, 0]
+
+print(alphabetic_number_sort(input_list) == expected_result)
+# Prints True
+```
+
+- Input: A list of numbers from 0-19
+- Output: A list of integers sorted by their English word equivalent
 
 Rules:
 - Explicit:
-    -
-    -
+    - None
 - Implicit:
-    -
+    - None
 
 Questions:
--
+- Should the output be a new list?
+- Can the input list be shorter than 20 numbers?
 
 Data Structures:
--
+- A list of tuples?
 
 Programmatic Algorithm:
 1. Start
-    -
+    - define function "alphabetic_number_sort"
+    - tuple_list = [(1, "one"), (2, "two"), (3, "three"), ...]
+    - new_nums = []
+2. sort tuple list by tuple index[1]
+3. for integer, word in tuple_list:
+    - for num in number_list:
+        - if num equals integer:
+            - new_nums.append(num)
+4. return new_nums
 
 Notes:
--
+- Not sure why, but I got hung up on the looping process and was having trouble
+  debugging it. I really think I just suck at coding on Mondays...
