@@ -1482,3 +1482,208 @@ def order_by_value(d):
   me because it seems like the `sorted()` function is sorting tuples, but it
   seems that when you call `sorted()` on a dictionary, it defaults to the
   dictionary's keys.
+
+
+### Unique Elements
+From two list arguments, determine the elements that are unique to the first
+list. The return value should be a set.
+
+- Input: Two lists
+- Output: A set containing the unique elements from the first list
+
+Rules:
+- Explicit:
+    - Should return a set
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A set to add to and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'unique_from_first'
+2. return list1 and list 2 coerced to sets and then the difference
+    method used on them
+
+
+### Leading Substrings
+Write a function that takes a string argument and returns a list of substrings
+of that string. Each substring should begin with the first letter of the word,
+and the list should be ordered from shortest to longest.
+
+- Input: A string
+- Output: A list of substrings from that string
+
+Rules:
+- Explicit:
+    - Each substring should start with the first letter of the string
+    - Ordered from shortest to longest
+- Implicit:
+    - A string with a length of one should return the single character in a list
+
+Questions:
+- None
+
+Data Structures:
+- A list to append to and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'leading_substrings'
+    - substrings = []
+2. for i in range(len(string)):
+        - append string[0:i] to substrings
+3. return substrings
+
+Notes:
+- Pretty simple solve. I saw the LS code did it in one line, so I rewrote mine
+  in one line for fun. I still feel like having the whole code block is easier
+  to read than just a single line, but the single line does feel nice to type.
+
+
+###
+Write a function that returns a list of all substrings of a string. Order the
+returned list by where in the string the substring begins. This means that all
+substrings that start at index position 0 should come first, then all substrings
+that start at index position 1, and so on. Since multiple substrings will occur
+at each position, return the substrings at a given index from shortest to longest.
+
+You may (and should) use the leading_substrings function you wrote in the previous
+exercise:
+
+- Input: A string
+- Output: A list of ALL substrings within the string
+
+Rules:
+- Explicit:
+    - Should use solution from previous problem
+    - Order the returned list by where in the string the substring begins
+    - return the substrings at a given index from shortest to longest.
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+-
+
+Programmatic Algorithm:
+1. Start
+    - define function 'substrings'
+    - substrings_list = []
+2. for i in range(len(string)):
+        sub_substrings = leading_substrings(string[i:])
+3. for item in sub_substrings:
+        - append item to substrings_list
+4. return substrings_list
+
+Notes:
+- Pretty much solved it the same way that the LS solution does. Only took about
+  5 minutes.
+
+
+### Palindromic Substrings
+Write a function that returns a list of all palindromic substrings of a string.
+That is, each substring must consist of a sequence of characters that reads the
+same forward and backward. The substrings in the returned list should be sorted
+by their order of appearance in the input string. Duplicate substrings should be
+included multiple times.
+
+You may (and should) use the substrings function you wrote in the previous
+exercise.
+
+For the purpose of this exercise, you should consider all characters and pay
+attention to case; that is, 'AbcbA' is a palindrome, but 'Abcba' and 'Abc-bA' are
+not. In addition, assume that single characters are not palindromes.
+
+- Input: A string
+- Output: A list of all substrings that are palindromes
+
+Rules:
+- Explicit:
+    - Should use the substrings function you wrote in the previous exercise.
+    -
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to hold the palindromes
+
+Programmatic Algorithm:
+1. Start
+    - define fucntion 'palindromes'
+    - palindrome_list = []
+2. for item in substrings(item):
+        - if the item is the same forwards as it is backwards, and its length is
+            greater than 1, append it to palindrome_list
+3. return palindrome_list
+
+Notes:
+- This was surprisingly simple, due to the fact that we have the other 2
+  functions already written. Definitely a good example of breaking down a larger
+  problem.
+
+  Edit: After looking at the LS discussion section, they ironically also wrote
+  "This series of exercises is a good example of how to break down a problem into
+  manageable chunks. Go over these three exercises again, with that perspective
+  in mind."
+
+
+### Inventory Item Transactions
+Write a function that takes two arguments, an inventory item ID and a list of
+transactions, and returns a list containing only the transactions for the
+specified inventory item.
+
+- Input: A list of dictionaries
+- Output: A list of dictionaries for a particular item ID
+
+Rules:
+- Explicit:
+    - None
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to append to and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'transactions_for'
+2. return item for item in transactions if the item's id is equal to the input ID
+
+
+###
+
+- Input:
+- Output:
+
+Rules:
+- Explicit:
+    -
+    -
+- Implicit:
+    -
+
+Questions:
+-
+
+Data Structures:
+-
+
+Programmatic Algorithm:
+1. Start
+    -
+
+Notes:
+-

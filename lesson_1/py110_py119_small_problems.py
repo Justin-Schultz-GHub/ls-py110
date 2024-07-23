@@ -389,7 +389,7 @@
 #     number_list = str(number).split(".")
 
 #     if len(number_list) == 1:
-#         return f'{number_list[0] + DEGREES + "00" + MINUTES + "00" + SECONDS}'
+#         return f'{number_list[0]}{DEGREES}00{MINUTES}00{SECONDS}'
 
 #     else:
 #         degrees_value = str(number_list[0])
@@ -408,7 +408,10 @@
 #             else:
 #                 minutes_list = str(minutes_value).split(".")
 
-#             if minutes_list[1] in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+#             if minutes_list[1] in [
+#                                 "1", "2", "3", "4",
+#                                 "5", "6", "7", "8", "9"
+#                                 ]:
 #                 minutes_value = minutes_list[0]
 #                 seconds_value = str(int(60 * float("." + minutes_list[1])))
 
@@ -419,7 +422,14 @@
 #                 if int(float(seconds_value)) < 10:
 #                     seconds_value = "0" + str(int(float(seconds_value)))
 
-#         return f'{degrees_value}{DEGREES}{minutes_value}{MINUTES}{seconds_value}{SECONDS}'
+#         return (
+#                 f'{degrees_value}'
+#                 f'{DEGREES}'
+#                 f'{minutes_value}'
+#                 f'{MINUTES}'
+#                 f'{seconds_value}'
+#                 f'{SECONDS}'
+#                 )
 
 # # All of these examples should print True
 # print(dms(93.034773) == "93°02'05\"")
@@ -429,10 +439,10 @@
 # print(dms(0) == "0°00'00\"")
 # print(dms(360) == "360°00'00\"" or dms(360) == "0°00'00\"")
 # # Further exploration
-# print(dms(-1))   # 359°00'00"
-# print(dms(400))  # 40°00'00"
-# print(dms(-40))  # 320°00'00"
-# print(dms(-420)) # 300°00'00"
+# print(dms(-1) == "359°00'00\"")
+# print(dms(400) == "40°00'00\"")
+# print(dms(-40) == "320°00'00\"")
+# print(dms(-420) == "300°00'00\"")
 
 # # Combining Lists
 # # https://launchschool.com/exercises/9db45ac4
@@ -949,13 +959,122 @@
 
 # print(intersection(list1, list2) == expected_result) # True
 
-# Arrange a Dictionary
-# https://launchschool.com/exercises/8817379e
-def order_by_value(dictionary):
-    tuple_list = sorted(dictionary.items(), key=lambda item: item[1])
+# # Arrange a Dictionary
+# # https://launchschool.com/exercises/8817379e
+# def order_by_value(dictionary):
+#     tuple_list = sorted(dictionary.items(), key=lambda item: item[1])
 
-    return [key for key, value in tuple_list]
+#     return [key for key, value in tuple_list]
 
-my_dict = {'p': 8, 'q': 2, 'r': 6}
-keys = ['q', 'r', 'p']
-print(order_by_value(my_dict) == keys)  # True
+# my_dict = {'p': 8, 'q': 2, 'r': 6}
+# keys = ['q', 'r', 'p']
+# print(order_by_value(my_dict) == keys)  # True
+
+# # Unique Elements
+# # https://launchschool.com/exercises/b00376c3
+# def unique_from_first(list1, list2):
+#     return set(list1).difference(set(list2))
+
+# list1 = [3, 6, 9, 12]
+# list2 = [6, 12, 15, 18]
+# print(unique_from_first(list1, list2) == {9, 3})
+
+# Leading Substrings
+# https://launchschool.com/exercises/e01f3df2
+# def leading_substrings(string):
+#     substrings = []
+
+#     for i in range(len(string)):
+#         substrings.append(string[:i + 1])
+
+#     return substrings
+
+    # # Alternative solution with list comprehension
+    # return [string[:i + 1] for i in range(len(string))]
+
+# # All of these examples should print True
+# print(leading_substrings('abc') == ['a', 'ab', 'abc'])
+# print(leading_substrings('a') == ['a'])
+# print(leading_substrings('xyzy') == ['x', 'xy', 'xyz', 'xyzy'])
+
+# # All Substrings
+# # https://launchschool.com/exercises/39d24ce3
+# # Requires the above function to work
+# def substrings(string):
+#     substrings_list = []
+
+#     for i in range(len(string)):
+#         sub_substrings = leading_substrings(string[i:])
+
+#         for item in sub_substrings:
+#             substrings_list.append(item)
+
+#     return substrings_list
+
+# expected_result = [
+#     "a", "ab", "abc", "abcd", "abcde",
+#     "b", "bc", "bcd", "bcde",
+#     "c", "cd", "cde",
+#     "d", "de",
+#     "e",
+# ]
+
+# print(substrings('abcde') == expected_result)  # True
+
+# # Palindromic Substrings
+# # https://launchschool.com/exercises/bc977f27
+# # Requires the above function to work
+# def palindromes(string):
+#     palindrome_list = []
+
+#     for item in substrings(string):
+#         if item == item[::-1] and len(item) > 1:
+#             palindrome_list.append(item)
+
+#     return palindrome_list
+
+# print(palindromes('abcd') == [])                  # True
+# print(palindromes('madam') == ['madam', 'ada'])   # True
+
+# print(palindromes('hello-madam-did-madam-goodbye') ==
+#                   [
+#                       'll', '-madam-', '-madam-did-madam-',
+#                       'madam', 'madam-did-madam', 'ada',
+#                       'adam-did-mada', 'dam-did-mad',
+#                       'am-did-ma', 'm-did-m', '-did-',
+#                       'did', '-madam-', 'madam', 'ada', 'oo',
+#                   ])    # True
+
+# print(palindromes('knitting cassettes') ==
+#                   [
+#                       'nittin', 'itti', 'tt', 'ss',
+#                       'settes', 'ette', 'tt',
+#                   ])    # True
+
+# Inventory Item Transactions
+# https://launchschool.com/exercises/bbb4b01f
+def transactions_for(item_id, transaction_list):
+    return [transaction
+            for transaction in transaction_list
+            if transaction['id'] == item_id]
+
+
+transactions = [
+    {"id": 101, "movement": 'in',  "quantity":  5},
+    {"id": 105, "movement": 'in',  "quantity": 10},
+    {"id": 102, "movement": 'out', "quantity": 17},
+    {"id": 101, "movement": 'in',  "quantity": 12},
+    {"id": 103, "movement": 'out', "quantity": 20},
+    {"id": 102, "movement": 'out', "quantity": 15},
+    {"id": 105, "movement": 'in',  "quantity": 25},
+    {"id": 101, "movement": 'out', "quantity": 18},
+    {"id": 102, "movement": 'in',  "quantity": 22},
+    {"id": 103, "movement": 'out', "quantity": 15},
+]
+
+print(transactions_for(101, transactions) ==
+      [
+          {"id": 101, "movement": "in",  "quantity":  5},
+          {"id": 101, "movement": "in",  "quantity": 12},
+          {"id": 101, "movement": "out", "quantity": 18},
+      ]) # True
