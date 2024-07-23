@@ -1369,3 +1369,116 @@ Programmatic Algorithm:
 Notes:
 - Not sure why, but I got hung up on the looping process and was having trouble
   debugging it. I really think I just suck at coding on Mondays...
+
+  Incidentally, I opted to use a list of tuples instead of just a list of
+  manually sorted names because 1. it felt like cheating, and 2. I didn't feel
+  like manually sorting the names for the list (although I could have just ran
+  sorted() on it with the names out of order and then copy pasted it I suppose).
+
+
+### Merge Sets
+Given two lists, convert them to sets and return a new set which is the union of
+both sets.
+
+- Input: Two lists
+- Output: A new set that is the union of the 2 lists after they've been converted
+    to sets
+
+Rules:
+- Explicit:
+    - Must return a new set
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- Sets, obviously
+
+Programmatic Algorithm:
+1. Start
+    - define function "merge_sets"
+2. set1 = convert_to_set(list1)
+3. set2 = convert_to_set(list2)
+4. merged_set = set1 | set2
+5. return merged_set
+6. define function "convert_to_set(iterable)"
+    - return set(iterable)
+
+Notes:
+- Pretty simple. I opted to extract the set conversion to another function instead
+  of doing it all in one function
+
+
+### Immutable Intersection
+Transform two lists into frozen sets and find their common elements.
+
+- Input: Two lists
+- Output: A frozen set containing the intersection of the two lists after they've
+    been converted to frozen sets
+
+Rules:
+- Explicit:
+    - Lists must be transformed into frozen sets
+- Implicit:
+    - None
+
+Questions:
+- Can there be more than one common element?
+
+Data Structures:
+- Frozen sets
+
+Programmatic Algorithm:
+1. Start
+    - define function "intersection"
+    - frozen1 = frozenset(list1)
+    - frozen2 = frozenset(list2)
+2. return frozen1.intersection(frozen2)
+
+Notes:
+- I used the intersection method, but I could just have easily used the `&`
+  operator.
+
+
+### Arrange a Dictionary
+Given a dictionary, return its keys sorted by the values associated with each
+key.
+
+- Input: A dictionary
+- Output: A list containing the keys of the dictionary, sorted by the values of
+    the dictionary
+
+Rules:
+- Explicit:
+    - None
+- Implicit:
+    - Must return a list of keys
+
+Questions:
+- None
+
+Data Structures:
+- A list to append to and return
+
+Programmatic Algorithm:
+1. Start
+    - define function "order_by_value"
+    - tuple_list = a list of tuples that contain the key:value pairs extracted
+        from dictionary.items(), which is sorted by the values of said dictionary
+2. return a list that contains each element at index[1] for each item in tuple_list
+
+Notes:
+- Still getting used to using `sorted()` and `.sort`. William Pognonec had a
+  solution that I thought was interesting:
+
+```Python
+def order_by_value(d):
+    return sorted(d, key=lambda x: d[x])
+```
+  I didn't understand why it was returning a list until I realized that `sorted()`
+  is like coercing the keys into a list object on its own. It's still weird to
+  me because it seems like the `sorted()` function is sorting tuples, but it
+  seems that when you call `sorted()` on a dictionary, it defaults to the
+  dictionary's keys.

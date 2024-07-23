@@ -892,30 +892,70 @@
 # print(is_balanced("({[})") == False)
 # print(is_balanced("][") == False)
 
-# https://launchschool.com/exercises/eaf97eee
-# Alphabetical Numbers
-def alphabetic_number_sort(number_list):
-    my_list = sorted([(0, "zero"), (1, "one"), (2, "two"), (3, "three"), (4, "four"),
-                (5, "five"), (6, "six"), (7, "seven"), (8, "eight"), (9, "nine"),
-                (10, "ten"), (11, "eleven"), (12, "twelve"), (13, "thirteen"),
-                (14, "fourteen"), (15, "fifteen"), (16, "sixteen"),
-                (17, "seventeen"), (18, "eighteen"), (19, "nineteen")],
-                key=lambda number: number[1])
+# # Alphabetical Numbers
+# # https://launchschool.com/exercises/eaf97eee
+# def alphabetic_number_sort(number_list):
+#     my_list = sorted([(0, "zero"), (1, "one"), (2, "two"), (3, "three"), (4, "four"),
+#                 (5, "five"), (6, "six"), (7, "seven"), (8, "eight"), (9, "nine"),
+#                 (10, "ten"), (11, "eleven"), (12, "twelve"), (13, "thirteen"),
+#                 (14, "fourteen"), (15, "fifteen"), (16, "sixteen"),
+#                 (17, "seventeen"), (18, "eighteen"), (19, "nineteen")],
+#                 key=lambda number: number[1])
 
-    new_nums = []
+#     new_nums = []
 
-    for integer, word in my_list:
-        for num in number_list:
-            if num == integer:
-                new_nums.append(num)
+#     for integer, word in my_list:
+#         for num in number_list:
+#             if num == integer:
+#                 new_nums.append(num)
 
-    return new_nums
+#     return new_nums
 
-input_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-              10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# input_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+#               10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
-expected_result = [8, 18, 11, 15, 5, 4, 14, 9, 19, 1,
-                   7, 17, 6, 16, 10, 13, 3, 12, 2, 0]
+# expected_result = [8, 18, 11, 15, 5, 4, 14, 9, 19, 1,
+#                   7, 17, 6, 16, 10, 13, 3, 12, 2, 0]
 
-print(alphabetic_number_sort(input_list) == expected_result)
-# Prints True
+# print(alphabetic_number_sort(input_list) == expected_result)
+# # Prints True
+
+# # Merge Sets
+# # https://launchschool.com/exercises/f14b5d63
+# def merge_sets(list1, list2):
+#     set1 = convert_to_set(list1)
+#     set2 = convert_to_set(list2)
+
+#     merged_set = set1 | set2
+
+#     return merged_set
+
+# def convert_to_set(iterable):
+#     return set(iterable)
+
+# list1 = [3, 5, 7, 9]
+# list2 = [5, 7, 11, 13]
+# print(merge_sets(list1, list2) == {3, 5, 7, 9, 11, 13})
+# # Prints True
+
+# # Immutable Intersection
+# # https://launchschool.com/exercises/af0ace37
+# def intersection(list1, list2):
+#     return frozenset(list1).intersection(frozenset(list2))
+
+# list1 = [2, 4, 6, 8]
+# list2 = [1, 3, 5, 7, 8]
+# expected_result = frozenset({8})
+
+# print(intersection(list1, list2) == expected_result) # True
+
+# Arrange a Dictionary
+# https://launchschool.com/exercises/8817379e
+def order_by_value(dictionary):
+    tuple_list = sorted(dictionary.items(), key=lambda item: item[1])
+
+    return [key for key, value in tuple_list]
+
+my_dict = {'p': 8, 'q': 2, 'r': 6}
+keys = ['q', 'r', 'p']
+print(order_by_value(my_dict) == keys)  # True
