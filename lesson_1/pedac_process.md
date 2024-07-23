@@ -1663,27 +1663,49 @@ Programmatic Algorithm:
 2. return item for item in transactions if the item's id is equal to the input ID
 
 
-###
+### Inventory Item Availability
+Building on the previous exercise, write a function that returns True or False
+based on whether or not an inventory item (an ID number) is available. As before,
+the function takes two arguments: an item ID and a list of transactions. The
+function should return True only if the sum of the quantity values of the item's
+transactions is greater than zero. Notice that there is a movement property in
+each transaction object. A movement value of 'out' will decrease the item's
+quantity.
 
-- Input:
-- Output:
+You may (and should) use the transactions_for function from the previous
+exercise.
+
+- Input: A list of dictionaries
+- Output: True or False based on whether or not an inventory item (an ID number)
+    is available.
 
 Rules:
 - Explicit:
-    -
-    -
+    - Should use the transactions_for function from the previous exercise.
+    - Should return True only if the sum of the quantity values of the item's
+        transactions is greater than zero.
 - Implicit:
-    -
+    - total movement in should be greater than total movement out to ensure
+        inventory
 
 Questions:
--
+- None
 
 Data Structures:
 -
 
 Programmatic Algorithm:
 1. Start
-    -
+    - define function 'is_item_available'
+    - inventory = 0
+    - new_list = transactions_for(item_id, transaction_list)
+2. for item in new_list:
+    - if item['movement'] == 'in':
+        - inventory += item['quantity']
+    - else:
+        - inventory -= item['quantity']
+3. return inventory > 0
 
 Notes:
--
+- My solution was exactly the same as the LS solution, with just slightly
+  different variable names. Another quick solve.
