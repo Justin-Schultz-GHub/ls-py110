@@ -1308,27 +1308,140 @@
 
 # print(staggered_case('') == "")          # True
 
-# Remove Consecutive Duplicates
-# https://launchschool.com/exercises/31152e2c
-def unique_sequence(numbers):
-    new_nums = []
-    previous_num = -1
+# # Remove Consecutive Duplicates
+# # https://launchschool.com/exercises/31152e2c
+# def unique_sequence(numbers):
+#     new_nums = []
+#     previous_num = -1
 
-    for num in numbers:
-        if num != previous_num:
-            new_nums.append(num)
-            previous_num = num
+#     for num in numbers:
+#         if num != previous_num:
+#             new_nums.append(num)
+#             previous_num = num
 
-    return new_nums
+#     return new_nums
 
-    # return [num
-    #         for idx, num in enumerate(numbers)
-    #         if idx == 0 or num != numbers[idx - 1]]
+#     # return [num
+#     #         for idx, num in enumerate(numbers)
+#     #         if idx == 0 or num != numbers[idx - 1]]
 
-original = [1, 1, 2, 6, 6, 6, 5, 5, 3, 3, 3, 4]
-expected = [1, 2, 6, 5, 3, 4]
-print(unique_sequence(original) == expected)      # True
+# original = [1, 1, 2, 6, 6, 6, 5, 5, 3, 3, 3, 4]
+# expected = [1, 2, 6, 5, 3, 4]
+# print(unique_sequence(original) == expected)      # True
 
-original = [1, 2, 1, 6, 6, 5, 6, 5, 3, 3, 3, 4]
-expected = [1, 2, 1, 6, 5, 6, 5, 3, 4]
-print(unique_sequence(original) == expected)      # True
+# original = [1, 2, 1, 6, 6, 5, 6, 5, 3, 3, 3, 4]
+# expected = [1, 2, 1, 6, 5, 6, 5, 3, 4]
+# print(unique_sequence(original) == expected)      # True
+
+# # Countdown
+# # https://launchschool.com/exercises/267890f0
+# def decrease(counter):
+#     return counter - 1
+
+# counter = 10
+
+# for _ in range(10):
+#     print(counter)
+#     counter = decrease(counter)
+
+# print('LAUNCH!')
+
+# # Reverse a String
+# # https://launchschool.com/exercises/418e1b23
+# def reverse_string(string):
+#     reversed_string = ''
+
+#     for char in string[::-1]:
+#         reversed_string += char
+
+#     return reversed_string
+
+# print(reverse_string("hello") == "olleh")
+
+# # Multiply List
+# # https://launchschool.com/exercises/f039d7ad
+# def multiply_list(lst):
+#     for i in range(len(lst)):
+#         lst[i] *= 2
+
+#     return lst
+
+# print(multiply_list([1, 2, 3]) == [2, 4, 6])
+
+# # Key Check
+# # https://launchschool.com/exercises/b7b366ea
+# def get_key_value(my_dict, key):
+#     return key in my_dict
+
+# print(get_key_value({"a": 1}, "b"))
+
+# # Calendar Event Checker
+# # https://launchschool.com/exercises/069c27d6
+# events = {
+#     "2023-08-13": ["Python debugging exercises"],
+#     "2023-08-14": ["Read 'Automate the Boring Stuff'"],
+#     "2023-08-15": ["Webinar: Python for Data Science"],
+# }
+
+# def is_date_available(date):
+#     if date in events:
+#         return False
+
+#     return True
+
+# print(is_date_available("2023-08-14"))  # should return False
+# print(is_date_available("2023-08-16"))  # should return True
+
+# # Mutable Default Arguments
+# # https://launchschool.com/exercises/db5812ba
+# def append_to_list(value, lst=None):
+#     if lst == None:
+#         lst = []
+
+#     lst.append(value)
+#     return lst
+
+# print(append_to_list(1) == [1])
+# print(append_to_list(2) == [2])
+
+# # Shadow
+# # https://launchschool.com/exercises/a79ce2b7
+# def sum_of_numbers(numbers, factor):
+#     return factor * sum(numbers)
+
+# numbers = [1, 2, 3, 4]
+# print(sum_of_numbers(numbers, 2) == 20)
+
+# # Copy Issues
+# # https://launchschool.com/exercises/385214e6
+# import copy
+
+# original = [[1], [2], [3]]
+# copied = copy.deepcopy(original)
+
+# original[0][0] = 99
+
+# print(copied[0] == [1])
+
+# # Set Modifications
+# # https://launchschool.com/exercises/3c9bd095
+# data_set = {1, 2, 3, 4, 5}
+
+# for item in data_set:
+#     data_set = {item for item in data_set if item % 2 != 0}
+
+# print(data_set)
+
+# List Deduplication
+# https://launchschool.com/exercises/9c0dec0a
+data = [4, 2, 4, 2, 1, 3, 2, 3, 2, 4, 3]
+seen = set()
+unique_data = []
+
+for number in data:
+    if number not in seen:
+        unique_data.append(number)
+        seen.add(number)
+
+print(unique_data == [4, 2, 1, 3]) # order not guaranteed
+print(unique_data)

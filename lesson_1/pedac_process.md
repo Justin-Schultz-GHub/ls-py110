@@ -2069,3 +2069,109 @@ Programmatic Algorithm:
 
 Notes:
 - My solution is fine, but again, I like the enumerate solution that LS used.
+
+
+### Countdown
+Our countdown to launch isn't behaving as expected. Why? Change the code so that
+our program successfully counts down from 10 to 1 before launching.
+
+Notes:
+- `decrease(counter)`` ==> `counter = decrease(counter)``
+
+
+### Reverse a String
+You have a function that is supposed to reverse a string passed as an argument.
+However, it's not producing the expected output. Explain the bug, and provide a
+solution.
+
+Notes:
+- `string = char + string` is concatenating each character in the string to the
+  front of the string, so you end up with ollehhello. I would just create a new
+  variable and iterate over the reverse sliced string and concatenate each
+  character that way. Or just return the reverse slice of the string from the
+  get go, like LS solution #2.
+
+
+### Multiply List
+You want to multiply all elements of a list by 2. However, the function is not
+returning the expected result. Explain the bug, and provide a solution.
+
+Notes:
+- The problem here arises from modifying the `item` variable, which isn't the
+  actual list element. Swapping to a range function and modifying each index
+  works.
+
+
+### Key Check
+You have a function that should check whether a key exists in a dictionary and
+returns its value. However, it's raising an error. Why is that? How would you
+fix this code?
+
+Notes:
+- An easy debug. I checked with the `in` operator, but you can also use
+  .get(key, None). I believe it's throwing an error because, it's not checking
+  whether the key exists, but rather, it's checking for the value of a key that
+  doesn't exist.
+
+
+### Calendar Event Checker
+We have a list of events and want to check whether a specific date is available
+(i.e., no events planned for that date). However, the function always returns the
+wrong value.
+
+Notes:
+- Kind of a weird debug.. You just swap the `True` and `False` to make it work.
+  Although, `return date not in events` looks better imo.
+
+
+### Mutable Default Arguments
+We want to create a function that appends a given value to a list. However, the
+function seems to be behaving unexpectedly:
+
+Notes:
+- I've not seen this interaction before. It looks like what's happening is that
+  the default parameter is not reset each time the function is called?
+
+  Edit: Upon checking the LS discussion, that's precisely what is happening.
+  "In Python, *mutable* default arguments are shared between function calls. This
+  means that if you modify the default argument, its state will persist across
+  function calls."
+
+
+### Shadow
+We defined a function intending to multiply the sum of numbers by a factor.
+However, the function raises an error. Why? How would you fix this code?
+
+Notes:
+- The problem is that the function is the same name as a built in function, and
+  so the interpreter(?) thinks you're trying to pass too many arguments into the
+  built-in `sum()` function.
+
+
+### Copy Issues
+We have a list of lists and want to duplicate it. After making the copy, we
+modify the original list, but the copied list also seems to be affected:
+
+Notes:
+- `copy.copy()` only copies the outermost object, so the nested lists are still
+  the original objects. Using `copy.deepcopy()` fixes this.
+
+
+### Set Modifications
+We want to remove certain items from a set while iterating over it, but the code
+below throws an error. Why is that and how can we fix it?
+
+Notes:
+- Apparently you can't change the size of a set while iterating over it.
+  Similarly to how lists have list comprehension, sets of set comprehension,
+  and this can be used to solve the problem.
+
+
+### List Deduplication
+A developer is trying to remove duplicates from a list. They use a set for
+deduplication, but the order of elements is lost. How can we preserve the order?
+
+Notes:
+- William Pognonec had an interesting solution. He used the inherent uniqueness
+  of dictionary keys by creating a new dictionary with the `.fromkeys()` method
+  and simply coerced it to a list.
