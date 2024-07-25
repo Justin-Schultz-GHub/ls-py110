@@ -1709,3 +1709,363 @@ Programmatic Algorithm:
 Notes:
 - My solution was exactly the same as the LS solution, with just slightly
   different variable names. Another quick solve.
+
+
+### Inverting Dictionary
+Given a dictionary where both keys and values are unique, invert this dictionary
+so that its keys become values and its values become keys.
+
+- Input: A dictionary
+- Output: The same dictionary with its keys and values swapped
+
+Rules:
+- Explicit:
+    - All keys and values are unique
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A copy of the original dictionary
+
+Programmatic Algorithm:
+1. Start
+    - define function 'invert_dict'
+    - temp_dict = dictionary.copy()
+2. clear dictionary
+3. for key, value in temp_dict.items()
+        - dictionary[value] = key
+4. return dictionary
+
+Notes:
+- I was under the impression that I needed to use the same dictionary, but then
+  I realized it wanted the return value, so it didn't matter.
+
+
+### Retain Specific Keys
+Given a dictionary and a list of keys, produce a new dictionary that only
+contains the key/value pairs for the specified keys.
+
+- Input: A dictionary
+- Output: A new dictionary with the specified key:value pairs
+
+Rules:
+- Explicit:
+    - Must return a new dictionary
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A dictionary to add key:value pairs to and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'keep_keys'
+2. return {key: value for key, value in dictionary.items() if key in keys}
+
+Notes:
+- Took about 10 seconds
+
+
+### Delete Vowels
+Write a function that takes a list of strings and returns a list of the same
+string values, but with all vowels (a, e, i, o, u) removed.
+
+- Input: A list of strings
+- Output: A list of strings with all the vowels removed
+
+Rules:
+- Explicit:
+    - List may contain only 1 string, but no less
+- Implicit:
+    - Must remove capital and lowercase vowels
+    - A string of all vowels should become an empty string
+
+Questions:
+- None
+
+Data Structures:
+- A temporary string
+
+Programmatic Algorithm:
+1. Start
+    - define function 'remove_vowels'
+    - VOWELS = 'aeiouAEIOU'
+    - temp_string = ''
+2. for i in range(len(string_list)):
+        - for char in string_list[i]:
+            - if char not in VOWELS:
+                - temp_string += char
+
+        - string_list[i] = temp_string
+        - temp_string = ''
+3. return string_list
+
+Notes:
+- My version worked, but I think the LS version is definitely better.
+
+
+### How Long Are You?
+Write a function that takes a string as an argument and returns a list that
+contains every word from the string, with each word followed by a space and the
+word's length. If the argument is an empty string or if no argument is passed,
+the function should return an empty list.
+
+You may assume that every pair of words in the string will be separated by a
+single space.
+
+- Input: A string
+- Output: A list containing every word from the string, with each word followed
+    by a space and the word's length
+
+Rules:
+- Explicit:
+    - Every pair of words will be separated by a space
+    - If the argument is an empty string or if no argument is passed, the
+        function should return an empty list.
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to append to and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'word_lengths(str='')'
+2. if string:
+    - word_list = string.split(' ')
+2. for i in range(len(word_list)):
+        - word_list[i] = word_list[i] + ' ' + str(len(word_list[i]))
+3. return word_list
+4. return []
+
+
+Notes:
+- Did the above at first, but wanted to use an f-string, so I reformatted to
+  the current version.
+
+
+### List Element Multiplication
+Given two lists of integers of the same length, return a new list where each
+element is the product of the corresponding elements from the two lists.
+
+- Input: Two lists of integers of the same length
+- Output: A new list where each element is the product of the corresponding
+    elements from the two lists
+
+Rules:
+- Explicit:
+    - Must return a new list
+- Implicit:
+    - Lists cannot be empty
+
+Questions:
+- None
+
+Data Structures:
+- A list to append to and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'multiply_items'
+    - return [[list1[i] * list2[i] for i in range(len(list1))]
+
+Notes:
+- I think my solution is good, but I also think the use of zip() in the LS
+    solution was nice.
+
+
+### Sum of Sums
+Write a function that takes a list of numbers and returns the sum of the sums of
+each leading subsequence in that list. Examine the examples to see what we mean.
+You may assume that the list always contains at least one number.
+
+- Input: A list of numbers
+- Output: An integer that is the sum of the sums of each leading subsequence in
+    that list
+
+Rules:
+- Explicit:
+    - The list always contains at least one number.
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- None
+
+Programmatic Algorithm:
+1. Start
+    - define function 'sum_of_sums'
+    - total_sum = 0
+2. for i in range(len(numbers)):
+        - total_sum += sum(numbers[:i + 1])
+3. return total_sum
+
+Notes:
+- I think my solution is just as good as the LS solution.
+
+
+### Sum of Digits
+Write a function that takes one argument, a positive integer, and returns the
+sum of its digits.
+
+- Input: A positive integer
+- Output: An integer that is the sum of all digits in the original integer
+
+Rules:
+- Explicit:
+    - Integer is always positive
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to store, sum, and return values
+
+Programmatic Algorithm:
+1. Start
+    - define function 'sum_digits'
+2. return sum([int(char) for char in str(number)])
+
+Notes:
+- Getting better at these one-liners.
+
+
+### Staggered Case (Part 1)
+Write a function that takes a string as an argument and returns that string with
+a staggered capitalization scheme. Every other character, starting from the
+first, should be capitalized and should be followed by a lowercase or
+non-alphabetic character. Non-alphabetic characters should not be changed, but
+should be counted as characters for determining when to switch between upper and
+lower case.
+
+- Input: A string
+- Output: A string with every other character capitalized
+
+Rules:
+- Explicit:
+    - Every other character, starting from the first, should be capitalized and
+        should be followed by a lowercase or non-alphabetic character.
+    - Non-alphabetic characters should not be changed, but should be counted as
+        characters for determining when to switch between upper and lower case.
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A new string
+
+Programmatic Algorithm:
+1. Start
+    - define function 'staggered_case'
+    - string = string.lower()
+    - staggered_string = ''
+2. for i in range(len(string)):
+        - if i % 2 == 0:
+            - staggered_string += string[i].upper()
+        - else:
+            - staggered_string += string[i]
+3. return staggered_string
+
+Notes:
+- My solution is okay, but I should get more practice working with enmuerate().
+
+
+### Staggered Case (Part 2)
+Modify the function from the previous exercise so it ignores non-alphabetic
+characters when determining whether it should uppercase or lowercase each letter.
+The non-alphabetic characters should still be included in the return value; they
+just don't count when toggling the desired case.
+
+- Input: A string
+- Output: A string with every other character capitalized, ignoring
+    non-alphabetic characters
+
+Rules:
+- Explicit:
+    - Non-alphabetic characters should still be included in the return value
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A counter to keep track of upper/lower
+
+Programmatic Algorithm:
+1. Start
+    - define function 'staggered_case'
+    - staggered_string = ''
+    - count = 0
+2. for each character in string:
+    - if the character is alphabetical:
+        - add 1 to count
+        - if the count mod 2 is 0:
+            - staggered_string plus equals the lowercase character
+        - else:
+            - staggered_string plus equals the uppercase character
+    - else:
+        - add the character to staggered_string
+3. return staggered_string
+
+Notes:
+- My solution is basically the same as the LS solution. I thought of using a
+  boolean to flip between upper and lower, but I couldn't think of how to flip
+  it back and forth in the moment and so I opted to use a counter instead.
+  Looking at the `upper = not upper` in their code, makes me wonder how I
+  overlooked something so simple.
+
+  Edit: Reformatted one section to be a single if/else line, instead of having
+  it take up multiple lines.
+
+
+### Remove Consecutive Duplicates
+Given a sequence of integers, filter out instances where the same value occurs
+successively, retaining only the initial occurrence. Return the refined sequence.
+
+- Input: A list of numbers
+- Output: A list of numbers that contains no consecutive duplicates
+
+Rules:
+- Explicit:
+    - Duplicates can still be present in the final list, just not if they are
+        consecutive
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to append to and return
+- A variable to track the previous number
+
+Programmatic Algorithm:
+1. Start
+    - define function 'unique_sequence'
+    - new_nums = []
+    - previous_num = -1
+2. for num in numbers:
+        - if num != previous_num:
+            - append num to new_nums
+            - previous_num = num
+3. return new_nums
+
+Notes:
+- My solution is fine, but again, I like the enumerate solution that LS used.

@@ -1053,10 +1053,10 @@
 
 # # Inventory Item Transactions
 # # https://launchschool.com/exercises/bbb4b01f
-def transactions_for(item_id, transaction_list):
-    return [transaction
-            for transaction in transaction_list
-            if transaction['id'] == item_id]
+# def transactions_for(item_id, transaction_list):
+#     return [transaction
+#             for transaction in transaction_list
+#             if transaction['id'] == item_id]
 
 
 # transactions = [
@@ -1079,33 +1079,256 @@ def transactions_for(item_id, transaction_list):
 #           {"id": 101, "movement": "out", "quantity": 18},
 #       ]) # True
 
-# Inventory Item Availability
-# https://launchschool.com/exercises/04b22878
-def is_item_available(item_id, transaction_list):
-    inventory = 0
-    selected_transactions = transactions_for(item_id, transaction_list)
+# # Inventory Item Availability
+# # https://launchschool.com/exercises/04b22878
+# # Requires the above function to work
+# def is_item_available(item_id, transaction_list):
+#     inventory = 0
+#     selected_transactions = transactions_for(item_id, transaction_list)
 
-    for transaction in selected_transactions:
-        if transaction['movement'] == 'in':
-            inventory += transaction['quantity']
-        else:
-            inventory -= transaction['quantity']
+#     for transaction in selected_transactions:
+#         if transaction['movement'] == 'in':
+#             inventory += transaction['quantity']
+#         else:
+#             inventory -= transaction['quantity']
 
-    return inventory > 0
+#     return inventory > 0
 
-transactions = [
-    {"id": 101, "movement": 'in',  "quantity":  5},
-    {"id": 105, "movement": 'in',  "quantity": 10},
-    {"id": 102, "movement": 'out', "quantity": 17},
-    {"id": 101, "movement": 'in',  "quantity": 12},
-    {"id": 103, "movement": 'out', "quantity": 20},
-    {"id": 102, "movement": 'out', "quantity": 15},
-    {"id": 105, "movement": 'in',  "quantity": 25},
-    {"id": 101, "movement": 'out', "quantity": 18},
-    {"id": 102, "movement": 'in',  "quantity": 22},
-    {"id": 103, "movement": 'out', "quantity": 15},
-]
+# transactions = [
+#     {"id": 101, "movement": 'in',  "quantity":  5},
+#     {"id": 105, "movement": 'in',  "quantity": 10},
+#     {"id": 102, "movement": 'out', "quantity": 17},
+#     {"id": 101, "movement": 'in',  "quantity": 12},
+#     {"id": 103, "movement": 'out', "quantity": 20},
+#     {"id": 102, "movement": 'out', "quantity": 15},
+#     {"id": 105, "movement": 'in',  "quantity": 25},
+#     {"id": 101, "movement": 'out', "quantity": 18},
+#     {"id": 102, "movement": 'in',  "quantity": 22},
+#     {"id": 103, "movement": 'out', "quantity": 15},
+# ]
 
-print(is_item_available(101, transactions) == False)  # True
-print(is_item_available(103, transactions) == False)  # True
-print(is_item_available(105, transactions) == True)   # True
+# print(is_item_available(101, transactions) == False)  # True
+# print(is_item_available(103, transactions) == False)  # True
+# print(is_item_available(105, transactions) == True)   # True
+
+# # Inverting Dictionary
+# # https://launchschool.com/exercises/90d18ae7
+# def invert_dict(dictionary):
+#     # temp_dict = dictionary.copy()
+
+#     # dictionary.clear()
+
+#     # for key, value in temp_dict.items():
+#     #     dictionary[value] = key
+
+#     # return dictionary
+
+#     # Since I don't need to mutate the original dictionary
+#     return {value: key for key, value in dictionary.items()}
+
+# print(invert_dict({
+#           'apple': 'fruit',
+#           'broccoli': 'vegetable',
+#           'salmon': 'fish',
+#       }) == {
+#           'fruit': 'apple',
+#           'vegetable': 'broccoli',
+#           'fish': 'salmon',
+#       })  # True
+
+# # Retain Specific Keys
+# # https://launchschool.com/exercises/4b19afa8
+# def keep_keys(dictionary, keys):
+#     return {key: value for key, value in dictionary.items() if key in keys}
+
+# input_dict = {
+#     'red': 1,
+#     'green': 2,
+#     'blue': 3,
+#     'yellow': 4,
+# }
+
+# keys = ['red', 'blue']
+# expected_dict = {'red': 1, 'blue': 3}
+# print(keep_keys(input_dict, keys) == expected_dict) # True
+
+# # Delete Vowels
+# # https://launchschool.com/exercises/bb9d55f5
+# def remove_vowels(string_list):
+#     VOWELS = 'aeiouAEIOU'
+#     temp_string = ''
+
+#     for i in range(len(string_list)):
+#         for char in string_list[i]:
+#             if char not in VOWELS:
+#                 temp_string += char
+
+#         string_list[i] = temp_string
+#         temp_string = ''
+
+#     return string_list
+
+# # All of these examples should print True
+# original = ['abcdefghijklmnopqrstuvwxyz']
+# expected = ['bcdfghjklmnpqrstvwxyz']
+# print(remove_vowels(original) == expected)        # True
+
+# original = ['green', 'YELLOW', 'black', 'white']
+# expected = ['grn', 'YLLW', 'blck', 'wht']
+# print(remove_vowels(original) == expected)        # True
+
+# original = ['ABC', 'AEIOU', 'XYZ']
+# expected = ['BC', '', 'XYZ']
+# print(remove_vowels(original) == expected)        # True
+
+# # How Long Are You?
+# # https://launchschool.com/exercises/74ff114b
+# def word_lengths(string=''):
+#     if string:
+#         return [f'{word} {len(word)}' for word in string.split()]
+
+#     return []
+
+# # All of these examples should print True
+# words = 'cow sheep chicken'
+# expected_result = ['cow 3', 'sheep 5', 'chicken 7']
+# print(word_lengths(words) == expected_result)        # True
+
+# words = 'baseball hot dogs and apple pie'
+# expected_result = ['baseball 8', 'hot 3', 'dogs 4',
+#                   'and 3', 'apple 5', 'pie 3']
+# print(word_lengths(words) == expected_result)        # True
+
+# words = "It ain't easy, is it?"
+# expected_result = ['It 2', "ain't 5", 'easy, 5',
+#                   'is 2', 'it? 3']
+# print(word_lengths(words) == expected_result)        # True
+
+# big_word = 'Supercalifragilisticexpialidocious'
+# print(word_lengths(big_word) == [f'{big_word} 34'])  # True
+
+# print(word_lengths('') == [])                        # True
+# print(word_lengths() == [])                          # True
+
+# # List Element Multiplication
+# # https://launchschool.com/exercises/827abcc2
+# def multiply_items(list1, list2):
+#     return [list1[i] * list2[i] for i in range(len(list1))]
+
+# list_a = [1, 2, 3]
+# list_b = [4, 5, 6]
+# print(multiply_items(list_a, list_b) == [4, 10, 18]) # True
+
+# # Sum of Sums
+# # https://launchschool.com/exercises/8bee659d
+# def sum_of_sums(numbers):
+#     total_sum = 0
+
+#     for i in range(len(numbers)):
+#         total_sum += sum(numbers[:i + 1])
+
+#     return total_sum
+
+# print(sum_of_sums([3, 5, 2]) == 21)               # True
+# # (3) + (3 + 5) + (3 + 5 + 2) --> 21
+
+# print(sum_of_sums([1, 5, 7, 3]) == 36)            # True
+# # (1) + (1 + 5) + (1 + 5 + 7) + (1 + 5 + 7 + 3) --> 36
+
+# print(sum_of_sums([1, 2, 3, 4, 5]) == 35)         # True
+# # (1) + (1+2) + (1+2+3) + (1+2+3+4) + (1+2+3+4+5) --> 35
+
+# print(sum_of_sums([4]) == 4)                      # True
+
+# # Sum of Digits
+# # https://launchschool.com/exercises/ae172c02
+# def sum_digits(number):
+#     return sum([int(char) for char in str(number)])
+
+# print(sum_digits(23) == 5)              # True
+# print(sum_digits(496) == 19)            # True
+# print(sum_digits(123456789) == 45)      # True
+
+# # Staggered Case (Part 1)
+# # https://launchschool.com/exercises/5c5d7f1f
+# def staggered_case(string):
+#     string = string.lower()
+#     staggered_string = ''
+
+#     for i in range(len(string)):
+#         if i % 2 == 0:
+#             staggered_string += string[i].upper()
+#         else:
+#             staggered_string += string[i]
+
+#     return staggered_string
+
+
+# string = 'I Love Launch School!'
+# result = "I LoVe lAuNcH ScHoOl!"
+# print(staggered_case(string) == result)  # True
+
+# string = 'ALL_CAPS'
+# result = "AlL_CaPs"
+# print(staggered_case(string) == result)  # True
+
+# string = 'ignore 77 the 4444 numbers'
+# result = "IgNoRe 77 ThE 4444 nUmBeRs"
+# print(staggered_case(string) == result)  # True
+
+# print(staggered_case('') == "")          # True
+
+# # Staggered Case (Part 2)
+# # https://launchschool.com/exercises/bb605dc4
+# def staggered_case(string):
+#     string = string.lower()
+#     staggered_string = ''
+#     count = 0
+
+#     for char in string:
+#         if char.isalpha():
+#             count += 1
+#             staggered_string += char.lower() if count % 2 == 0 else char.upper()
+#         else:
+#             staggered_string += char
+
+#     return staggered_string
+
+# string = 'I Love Launch School!'
+# result = "I lOvE lAuNcH sChOoL!"
+# print(staggered_case(string) == result)  # True
+
+# string = 'ALL_CAPS'
+# result = "AlL_cApS"
+# print(staggered_case(string) == result)  # True
+
+# string = 'ignore 77 the 4444 numbers'
+# result = "IgNoRe 77 ThE 4444 nUmBeRs"
+# print(staggered_case(string) == result)  # True
+
+# print(staggered_case('') == "")          # True
+
+# Remove Consecutive Duplicates
+# https://launchschool.com/exercises/31152e2c
+def unique_sequence(numbers):
+    new_nums = []
+    previous_num = -1
+
+    for num in numbers:
+        if num != previous_num:
+            new_nums.append(num)
+            previous_num = num
+
+    return new_nums
+
+    # return [num
+    #         for idx, num in enumerate(numbers)
+    #         if idx == 0 or num != numbers[idx - 1]]
+
+original = [1, 1, 2, 6, 6, 6, 5, 5, 3, 3, 3, 4]
+expected = [1, 2, 6, 5, 3, 4]
+print(unique_sequence(original) == expected)      # True
+
+original = [1, 2, 1, 6, 6, 5, 6, 5, 3, 3, 3, 4]
+expected = [1, 2, 1, 6, 5, 6, 5, 3, 4]
+print(unique_sequence(original) == expected)      # True
