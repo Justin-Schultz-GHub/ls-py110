@@ -1432,16 +1432,134 @@
 
 # print(data_set)
 
-# List Deduplication
-# https://launchschool.com/exercises/9c0dec0a
-data = [4, 2, 4, 2, 1, 3, 2, 3, 2, 4, 3]
-seen = set()
-unique_data = []
+# # List Deduplication
+# # https://launchschool.com/exercises/9c0dec0a
+# data = [4, 2, 4, 2, 1, 3, 2, 3, 2, 4, 3]
+# seen = set()
+# unique_data = []
 
-for number in data:
-    if number not in seen:
-        unique_data.append(number)
-        seen.add(number)
+# for number in data:
+#     if number not in seen:
+#         unique_data.append(number)
+#         seen.add(number)
 
-print(unique_data == [4, 2, 1, 3]) # order not guaranteed
-print(unique_data)
+# print(unique_data == [4, 2, 1, 3]) # order not guaranteed
+# print(unique_data)
+
+# # Rotation (Part 1)
+# # https://launchschool.com/exercises/cb05fdb2
+# import copy
+
+# def rotate_list(something):
+#     if isinstance(something, list):
+#         if len(something) > 0:
+#             rotated_list = something.copy()
+#             rotated_list.append(rotated_list.pop(0))
+
+#             return rotated_list
+
+#         return []
+
+#     return None
+
+# # All of these examples should print True
+# print(rotate_list([7, 3, 5, 2, 9, 1]) == [3, 5, 2, 9, 1, 7])
+# print(rotate_list(['a', 'b', 'c']) == ['b', 'c', 'a'])
+# print(rotate_list(['a']) == ['a'])
+# print(rotate_list([1, 'a', 3, 'c']) == ['a', 3, 'c', 1])
+# print(rotate_list([{'a': 2}, [1, 2], 3]) == [[1, 2], 3, {'a': 2}])
+# print(rotate_list([]) == [])
+
+# # return `None` if the argument is not a list
+# print(rotate_list(None) == None)
+# print(rotate_list(1) == None)
+
+# # the input list is not mutated
+# lst = [1, 2, 3, 4]
+# print(rotate_list(lst) == [2, 3, 4, 1])
+# print(lst == [1, 2, 3, 4])
+
+# # Rotation (Part 2)
+# # https://launchschool.com/exercises/7c525401
+# def rotate_rightmost_digits(number, idx):
+#     number_list = list(str(number))
+#     number_list.append(number_list.pop(-idx))
+
+#     new_number = int(''.join(number_list))
+
+#     return new_number
+
+# print(rotate_rightmost_digits(735291, 2) == 735219)  # True
+# print(rotate_rightmost_digits(735291, 3) == 735912)  # True
+# print(rotate_rightmost_digits(735291, 1) == 735291)  # True
+# print(rotate_rightmost_digits(735291, 4) == 732915)  # True
+# print(rotate_rightmost_digits(735291, 5) == 752913)  # True
+# print(rotate_rightmost_digits(735291, 6) == 352917)  # True
+# print(rotate_rightmost_digits(1200, 3) == 1002)      # True
+
+# Rotation (Part 3)
+# https://launchschool.com/exercises/89604c6e
+# def max_rotation(number):
+#     number_list = list(str(number))
+
+#     for i in range(len(number_list)):
+#         number_list.append(number_list.pop(i))
+
+#     maximum_rotation = int(''.join(number_list))
+
+#     return maximum_rotation
+
+# #   alternative version
+#     # number_list = list(str(number))
+
+#     # for i in range(len(number_list), 1, -1):
+#     #     number = rotate_rightmost_digits(number, i)
+
+#     # return number
+
+
+# print(max_rotation(735291) == 321579)          # True
+# print(max_rotation(3) == 3)                    # True
+# print(max_rotation(35) == 53)                  # True
+# print(max_rotation(8703529146) == 7321609845)  # True
+
+# # Note that the final sequence here is `015`. The leading
+# # zero gets dropped, though, since we're working with
+# # an integer.
+# print(max_rotation(105) == 15)                 # True
+
+# Stack Machine Interpretation
+# https://launchschool.com/exercises/b09d93c8
+
+
+minilang('PRINT')
+# 0
+
+minilang('5 PUSH 3 MULT PRINT')
+# 15
+
+minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
+# 5
+# 3
+# 8
+
+minilang('5 PUSH POP PRINT')
+# 5
+
+minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
+# 5
+# 10
+# 4
+# 7
+
+minilang('3 PUSH PUSH 7 DIV MULT PRINT')
+# 6
+
+minilang('4 PUSH PUSH 7 REMAINDER MULT PRINT')
+# 12
+
+minilang('-3 PUSH 5 SUB PRINT')
+# 8
+
+minilang('6 PUSH')
+# (nothing is printed)

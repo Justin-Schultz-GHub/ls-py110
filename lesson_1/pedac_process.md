@@ -2175,3 +2175,184 @@ Notes:
 - William Pognonec had an interesting solution. He used the inherent uniqueness
   of dictionary keys by creating a new dictionary with the `.fromkeys()` method
   and simply coerced it to a list.
+
+
+### Rotation (Part 1)
+Write a function that rotates a list by moving the first element to the end of
+the list. Do not modify the original list; return a new list instead.
+
+If the input is an empty list, return an empty list.
+If the input is not a list, return None.
+Review the test cases below, then implement the solution accordingly.
+
+- Input: An object?
+- Output: If the input is a list, return a rotated list, or else, return None
+
+Rules:
+- Explicit:
+    - If the input is an empty list, return an empty list.
+    - If the input is not a list, return None.
+    - Do not modify the original list.
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A copy of a list
+
+Programmatic Algorithm:
+1. Start
+    - import copy
+    - define function 'rotate_list'
+2. if something is a list:
+        - if the length of something is > 0:
+            - rotated_list = something.deepcopy()
+            - pop idx 0 from rotated_list and append to end of list
+            - return rotated_list
+        - return []
+3. return None
+
+Notes:
+- My solution was fine, but I did like the LS solution. It looks much cleaner.
+
+
+### Rotation (Part 2)
+Write a function that rotates the last count digits of a number. To perform the
+rotation, move the first of the digits that you want to rotate to the end and
+shift the remaining digits to the left.
+
+- Input: An integer and an index
+- Output: The integer with the negative index at the end
+
+Rules:
+- Explicit:
+    - None
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to convert, pop, join, and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'rotate_rightmost_digits'
+2. stringify number
+3. listify number
+4. pop negative index of list and append to list
+5. join list
+6. coerce string to int
+7. return new number
+
+Notes:
+- The LS solution seems a bit convoluted.
+
+
+### Rotation (Part 3)
+Take the number 735291 and rotate it by one digit to the left, getting 352917.
+
+Next, keep the first digit fixed in place and rotate the remaining digits to get
+329175. Keep the first two digits fixed in place and rotate again to get 321759.
+Keep the first three digits fixed in place and rotate again to get 321597.
+
+Finally, keep the first four digits fixed in place and rotate the final two
+digits to get 321579. The resulting number is called the maximum rotation of the
+original number.
+
+Write a function that takes an integer as an argument and returns the maximum
+rotation of that integer. You can (and probably should) use the
+rotate_rightmost_digits function from the previous exercise.
+
+- Input: A number
+- Output: The maximum rotation of the input number
+
+Rules:
+    - Just move each index to the end, one at a time
+
+Questions:
+- None
+
+Data Structures:
+- A list to pop and append to, and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'max_rotation'
+2. for i in range length of number list:
+        - pop number_list[i] and append to number_list
+3. maximum rotation = the joined list coerced to an int
+4. return maximum_rotation
+
+Notes:
+- The explanation for this rotation problem is unreasonably over-complex. All
+  you're doing is moving each index to the end. There's no point in even using
+  the previous function.
+
+  That being said, I wrote a second version to fit what LS did, just because.
+
+
+### Stack Machine Interpretation
+Write a function that implements a miniature stack-and-register-based
+programming language that has the following commands (also called operations or
+tokens):
+
+n: Place an integer value, n, in the register. Do not modify the stack.
+PUSH : Push the current register value onto the stack. Leave the value in the
+register.
+
+ADD : Pop a value from the stack and add it to the register value, storing the
+result in the register.
+
+SUB : Pop a value from the stack and subtract it from the register value, storing
+the result in the register.
+
+MULT : Pop a value from the stack and multiply it by the register value, storing
+the result in the register.
+
+DIV : Pop a value from the stack and divide the register value by the popped
+stack value, storing the integer result back in the register.
+
+REMAINDER : Pop a value from the stack and divide the register value by the
+popped stack value, storing the integer remainder of the division back in the
+register.
+
+POP : Remove the topmost item from the stack and place it in the register.
+
+PRINT : Print the register value.
+
+All operations are integer operations (which is only important with DIV and
+REMAINDER).
+
+Programs will be supplied to your language function via a string argument. Your
+function may assume that all arguments are valid programs -- i.e., they will not
+do anything like trying to pop a non-existent value from the stack, and they
+won't contain any unknown tokens.
+
+Initialize the stack and register to the values [] and 0, respectively.
+
+- Input: A string of operations and values
+- Output: The corresponding input operations, values, etc.
+
+Rules:
+- Explicit:
+    -
+    -
+- Implicit:
+    -
+
+Questions:
+-
+
+Data Structures:
+-
+
+Programmatic Algorithm:
+1. Start
+    -
+
+Notes:
+-
