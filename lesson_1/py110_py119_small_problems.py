@@ -1528,38 +1528,111 @@
 # # an integer.
 # print(max_rotation(105) == 15)                 # True
 
-# Stack Machine Interpretation
-# https://launchschool.com/exercises/b09d93c8
+# # Stack Machine Interpretation
+# # https://launchschool.com/exercises/b09d93c8
+# def minilang(string):
+#     stack = []
+#     register = 0
+
+#     for element in string.split():
+#         match element:
+#             case 'PUSH':
+#                 stack.append(register)
+#             case 'POP':
+#                 register = stack.pop()
+#             case 'ADD':
+#                 register += stack.pop()
+#             case 'SUB':
+#                 register -= stack.pop()
+#             case 'MULT':
+#                 register *= stack.pop()
+#             case 'DIV':
+#                 register //= stack.pop()
+#             case 'REMAINDER':
+#                 register %= stack.pop()
+#             case 'PRINT':
+#                 print(round(register))
+#             case _:
+#                 register = int(element)
 
 
-minilang('PRINT')
-# 0
+# minilang('PRINT')
+# # 0
 
-minilang('5 PUSH 3 MULT PRINT')
-# 15
+# minilang('5 PUSH 3 MULT PRINT')
+# # 15
 
-minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
-# 5
-# 3
-# 8
+# minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
+# # 5
+# # 3
+# # 8
 
-minilang('5 PUSH POP PRINT')
-# 5
+# minilang('5 PUSH POP PRINT')
+# # 5
 
-minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
-# 5
-# 10
-# 4
-# 7
+# minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
+# # 5
+# # 10
+# # 4
+# # 7
 
-minilang('3 PUSH PUSH 7 DIV MULT PRINT')
-# 6
+# minilang('3 PUSH PUSH 7 DIV MULT PRINT')
+# # 6
 
-minilang('4 PUSH PUSH 7 REMAINDER MULT PRINT')
-# 12
+# minilang('4 PUSH PUSH 7 REMAINDER MULT PRINT')
+# # 12
 
-minilang('-3 PUSH 5 SUB PRINT')
-# 8
+# minilang('-3 PUSH 5 SUB PRINT')
+# # 8
 
-minilang('6 PUSH')
-# (nothing is printed)
+# minilang('6 PUSH')
+# # (nothing is printed)
+
+# Word to Digit
+# https://launchschool.com/exercises/69f60f05
+NUMBERS = {
+    'zero': '0',
+    'one': '1',
+    'two': '2',
+    'three': '3',
+    'four': '4',
+    'five': '5',
+    'six': '6',
+    'seven': '7',
+    'eight': '8',
+    'nine': '9',
+}
+
+def word_to_digit(string):
+    # new_string = ''
+
+    # for word in string.split():
+    #     if word in NUMBERS:
+    #         new_string += f' {NUMBERS[word]}'
+    #     else:
+    #         new_string += f' {word}'
+
+    # return new_string.lstrip()
+
+    # One-liner version
+    # return ' '.join([NUMBERS.get(word, word) for word in string.split()])
+
+    string_list = [NUMBERS.get(word, word) for word in string.split()]
+
+    for i in range(len(string_list)):
+        string_list[i] = NUMBERS.get(string_list[i][:-1], string_list[i][:-1]) + string_list[i][-1]
+
+    new_string = ' '.join(string_list)
+
+    if new_string[-1] not in '.!?':
+        new_string += '.'
+
+    return new_string
+
+# message = 'Please call me at five five five one two three four'
+# print(word_to_digit(message) == "Please call me at 5 5 5 1 2 3 4")
+# Should print True
+# Further exploration
+message = 'Please call me at five, five, five, one, two, three, four, next sunday at five o\'clock'
+print(word_to_digit(message) == 'Please call me at 5, 5, 5, 1, 2, 3, 4, next sunday at 5 o\'clock.')
+# Should print True

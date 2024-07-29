@@ -2338,21 +2338,88 @@ Initialize the stack and register to the values [] and 0, respectively.
 - Output: The corresponding input operations, values, etc.
 
 Rules:
-- Explicit:
-    -
-    -
-- Implicit:
-    -
+- See above
 
 Questions:
--
+- Are integer values in the string just being assigned to the register?
 
 Data Structures:
--
+- A list to store the split string and iterate over elements
 
 Programmatic Algorithm:
 1. Start
-    -
+    - define function 'minilang'
+    - string_list = split input string
+    - stack = []
+    - register = 0
+2. for i in range(len(string_list)):
+    - match string_list[i]:
+        - case 'PUSH':
+            - stack.append(register)
+        - case 'POP':
+            - register = stack.pop()
+        - case 'ADD':
+            - register += stack.pop()
+        - case 'SUB':
+            - register -= stack.pop()
+        - case 'MULT':
+            - register *= stack.pop()
+        - case 'DIV':
+            - register //= stack.pop()
+        - case 'REMAINDER':
+            - register %= stack.pop()
+        - case 'PRINT':
+            - print(register)
+        - case _:
+            - register = int(string_list[i])
+Notes:
+- Once I fully understood the explanation it was easy to solve. Originally I
+  did a `for i in range()` loop and used the length of the listified string
+  object, but changed it after seeing the LS solution. It was basically the
+  exact same as mine, just with one less line of code.
+
+
+### Word to Digit
+Write a function that takes a string as an argument and returns that string with
+every occurrence of a "number word" -- 'zero', 'one', 'two', 'three', 'four',
+'five', 'six', 'seven', 'eight', 'nine' -- converted to its corresponding digit
+character.
+
+You may assume that the string does not contain any punctuation.
+
+- Input: A string
+- Output: A string with words that are numbers replaced by numbers
+
+Rules:
+- Explicit:
+    - String has no punctuation
+- Implicit:
+    - Rest of the string stays the same
+
+Questions:
+- None
+
+Data Structures:
+- A dictionary for the numbers
+
+Programmatic Algorithm:
+1. Start
+    - define function 'word_to_digit'
+    - new_string = ''
+    - NUMBERS = {
+        'one': '1',
+        'two': '2',
+        ...
+    }
+2. for word in string.split():
+    - if word in NUMBERS:
+        - new_string += f' {NUMBERS[word]}'
+    - else:
+        - f' {word}'
+3. return new_string.lstrip()
 
 Notes:
--
+- Pretty simple. Refactored to a one liner after solving.
+
+  Further exploration: Wasn't really sure how I could solve this using regex
+  without a lot of extra work, and it didn't seem worth it to be honest.
