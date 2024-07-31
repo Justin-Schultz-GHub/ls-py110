@@ -2640,3 +2640,267 @@ Notes:
 - My method was still procedural. I wasn't 100% clear on what LS meant until I
   I saw their solution. In any case, I created another procedural version, so
   it was still good practice.
+
+
+### Fibonacci Number Location By Length
+As we've seen in the last few exercises, the Fibonacci series is a
+computationally simple series, However, the results grow at an incredibly rapid
+rate. For example, the 100th Fibonacci number is 354,224,848,179,261,915,075 --
+that's enormous, especially considering that it takes six iterations just to
+find the first 2-digit Fibonacci number.
+
+Write a function that calculates and returns the index of the first Fibonacci
+number that has the number of digits specified by the argument. The first
+Fibonacci number has an index of 1. You may assume that the argument is always
+an integer greater than or equal to 2.
+
+- Input: A number
+- Output: The index of the first Fibonacci number that has the number of digits
+    specified by the argument
+
+Rules:
+- Explicit:
+    - Argument is always an integer greater than or equal to 2
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A while loop to get looping until we hit our goal
+
+Programmatic Algorithm:
+1. Start
+    - sys.set_int_max_str_digits(50_000)
+    - f1 = 1
+    - f2 = 1
+    - n = 2
+2. while len(str(f2)) < length:
+        - count += 1
+        - n = f1 + f2
+        - f1 = f2
+        - f2 = n
+3. return count
+
+Notes:
+- Curious to know if this is possible to do with recursion or if it's simply too
+  memory intensive.
+
+
+### Lettercase Percentage Ratio
+Write a function that takes a string and returns a dictionary containing the
+following three properties:
+
+・The percentage of characters in the string that are lowercase letters
+・The percentage of characters that are uppercase letters
+・The percentage of characters that are neither
+All three percentages should be returned as strings whose numeric values lie
+between "0.00" and "100.00", respectively. Each value should be rounded to two
+decimal points.
+
+You may assume that the string will always contain at least one character.
+
+
+- Input: A string
+- Output: A dictionary containing the percentages of characters that are
+    lowercase letters, uppercase letters, and the percentage of characters that
+    are neither
+
+Rules:
+- Explicit:
+    - The string will always contain at least one character.
+- Implicit:
+    - Spaces count as characters
+
+Questions:
+- None
+
+Data Structures:
+- A dictionary to hold key:value pairs and return
+
+Programmatic Algorithm:
+1. Start
+    - define function 'letter_percentages'
+    - percentage_dict = {}
+    - count_dict = {
+        'lowercase': 0,
+        'uppercase': 0,
+        'neither': 0,
+    }
+    - str_length = len(string)
+2. for character in string:
+        - if character.isalpha() and character == character.lower():
+            - count_dict['lowercase'] += 1
+        - elif character.isalpha() and character == character.upper():
+            - count_dict['uppercase'] += 1
+        - else:
+            - count_dict['neither'] += 1
+4. percentage_dict['lowercase'] = (count_dict['lowercase'] / str_length) * 100
+5. percentage_dict['uppercase'] = (count_dict['uppercase'] / str_length) * 100
+6. percentage_dict['neither'] = (count_dict['neither'] / str_length) * 100
+7. return percentage_dict
+
+Notes:
+- Pretty simple. Used format mini-lang for the formatting. Probably some
+  unnecessary code in the if statements, but i's not a big deal.
+
+
+### Triangle Sides
+A triangle is classified as follows:
+
+Equilateral: All three sides have the same length.
+Isosceles: Two sides have the same length, while the third is different.
+Scalene: All three sides have different lengths.
+To be a valid triangle, the sum of the lengths of the two shortest sides must be
+greater than the length of the longest side, and every side must have a length
+greater than 0. If either of these conditions is not satisfied, the triangle is
+invalid.
+
+Write a function that takes the lengths of the three sides of a triangle as
+arguments and returns one of the following four strings representing the
+triangle's classification: 'equilateral', 'isosceles', 'scalene', or 'invalid'.
+
+- Input: Three numbers
+- Output: A string denoting the type of triangle the numbers are
+
+Rules:
+- Explicit:
+    - To be a valid triangle, the sum of the lengths of the two shortest sides
+        must be greater than the length of the longest side and every side must
+        have a length greater than 0
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to sort the numbers and validate side lengths
+- A set to check triangle type
+
+Programmatic Algorithm:
+1. Start
+    - define function 'triangle'
+    - side_list = sorted([num1, num2, num3])
+2. if sum(side_list[:2]) <= side_list[2]:
+        - return 'invalid'
+3. triangle_set = set(side_list)
+4. if len(triangle_set) == 3:
+        - return 'scalene'
+5. elif len(triangle_set) == 2:
+        - return 'isosceles'
+6. else:
+        - return equilateral
+
+
+Notes:
+- Did a slight refactoring and used a helper function for best practices(?).
+  Overall, simple solve.
+
+
+### Tri-Angles
+A triangle is classified as follows:
+
+Right: One angle is a right angle (exactly 90 degrees).
+Acute: All three angles are less than 90 degrees.
+Obtuse: One angle is greater than 90 degrees.
+To be a valid triangle, the sum of the angles must be exactly 180 degrees, and
+every angle must be greater than 0. If either of these conditions is not
+satisfied, the triangle is invalid.
+
+Write a function that takes the three angles of a triangle as arguments and
+returns one of the following four strings representing the triangle's
+classification: 'right', 'acute', 'obtuse', or 'invalid'.
+
+You may assume that all angles have integer values, so you do not have to worry
+about floating point errors. You may also assume that the arguments are in
+degrees.
+
+- Input: Three numbers that are the degrees of each angle in a triangle
+- Output: A string denoting the type of triangle the numbers are
+
+Rules:
+- Explicit:
+    - To be a valid triangle, the sum of the angles must be exactly 180 degrees,
+        and every angle must be greater than 0
+    - Assume that all angles have integer values, so you do not have to worry
+        about floating point errors.
+    - You may also assume that the arguments are in degrees.
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to hold the numbers
+
+Programmatic Algorithm:
+1. Start
+    - define function 'trianlge'
+    - angle_list = [num1, num2, num3]
+2. define function 'is_valid'
+        - for angle in angle_list:
+            - if angle == 0:
+                - return False
+        - if sum(angle_list) == 180:
+            - return True
+        - return False
+3. if is_valid(angle_list):
+    for angle in angle_list:
+        if angle == 90:
+            return 'right'
+        elif angle > 90:
+            return 'obtuse'
+    return 'acute'
+4. return 'invalid'
+
+Notes:
+- Quick solve
+
+### Unlucky Days
+Some people believe that Fridays that fall on the 13th day of the month are
+unlucky days. Write a function that takes a year as an argument and returns the
+number of Friday the 13ths in that year. You may assume that the year is greater
+than 1752, which is when the United Kingdom adopted the modern Gregorian
+Calendar. You may also assume that the same calendar will remain in use for the
+foreseeable future.
+
+- Input: A number representing a year
+- Output: The number of Friday the 13ths in that year
+
+Rules:
+- Explicit:
+    - Assume that the year is greater than 1752
+    - Assume that the same calendar will remain in use for the foreseeable
+        future.
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to hold days of the week
+
+Programmatic Algorithm:
+1. Start
+    - import datetime
+    - DAYS_OF_WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+                'Saturday', 'Sunday']
+    - THIRTEENTH = 13
+    - define function 'friday_the_13ths'
+    - counter = 0
+    - month = 1
+2. while month <= 12:
+        - if datetime.date(year, month, THIRTEENTH).weekday() == 4:
+            - counter += 1
+        - month += 1
+3. return counter
+
+Notes:
+- Pretty simple. Just needed to watch a small clip about different datetime
+  module methods to understand what I was working with. Was using a month
+  variable and incrementing it with each iteration, but then I saw the LS
+  solution and obviously should have just used a range, so I refactored.

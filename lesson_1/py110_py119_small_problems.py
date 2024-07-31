@@ -1731,10 +1731,10 @@
 # # Fibonacci Numbers (Memoization)
 # # https://launchschool.com/exercises/030ec9a5
 # fibs = {}
-# # fibs_v1 = {
-# #     1: 1,
-# #     2: 1,
-# # }
+# # # fibs_v1 = {
+# # #     1: 1,
+# # #     2: 1,
+# # # }
 
 # def fibonacci(number):
 #     if number <= 2:
@@ -1760,3 +1760,178 @@
 # print(fibonacci(6) == 8)         # True
 # print(fibonacci(12) == 144)      # True
 # print(fibonacci(20) == 6765)     # True
+
+# # Fibonacci Number Location By Length
+# # https://launchschool.com/exercises/37bb9fc0
+# import sys
+
+# def find_fibonacci_index_by_length(length):
+#     sys.set_int_max_str_digits(50_000)
+
+#     f1 = 1
+#     f2 = 1
+#     n = 2
+#     count = 2
+
+#     while len(str(f2)) < length:
+#         count += 1
+#         n = f1 + f2
+#         f1 = f2
+#         f2 = n
+
+#     return count
+
+# # All of these examples should print True
+# # The first 12 fibonacci numbers are: 1 1 2 3 5 8 13 21 34 55 89 144
+# print(find_fibonacci_index_by_length(2) == 7)
+# print(find_fibonacci_index_by_length(3) == 12)
+# print(find_fibonacci_index_by_length(10) == 45)
+# print(find_fibonacci_index_by_length(16) == 74)
+# print(find_fibonacci_index_by_length(100) == 476)
+# print(find_fibonacci_index_by_length(1000) == 4782)
+
+# # # Next example might take a little while on older systems
+# print(find_fibonacci_index_by_length(10000) == 47847)
+
+# # Lettercase Percentage Ratio
+# # https://launchschool.com/exercises/5800a75a
+# def letter_percentages(string):
+#     percentage_dict = {}
+#     str_length = len(string)
+#     count_dict = {
+#         'lowercase': 0,
+#         'uppercase': 0,
+#         'neither': 0,
+#     }
+#     for character in string:
+#         if character.isalpha() and character == character.lower():
+#             count_dict['lowercase'] += 1
+#         elif character.isalpha() and character == character.upper():
+#             count_dict['uppercase'] += 1
+#         else:
+#             count_dict['neither'] += 1
+
+#     percentage_dict['lowercase'] = f'{(count_dict["lowercase"] / str_length) * 100:.2f}'
+#     percentage_dict['uppercase'] = f'{(count_dict["uppercase"] / str_length) * 100:.2f}'
+#     percentage_dict['neither'] = f'{(count_dict["neither"] / str_length) * 100:.2f}'
+
+#     return percentage_dict
+
+# expected_result = {
+#     'lowercase': "50.00",
+#     'uppercase': "10.00",
+#     'neither': "40.00",
+# }
+# print(letter_percentages('abCdef 123') == expected_result)
+
+# expected_result = {
+#     'lowercase': "37.50",
+#     'uppercase': "37.50",
+#     'neither': "25.00",
+# }
+# print(letter_percentages('AbCd +Ef') == expected_result)
+
+# expected_result = {
+#     'lowercase': "0.00",
+#     'uppercase': "0.00",
+#     'neither': "100.00",
+# }
+# print(letter_percentages('123') == expected_result)
+
+# # Triangle Sides
+# # https://launchschool.com/exercises/2c5c3272
+# def is_valid(side_list):
+#     if sum(side_list[:2]) <= side_list[2]:
+#         return False
+
+#     return True
+
+# def triangle(num1, num2, num3):
+#     side_list = sorted([num1, num2, num3])
+
+#     if is_valid(side_list):
+#         triangle_set = set(side_list)
+
+#         if len(triangle_set) == 3:
+#             return 'scalene'
+#         elif len(triangle_set) == 2:
+#             return 'isosceles'
+
+#         return 'equilateral'
+
+#     return 'invalid'
+
+# # first version
+# # def triangle(num1, num2, num3):
+# #     side_list = sorted([num1, num2, num3])
+
+# #     if sum(side_list[:2]) <= side_list[2]:
+# #         return 'invalid'
+
+# #     triangle_set = set(side_list)
+
+# #     if len(triangle_set) == 3:
+# #         return 'scalene'
+# #     elif len(triangle_set) == 2:
+# #         return 'isosceles'
+# #     else:
+# #         return 'equilateral'
+
+# print(triangle(3, 3, 3) == "equilateral")  # True
+# print(triangle(3, 3, 1.5) == "isosceles")  # True
+# print(triangle(3, 4, 5) == "scalene")      # True
+# print(triangle(0, 3, 3) == "invalid")      # True
+# print(triangle(3, 1, 1) == "invalid")      # True
+
+# # Tri-Angles
+# # https://launchschool.com/exercises/5fa18f7b
+# def is_valid(angle_list):
+#     for angle in angle_list:
+#         if angle == 0:
+#             return False
+
+#     if sum(angle_list) == 180:
+#         return True
+
+#     return False
+
+# def triangle(num1, num2, num3):
+#     angle_list = [num1, num2, num3]
+
+#     if is_valid(angle_list):
+#         for angle in angle_list:
+#             if angle == 90:
+#                 return 'right'
+#             elif angle > 90:
+#                 return 'obtuse'
+
+#         return 'acute'
+
+#     return 'invalid'
+
+# print(triangle(60, 70, 50) == "acute")      # True
+# print(triangle(30, 90, 60) == "right")      # True
+# print(triangle(120, 50, 10) == "obtuse")    # True
+# print(triangle(0, 90, 90) == "invalid")     # True
+# print(triangle(50, 50, 50) == "invalid")    # True
+
+# Unlucky Days
+# https://launchschool.com/exercises/2fb67370
+import datetime
+
+DAYS_OF_WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+                'Saturday', 'Sunday']
+THIRTEENTH = 13
+
+def friday_the_13ths(year):
+    counter = 0
+
+    for month in range(1, 13):
+        if DAYS_OF_WEEK[datetime.date(year, month, THIRTEENTH).weekday()] == 'Friday':
+            counter += 1
+
+    return counter
+
+print(friday_the_13ths(1986) == 1)      # True
+print(friday_the_13ths(2015) == 3)      # True
+print(friday_the_13ths(2017) == 2)      # True
