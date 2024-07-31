@@ -2423,3 +2423,220 @@ Notes:
 
   Further exploration: Wasn't really sure how I could solve this using regex
   without a lot of extra work, and it didn't seem worth it to be honest.
+
+
+### Is It Prime?
+A prime number is a positive number that is evenly divisible only by itself and
+1. Thus, 23 is prime since its only divisors are 1 and 23. However, 24 is not
+prime since it has divisors of 1, 2, 3, 4, 6, 8, 12, and 24. Note that the
+number 1 is not prime.
+
+Write a function that takes a positive integer as an argument and returns true
+if the number is prime, false if it is not prime.
+
+You may not use any of Python's add-on packages to solve this problem. Your task
+is to programmatically determine whether a number is prime without relying on
+functions that already do that for you.
+
+- Input: A number
+- Output: True or False, based on whether or not the number is prime
+
+Rules:
+- Explicit:
+    - Determine whether a number is prime without relying on functions that
+        already do that for you
+- Implicit:
+    - None
+
+Questions:
+- Are the underscores supposed to be commas?
+
+Data Structures:
+-
+
+Programmatic Algorithm:
+1. Start
+    - define function 'is_prime'
+    - PRIMES = [2, 3, 5, 7]
+    - number = int(number)
+2. if number == 1:
+        return False
+3. if number not in PRIMES:
+    - for prime in PRIMES:
+        - if number % prime == 0:
+            - return False
+4. return True
+
+Notes:
+- Does not work for larger numbers like 999,998,727,899,993. LS solution works
+  for all numbers
+
+
+### Fibonacci Numbers (Procedural)
+The Fibonacci series is a sequence of numbers in which each number is the sum of
+the previous two numbers. The first two Fibonacci numbers are 1 and 1. The third
+number is 1 + 1 = 2, the fourth is 1 + 2 = 3, the fifth is 2 + 3 = 5, the sixth
+is 3 + 5 = 8, and so on. In mathematical terms, this can be represented as:
+
+```Python
+F(1) = 1
+F(2) = 1
+F(n) = F(n - 1) + F(n - 2)    (where n > 2)
+```
+Write a function called fibonacci that computes the nth Fibonacci number, where
+nth is an argument passed to the function:
+
+
+- Input: A number
+- Output: Its fibonacci number
+
+Rules:
+- Explicit:
+    - Doesn't use recursion
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- Just a simple for loop.
+
+Programmatic Algorithm:
+1. Start
+    - define function 'fibonacci'
+    - f1 = 1
+    - f2 = 1
+    - n = 0
+2. if number > 2:
+        - for _ in range(number - 2):
+        - n = f1 + f2
+        - f1 = f2
+        - f2 = n
+    - return n
+3. return 1
+
+Notes:
+- Not too hard. Although I'd like to use recursion. I assume that's next though.
+
+
+### Fibonacci Numbers (Recursion)
+In the previous exercise, we developed a procedural solution for computing the
+nth Fibonacci number.
+
+This sequence can also be computed using a recursive function. A recursive
+function is one in which the function calls itself. For example, the following
+function is a recursive function that computes the sum of all integers between 1
+and n:
+
+```Python
+def sum_recursive(n):
+    if n == 1:
+        return 1
+
+    return n + sum_recursive(n - 1)
+```
+
+Recursive functions are a bit difficult to understand for novice programmers,
+but it's worth putting in a little time early on to see what recursion looks
+like. Recursion can, in some situations, greatly simplify some algorithms.
+
+A recursive function has three primary qualities:
+
+It must have a base case. This is a condition that tells the function to stop
+recursing and begin the process of returning to the first call to the function.
+This is often the simplest case - the condition for which you already know the
+answer. In sum_recursive, the base case occurs when n == 1. At this point, we
+know the answer: sum_recursive(1) == 1. Thus, we can return the value 1.
+The function must call itself except when handling the base case.
+Each recursive call must be "closer" to the base case than the current call. For
+instance, in sum_recursive(3), we call sum_recursive(2), which is closer to the
+base case. Likewise, sum_recursive(2) subsequently calls sum_recursive(1), which
+is the base case.
+You may recall from the previous exercise that the Fibonacci sequence follows a
+simple set of rules:
+
+```Python
+F(1) = 1
+F(2) = 1
+F(n) = F(n - 1) + F(n - 2)    (where n > 2)
+```
+
+If you study this set of rules, you can see that the algorithm is defined
+recursively:
+
+The base case occurs when the argument is 1 or 2; both of these arguments result
+in a value of 1.
+The Fibonacci function calls itself. In fact, it calls itself twice.
+Except when dealing with the base case, each call to the Fibonacci function
+comes closer to the base case. In this case, both F(n - 1) and F(n - 2) are
+closer to the base case than F(n).
+Given this recursive algorithm, try to write a recursive function that computes
+the nth Fibonacci number, where nth is an argument passed to the function.
+
+- Input: A number
+- Output: Its fibonacci number
+
+Rules:
+- Explicit:
+    - Use recursion
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- None
+
+Programmatic Algorithm:
+1. Start
+    - define function 'fibonacci'
+2. if number <= 2:
+        - return 1
+3. return fibonacci(number - 1) + fibonacci(number - 2)
+
+Notes:
+- Was honestly pretty easy, but mostly due to the instructions, which remind you
+  that the Fibonacci sequence rules are:
+  F(1) = 1
+  F(2) = 1
+  F(n) = F(n - 1) + F(n - 2)    (where n > 2)
+
+
+### Fibonacci Numbers (Memoization)
+For this exercise, your objective is to refactor the recursive fibonacci
+function to use memoization.
+
+- Input: A number
+- Output: It's fibonacci number
+
+Rules:
+- Explicit:
+    - Use memoization to speed up the recursion
+- Implicit:
+    - None
+
+Questions:
+- I'm not really sure I understand the problem in its entirety, or rather, if my
+  solution is considered recursive. Although, I'm using a dictionary, and it
+  does talk about saving the data in an object...
+
+Data Structures:
+- A dictionary to store key:value pairs
+
+Programmatic Algorithm:
+1. Start
+    - FIBS = {
+        1: 1,
+        2: 1,
+    }
+    - define function 'fibonacci'
+    - while number not in fibs:
+        - fibs[len(fibs) + 1] = fibs[len(fibs)] + fibs[len(fibs) - 1]
+    - return fibs.get(number)
+
+Notes:
+- My method was still procedural. I wasn't 100% clear on what LS meant until I
+  I saw their solution. In any case, I created another procedural version, so
+  it was still good practice.

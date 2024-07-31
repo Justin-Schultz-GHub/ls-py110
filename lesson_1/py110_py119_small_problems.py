@@ -1588,51 +1588,175 @@
 # minilang('6 PUSH')
 # # (nothing is printed)
 
-# Word to Digit
-# https://launchschool.com/exercises/69f60f05
-NUMBERS = {
-    'zero': '0',
-    'one': '1',
-    'two': '2',
-    'three': '3',
-    'four': '4',
-    'five': '5',
-    'six': '6',
-    'seven': '7',
-    'eight': '8',
-    'nine': '9',
-}
+# # Word to Digit
+# # https://launchschool.com/exercises/69f60f05
+# NUMBERS = {
+#     'zero': '0',
+#     'one': '1',
+#     'two': '2',
+#     'three': '3',
+#     'four': '4',
+#     'five': '5',
+#     'six': '6',
+#     'seven': '7',
+#     'eight': '8',
+#     'nine': '9',
+# }
 
-def word_to_digit(string):
-    # new_string = ''
+# def word_to_digit(string):
+#     # new_string = ''
 
-    # for word in string.split():
-    #     if word in NUMBERS:
-    #         new_string += f' {NUMBERS[word]}'
-    #     else:
-    #         new_string += f' {word}'
+#     # for word in string.split():
+#     #     if word in NUMBERS:
+#     #         new_string += f' {NUMBERS[word]}'
+#     #     else:
+#     #         new_string += f' {word}'
 
-    # return new_string.lstrip()
+#     # return new_string.lstrip()
 
-    # One-liner version
-    # return ' '.join([NUMBERS.get(word, word) for word in string.split()])
+#     # One-liner version
+#     # return ' '.join([NUMBERS.get(word, word) for word in string.split()])
 
-    string_list = [NUMBERS.get(word, word) for word in string.split()]
+#     string_list = [NUMBERS.get(word, word) for word in string.split()]
 
-    for i in range(len(string_list)):
-        string_list[i] = NUMBERS.get(string_list[i][:-1], string_list[i][:-1]) + string_list[i][-1]
+#     for i in range(len(string_list)):
+#         string_list[i] = NUMBERS.get(string_list[i][:-1], string_list[i][:-1]) + string_list[i][-1]
 
-    new_string = ' '.join(string_list)
+#     new_string = ' '.join(string_list)
 
-    if new_string[-1] not in '.!?':
-        new_string += '.'
+#     if new_string[-1] not in '.!?':
+#         new_string += '.'
 
-    return new_string
+#     return new_string
 
-# message = 'Please call me at five five five one two three four'
-# print(word_to_digit(message) == "Please call me at 5 5 5 1 2 3 4")
-# Should print True
-# Further exploration
-message = 'Please call me at five, five, five, one, two, three, four, next sunday at five o\'clock'
-print(word_to_digit(message) == 'Please call me at 5, 5, 5, 1, 2, 3, 4, next sunday at 5 o\'clock.')
-# Should print True
+# # message = 'Please call me at five five five one two three four'
+# # print(word_to_digit(message) == "Please call me at 5 5 5 1 2 3 4")
+# # Should print True
+# # Further exploration
+# message = 'Please call me at five, five, five, one, two, three, four, next sunday at five o\'clock'
+# print(word_to_digit(message) == 'Please call me at 5, 5, 5, 1, 2, 3, 4, next sunday at 5 o\'clock.')
+# # Should print True
+
+# # Is It Prime?
+# # https://launchschool.com/exercises/9e3d8de3
+# import math
+# def is_prime(number):
+#     # Only works for smaller numbers
+#     # PRIMES = [2, 3, 5, 7]
+
+#     # if number == 1:
+#     #     return False
+
+#     # if number not in PRIMES:
+#     #     for prime in PRIMES:
+#     #         if number % prime == 0:
+#     #             return False
+
+#     # return True
+
+#     # Should work for all numbers
+#     if number == 1:
+#         return False
+
+#     for divisor in range(2, int(math.sqrt(number)) + 1):
+#         if number % divisor == 0:
+#             return False
+
+#     return True
+
+# # print(is_prime(1) == False)              # True
+# # print(is_prime(2) == True)               # True
+# # print(is_prime(3) == True)               # True
+# # print(is_prime(4) == False)              # True
+# # print(is_prime(5) == True)               # True
+# # print(is_prime(6) == False)              # True
+# # print(is_prime(7) == True)               # True
+# # print(is_prime(8) == False)              # True
+# # print(is_prime(9) == False)              # True
+# # print(is_prime(29) == True)             # True
+# # print(is_prime(23) == True)              # True
+# # print(is_prime(24) == False)             # True
+# # print(is_prime(997) == True)             # True
+# # print(is_prime(998) == False)            # True
+# # print(is_prime(3_297_061) == True)       # True
+# # print(is_prime(23_297_061) == False)     # True
+# print(is_prime(999998727899999)) # Takes a bit
+
+# # Fibonacci Numbers (Procedural)
+# # https://launchschool.com/exercises/b5a6df28
+# def fibonacci(number):
+#     f1 = 1
+#     f2 = 1
+#     n = 0
+
+#     if number > 2:
+#         for _ in range(number - 2):
+#             n = f1 + f2
+#             f1 = f2
+#             f2 = n
+
+#         return n
+
+#     return 1
+
+# print(fibonacci(1) == 1)                  # True
+# print(fibonacci(2) == 1)                  # True
+# print(fibonacci(3) == 2)                  # True
+# print(fibonacci(4) == 3)                  # True
+# print(fibonacci(5) == 5)                  # True
+# print(fibonacci(6) == 8)                  # True
+# print(fibonacci(12) == 144)               # True
+# print(fibonacci(20) == 6765)              # True
+# print(fibonacci(50) == 12586269025)       # True
+# print(fibonacci(75) == 2111485077978050)  # True
+
+# # Fibonacci Numbers (Recursion)
+# # https://launchschool.com/exercises/0d9afda9
+# def fibonacci(number):
+#     if number <= 2:
+#         return 1
+
+#     return fibonacci(number - 1) + fibonacci(number - 2)
+
+# print(fibonacci(1) == 1)         # True
+# print(fibonacci(2) == 1)         # True
+# print(fibonacci(3) == 2)         # True
+# print(fibonacci(4) == 3)         # True
+# print(fibonacci(5) == 5)         # True
+# print(fibonacci(6) == 8)         # True
+# print(fibonacci(12) == 144)      # True
+# print(fibonacci(20) == 6765)     # True
+
+
+# # Fibonacci Numbers (Memoization)
+# # https://launchschool.com/exercises/030ec9a5
+# fibs = {}
+# # fibs_v1 = {
+# #     1: 1,
+# #     2: 1,
+# # }
+
+# def fibonacci(number):
+#     if number <= 2:
+#         return 1
+
+#     if number in fibs:
+#         return fibs[number]
+
+#     return fibonacci(number - 1) + fibonacci(number - 2)
+
+#     # # First idea, but it wasn't recursive
+#     # while number not in fibs_v1:
+#     #     fibs_v1[len(fibs_v1) + 1] = fibs_v1[len(fibs_v1)] + fibs_v1[len(fibs_v1) - 1]
+
+#     # return fibs_v1.get(number)
+
+
+# print(fibonacci(1) == 1)         # True
+# print(fibonacci(2) == 1)         # True
+# print(fibonacci(3) == 2)         # True
+# print(fibonacci(4) == 3)         # True
+# print(fibonacci(5) == 5)         # True
+# print(fibonacci(6) == 8)         # True
+# print(fibonacci(12) == 144)      # True
+# print(fibonacci(20) == 6765)     # True
