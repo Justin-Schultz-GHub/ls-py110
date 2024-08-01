@@ -2904,3 +2904,139 @@ Notes:
   module methods to understand what I was working with. Was using a month
   variable and incrementing it with each iteration, but then I saw the LS
   solution and obviously should have just used a range, so I refactored.
+
+### Next Featured Number Higher than a Given Value
+A featured number (something unique to this exercise) is an odd number that is a
+multiple of 7, with all of its digits occurring exactly once each. For example, 49 is a featured number, but 98 is not (it is not odd), 97 is not (it is not a multiple of 7), and 133 is not (the digit 3 appears twice).
+
+Write a function that takes an integer as an argument and returns the next featured number greater than the integer. Issue an error message if there is no next featured number.
+
+NOTE: The largest possible featured number is 9876543201.
+
+- Input: A number
+- Output: The next *featured number*
+
+Rules:
+- Explicit:
+    - An odd number that is a multiple of 7
+    - All of its digits occurring exactly once each
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A list to check length, etc.
+- A set to compare length against the featured number
+
+Programmatic Algorithm:
+1. Start
+    - define function 'next_featured'
+    - featured_number = number
+2. while not is_valid(featured_number):
+        - featured_number = add_seven(number)
+3. define function 'add_seven'
+        return number + 7
+4. define function 'is_valid'
+        - if number % 2 == 0:
+            - return False
+        - string_num = str(number)
+        - set_num = set(string_num)
+        - if len(string_num) != len(set_num):
+            - return False
+        - return True
+Notes:
+- I opted to add both add_one() and add_seven() helper functions to speed up
+  the computing, as if I simply started at 0 and added 7 it would take a while.
+  This way, I start at the number, wait for it to be divisible by 7, and then,
+  because I know it's a multiple of 7, I can start adding seven from there.
+
+  Seeing the LS solution, the 14 trick makes a lot of sense. Wish I'd thought
+  of that.
+
+
+### Sum Square - Square Sum
+Write a function that computes the difference between the square of the sum of
+the first count positive integers and the sum of the squares of the first count
+positive integers.
+
+- Input: A number
+- Output: A number that is the difference between the square of the sum of the
+    first count positive integers and the sum of the squares of the first count
+    positive integers
+
+Rules:
+- Explicit:
+    - None
+- Implicit:
+    - None
+
+Questions:
+- None
+
+Data Structures:
+- A range
+
+Programmatic Algorithm:
+1. Start
+    - define function 'sum_square_difference'
+    - square_sum = (sum(range(number))) ** 2
+    - sum_square = 0
+2. for i in range(number):
+        - sum_square += i ** 2
+
+Notes:
+- Refactored sum_square to a one liner with list comprehension.
+
+
+### Bubble Sort
+Bubble Sort is one of the simplest sorting algorithms available. It is not an
+efficient algorithm, so developers rarely use it in real code. However, it is an
+excellent exercise for student developers. In this exercise, you will write a
+function that sorts a list using the bubble sort algorithm.
+
+A bubble sort works by making multiple passes (iterations) through a list. On
+each pass, the two values of each pair of consecutive elements are compared. If
+the first value is greater than the second, the two elements are swapped. This
+process is repeated until a complete pass is made without performing any swaps.
+At that point, the list is completely sorted.
+
+
+- Input: A list
+- Output: The sorted list
+
+Rules:
+- Explicit:
+    - Must bubble sort
+- Implicit:
+    - List can be strings
+    - Must mutate the original list
+
+Questions:
+- None
+
+Data Structures:
+-
+
+Programmatic Algorithm:
+1. Start
+    - define function 'bubble_sort'
+2. while True:
+        - for i in range(len(numbers) - 1):
+            - if things[i] > things[i + 1]:
+                - greater = things[i]
+                - lesser = things[i + 1]
+                - things[i] = lesser
+                - things[i + 1] = greater
+        - if is_sorted(things):
+            - break
+3. def is_sorted(things):
+        - for i in range(len(things) - 1):
+            - if things[i + 1] < things[i]:
+                - return False
+        - return True
+
+Notes:
+- I used a helper function to check if the list was sorted, but I like the
+  method that LS used with the `swapped` variable.

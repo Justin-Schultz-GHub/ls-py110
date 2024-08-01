@@ -1915,23 +1915,119 @@
 # print(triangle(0, 90, 90) == "invalid")     # True
 # print(triangle(50, 50, 50) == "invalid")    # True
 
-# Unlucky Days
-# https://launchschool.com/exercises/2fb67370
-import datetime
+# # Unlucky Days
+# # https://launchschool.com/exercises/2fb67370
+# import datetime
 
-DAYS_OF_WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
-                'Saturday', 'Sunday']
-THIRTEENTH = 13
+# DAYS_OF_WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+#                 'Saturday', 'Sunday']
+# THIRTEENTH = 13
 
-def friday_the_13ths(year):
-    counter = 0
+# def friday_the_13ths(year):
+#     counter = 0
 
-    for month in range(1, 13):
-        if DAYS_OF_WEEK[datetime.date(year, month, THIRTEENTH).weekday()] == 'Friday':
-            counter += 1
+#     for month in range(1, 13):
+#         if DAYS_OF_WEEK[datetime.date(year, month, THIRTEENTH).weekday()] == 'Friday':
+#             counter += 1
 
-    return counter
+#     return counter
 
-print(friday_the_13ths(1986) == 1)      # True
-print(friday_the_13ths(2015) == 3)      # True
-print(friday_the_13ths(2017) == 2)      # True
+# print(friday_the_13ths(1986) == 1)      # True
+# print(friday_the_13ths(2015) == 3)      # True
+# print(friday_the_13ths(2017) == 2)      # True
+
+# # Next Featured Number Higher than a Given Value
+# # https://launchschool.com/exercises/07af1741
+# MAX_FEATURED = 9876543201
+# ERROR = "There is no possible number that fulfills those requirements."
+
+# def next_featured(number):
+#     featured_number = number + 1
+
+#     while featured_number % 7 != 0:
+#         featured_number = add_one(featured_number)
+
+#     while not is_valid(featured_number):
+#         featured_number = add_seven(featured_number)
+
+#         if featured_number > MAX_FEATURED:
+#             return ERROR
+
+#     return featured_number
+
+# def add_one(number):
+#     return number + 1
+
+# def add_seven(number):
+#     return number + 7
+
+# def is_valid(number):
+#     if number % 2 == 0 or number % 7 != 0:
+#         return False
+
+#     num_list = list(str(number))
+
+#     if len(num_list) != len(set(num_list)):
+#         return False
+
+#     return True
+
+# print(next_featured(12) == 21)                  # True
+# print(next_featured(20) == 21)                  # True
+# print(next_featured(21) == 35)                  # True
+# print(next_featured(997) == 1029)               # True
+# print(next_featured(1029) == 1043)              # True
+# print(next_featured(999999) == 1023547)         # True
+# print(next_featured(999999987) == 1023456987)   # True
+# print(next_featured(9876543186) == 9876543201)  # True
+# print(next_featured(9876543200) == 9876543201)  # True
+# print(next_featured(9876543201) == ERROR)       # True
+
+# # Sum Square - Square Sum
+# # https://launchschool.com/exercises/c5b25237
+# def sum_square_difference(number):
+#     square_sum = (sum(range(number + 1))) ** 2
+#     sum_square = sum([i ** 2 for i in range(number + 1)])
+
+#     return square_sum - sum_square
+
+# print(sum_square_difference(3) == 22)          # True
+# # 22 --> (1 + 2 + 3)**2 - (1**2 + 2**2 + 3**2)
+
+# print(sum_square_difference(10) == 2640)       # True
+# print(sum_square_difference(1) == 0)           # True
+# print(sum_square_difference(100) == 25164150)  # True
+
+# Bubble Sort
+# https://launchschool.com/exercises/37f73d3a
+def bubble_sort(lst):
+    while True:
+        for idx in range(len(lst) - 1):
+            if lst[idx] > lst[idx + 1]:
+                lst[idx], lst[idx + 1] = lst[idx + 1], lst[idx]
+
+        if is_sorted(lst):
+            break
+
+def is_sorted(lst):
+    for idx in range(len(lst) - 1):
+        if lst[idx + 1] < lst[idx]:
+            return False
+
+    return True
+
+lst1 = [5, 3]
+bubble_sort(lst1)
+print(lst1 == [3, 5])                   # True
+
+lst2 = [6, 2, 7, 1, 4]
+bubble_sort(lst2)
+print(lst2 == [1, 2, 4, 6, 7])          # True
+
+lst3 = ['Sue', 'Pete', 'Alice', 'Tyler', 'Rachel',
+        'Kim', 'Bonnie']
+bubble_sort(lst3)
+
+expected = ["Alice", "Bonnie", "Kim", "Pete",
+            "Rachel", "Sue", "Tyler"]
+print(lst3 == expected)                 # True
