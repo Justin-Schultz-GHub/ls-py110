@@ -3040,3 +3040,153 @@ Programmatic Algorithm:
 Notes:
 - I used a helper function to check if the list was sorted, but I like the
   method that LS used with the `swapped` variable.
+
+
+### Transpose 3x3 Matrix
+A 3x3 matrix can be represented by a list of nested lists: an outer list that
+contains three sub-lists that each contain three elements.
+
+The transpose of a 3x3 matrix is the matrix that results from exchanging the
+rows and columns of the original matrix.
+
+Write a function that takes a list of lists that represents a 3x3 matrix and
+returns the transpose of the matrix. You should implement the function on your
+own, without using any external libraries.
+
+Take care not to modify the original matrix -- your function must produce a new
+matrix and leave the input matrix list unchanged.
+
+- Input: A 3x3 matrix (A list containing 3 nested lists with 3 elements each)
+- Output: The transposition of the input matrix
+
+Rules:
+- Explicit:
+    - Do not modify the original list
+    - Do not use external libraries
+- Implicit:
+    - The input list will always be a matrix
+
+Questions:
+- None
+
+Data Structures:
+- A list with 3 nested lists
+
+Programmatic Algorithm:
+1. Start
+    - define function 'transpose'
+    - new_matrix = [[], [], []]
+2. for item in matrix:
+        - for idx, value in enumerate(item):
+            - new_matrix.append(value)
+3. return new_matrix
+
+Notes:
+- My solution is okay, but I don't like the creation of a new empty matrix
+  beforehand. It feels like cheating. Because of this, I decided to try and
+  refactor to a one liner since I knew it was possible, but I got stuck and
+  couldn't figure out what was wrong. I was getting
+  `[[1], [5], [8], [4], [7], [2], [3], [9], [6]]` and my code was
+  `[[item[i]] for item in matrix for i in range(len(matrix))]`. Turns out I just
+  needed to move the bracket slightly further to the right...
+
+
+### Transpose MxN Matrix
+In the previous exercise, you wrote a function that transposed a 3x3 matrix
+represented by a list of lists.
+
+Matrix transposes are not limited to 3x3 matrices, or even square matrices. Any
+matrix can be transposed simply by switching columns with rows.
+
+Modify your transpose function from the previous exercise so that it works with
+any MxN matrix with at least one row and one column.
+
+- Input: A matrix
+- Output: The transposition of the input matrix
+
+Rules:
+- Explicit:
+    - Do not modify the original list
+    - Do not use external libraries
+- Implicit:
+    - The input list will always be a matrix
+
+Questions:
+- None
+
+Data Structures:
+- A list with as many nested lists as there are elements in each nested list of
+    the input matrix
+
+Programmatic Algorithm:
+1. Same as last solution, except:
+2. new_matrix = []
+3. for _ in range(len(matrix[0])):
+        - new_matrix.append([])
+
+Notes:
+- The same as the last problem basically. The difference in the one liner is
+  that, in the previous solution I used `range(len(matrix))` but since we want
+  the length of the items instead of either of the two (since it's no longer
+  square), we just add an index to make it `range(len(matrix[0]))`.
+
+
+### Rotating Matrices
+As we saw in the previous exercises, a matrix can be represented by a list of
+lists.
+
+A 90-degree rotation of a matrix produces a new matrix in which each side of the
+matrix is rotated clockwise by 90 degrees.
+
+A 90-degree rotation of a non-square matrix is similar.
+
+Write a function that takes an arbitrary MxN matrix, rotates it clockwise by
+90-degrees as described above, and returns the result as a new matrix. The
+function should not mutate the original matrix.
+
+Notes:
+- This is the same as the last one, you just throw a negative slice in and call
+  it a day.
+
+
+### Merge Sorted Lists
+Write a function that takes two sorted lists as arguments and returns a new list
+that contains all the elements from both input lists in ascending sorted order.
+You may assume that the lists contain either all integer values or all string
+values.
+
+You may not provide any solution that requires you to sort the result list. You
+must build the result list one element at a time in the proper order.
+
+Your solution should not mutate the input lists.
+
+- Input: Two lists
+- Output: A list containing all elements from the previous to lists, but sorted
+
+Rules:
+- Explicit:
+    - Not allowed to sort the final list
+    - All elements must be placed into the list one at a time
+    - Assume that the lists contain either all integer values or all string
+        values
+- Implicit:
+    - An input list can be empty
+
+Questions:
+- None
+
+Data Structures:
+- A list
+
+Programmatic Algorithm:
+1. Start
+    - define function 'merge(list1, list2)'
+2. for each index in list1 and list2
+3. if the item at the index is less than every other item
+4. append it to a new list
+5. and delete it from the old list
+
+
+Notes:
+-
+
