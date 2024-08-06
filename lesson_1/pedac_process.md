@@ -3258,3 +3258,169 @@ Notes:
   to use recursion. It's still new to me and I think probably shouldn't be doing
   this problem as it seems to cover material I haven't really learned about yet.
   I'll keep my original code for this since it's just kind of funny.
+
+
+### Binary Search
+It is quite common to find yourself in a situation where you need to perform a
+search on some data to find something you're looking for. Imagine that you need
+to search through an old-fashioned phone book. Back in the day, phone books were
+printed every year by phone companies. The phone books contained an alphabetical
+list (by last name) of every customer, together with their phone number. A
+straightforward way to search the phone book would be to go through the phone
+book one name at a time, checking whether the current name is the one you're
+trying to find.
+
+This may be a simple and easy way to search, but it's not very efficient. In the
+worst case scenario, it could mean having to search through every single name in
+the book, and some phone books could be over 1000 pages. A linear search such as
+this can take quite a long time.
+
+A binary search is a much more efficient alternative. This algorithm lets you
+cut the search area in half on each iteration by discarding the half that you
+know your search term doesn't exist in. The binary search algorithm is able to
+do this by relying on the data being sorted. Going back to the phone book
+example, let's say that we're searching the following phone_book data for the
+search item 'Smith':
+
+```Python
+# Phone book data
+phone_book = [
+    'Embry',
+    'Hanson',
+    'Hawkins',
+    'John',
+    'Lee',
+    'Seeli',
+    'Smith',
+    'Zimmer',
+]
+```
+Retrieve the middle value from the data (assume truncation to integer) -->
+'John'.
+If the middle value is equal to 'Smith', stop the search.
+If the middle value is less than 'Smith':
+Discard the lower half, including the middle value --> `['Embry', 'Hanson',
+'Hawkins', 'John'].
+Repeat the process from the top, using the upper half as the starting data -->
+['Lee', 'Seeli', 'Smith', 'Zimmer'].
+If the middle value is greater than 'Smith', do the same as the previous step,
+but with opposite halves.
+
+Implement a binary_search function that takes a list and a search item as
+arguments, and returns the index of the search item if found, or -1 otherwise.
+You may assume that the list argument will always be sorted.
+
+
+- Input: A list and an item to search for
+- Output: The index of the search item if found, or -1 otherwise
+
+Rules:
+- Explicit:
+    - Assume that the list argument will always be sorted
+    - Return -1 if item not found
+- Implicit:
+    - No empty lists
+
+Questions:
+- None
+
+Data Structures:
+- A copy of the original list
+
+Programmatic Algorithm:
+1. Start
+    - define function 'binary_search'
+    - copy_list = lst[:]
+    - idx_counter = 0
+2. while len(copy_list) > 1:
+    - if search_item == copy_list[len(copy_list) // 2]:
+        - idx_counter += len(copy_list) // 2
+        - return idx_counter
+    - if search_item > copy_list[len(copy_list) // 2]:
+        - idx_counter += len(copy_list) // 2
+        - copy_list = copy_list[len(copy_list) // 2:]
+    - if search_item < copy_list[len(copy_list) // 2]:
+        - copy_list = copy_list[:len(copy_list) // 2]
+3. return idx_counter + len(copy_list) // 2 if search_item == copy_list[0] else -1
+
+Notes:
+- I was kind of struggling with the test cases where the value didn't exist. At
+  first I was getting infinite loops, and when I fixed that other test cases
+  would be `False`. Initially it was because my `while len(copy_list) > 1:` was
+  `while copy_list` and then after that it was because I had
+  `while len(copy_list) > 0:`, etc. Took a bit of time to debug, but overall
+  wasn't bad. I'm pretty happy with my solution, despite it not being nearly as
+  good as the LS solution, but that seems to be a widely used search algorithm
+  with an already established syntax.
+
+
+### Egyptian Fractions
+A Rational Number is any number that can be represented as the result of the division between two integers, e.g., 1/3, 3/2, 22/7, etc. The number to the left is called the numerator, and the number to the right is called the denominator.
+
+A Unit Fraction is a rational number where the numerator is 1.
+
+An Egyptian Fraction is the sum of a series of distinct unit fractions (no two are the same), such as:
+```Python
+1   1    1    1
+- + - + -- + --
+2   3   13   15
+```
+Every positive rational number can be written as an Egyptian fraction.
+
+Write two functions: one that takes a Rational number as an argument, and
+returns a list of the denominators that are part of an Egyptian Fraction
+representation of the number, and another that takes a list of numbers in the
+same format, and calculates the resulting Rational number. You will need to use
+the Fraction class provided by the fractions module.
+
+
+- Input:
+- Output:
+
+Rules:
+- Explicit:
+    -
+- Implicit:
+    -
+
+Questions:
+-
+
+Data Structures:
+-
+
+Programmatic Algorithm:
+1. Start
+    -
+
+
+Notes:
+-
+
+
+###
+
+
+- Input:
+- Output:
+
+Rules:
+- Explicit:
+    -
+- Implicit:
+    -
+
+Questions:
+-
+
+Data Structures:
+-
+
+Programmatic Algorithm:
+1. Start
+    -
+
+
+Notes:
+-
+

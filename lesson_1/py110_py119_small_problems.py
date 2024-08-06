@@ -2177,60 +2177,124 @@ def merge(list1, list2):
 
 # Merge Sort
 # https://launchschool.com/exercises/f62ab8aa
-def merge_sort(lst):
-    # Keeping this code, just because
-    # list1 = lst[:]
+# def merge_sort(lst):
+#     # Keeping this code, just because
+#     # list1 = lst[:]
 
-    # list1 = [list1[:len(list1) // 2], list1[len(list1) // 2:]]
+#     # list1 = [list1[:len(list1) // 2], list1[len(list1) // 2:]]
 
-    # list1[0] = [list1[0][:len(list1[0]) // 2], list1[0][len(list1[0]) // 2:]]
-    # list1[1] = [list1[1][:len(list1[1]) // 2], list1[1][len(list1[1]) // 2:]]
+#     # list1[0] = [list1[0][:len(list1[0]) // 2], list1[0][len(list1[0]) // 2:]]
+#     # list1[1] = [list1[1][:len(list1[1]) // 2], list1[1][len(list1[1]) // 2:]]
 
-    # list1[0][0] = [list1[0][0][:len(list1[0][0]) // 2], list1[0][0][len(list1[0][0]) // 2:]]
-    # list1[0][1] = [list1[0][1][:len(list1[0][1]) // 2], list1[0][1][len(list1[0][1]) // 2:]]
+#     # list1[0][0] = [list1[0][0][:len(list1[0][0]) // 2], list1[0][0][len(list1[0][0]) // 2:]]
+#     # list1[0][1] = [list1[0][1][:len(list1[0][1]) // 2], list1[0][1][len(list1[0][1]) // 2:]]
 
-    # list1[1][0] = [list1[1][0][:len(list1[1][0]) // 2], list1[1][0][len(list1[1][0]) // 2:]]
-    # list1[1][1] = [list1[1][1][:len(list1[1][1]) // 2], list1[1][1][len(list1[1][1]) // 2:]]
+#     # list1[1][0] = [list1[1][0][:len(list1[1][0]) // 2], list1[1][0][len(list1[1][0]) // 2:]]
+#     # list1[1][1] = [list1[1][1][:len(list1[1][1]) // 2], list1[1][1][len(list1[1][1]) // 2:]]
 
 
-    # list1[0][0] = merge(list1[0][0][0], list1[0][0][1])
-    # list1[0][1] = merge(list1[0][1][0], list1[0][1][1])
+#     # list1[0][0] = merge(list1[0][0][0], list1[0][0][1])
+#     # list1[0][1] = merge(list1[0][1][0], list1[0][1][1])
 
-    # list1[1][0] = merge(list1[1][0][0], list1[1][0][1])
-    # list1[1][1] = merge(list1[1][1][0], list1[1][1][1])
+#     # list1[1][0] = merge(list1[1][0][0], list1[1][0][1])
+#     # list1[1][1] = merge(list1[1][1][0], list1[1][1][1])
 
-    # list1[0] = merge(list1[0][0], list1[0][1])
-    # list1[1] = merge(list1[1][0], list1[1][1])
+#     # list1[0] = merge(list1[0][0], list1[0][1])
+#     # list1[1] = merge(list1[1][0], list1[1][1])
 
-    # list1 = merge(list1[0], list1[1])
+#     # list1 = merge(list1[0], list1[1])
 
-    # return list1
+#     # return list1
 
-    if len(lst) == 1:
-        return lst
+#     if len(lst) == 1:
+#         return lst
 
-    sublist2 = lst[len(lst) // 2:]
-    sublist1 = lst[:len(lst) // 2]
+#     sublist1 = lst[:len(lst) // 2]
+#     sublist2 = lst[len(lst) // 2:]
 
-    sublist2 = merge_sort(sublist2)
-    sublist1 = merge_sort(sublist1)
+#     sublist1 = merge_sort(sublist1)
+#     sublist2 = merge_sort(sublist2)
 
-    return merge(sublist1, sublist2)
+#     return merge(sublist1, sublist2)
+
+# # All of these examples should print True
+# print(merge_sort([9, 5, 7, 1]) == [1, 5, 7, 9])
+# print(merge_sort([5, 3]) == [3, 5])
+# print(merge_sort([6, 2, 7, 1, 4]) == [1, 2, 4, 6, 7])
+# print(merge_sort([9, 2, 7, 6, 8, 5, 0, 1]) == [0, 1, 2, 5, 6, 7, 8, 9])
+
+# original = ['Sue', 'Pete', 'Alice', 'Tyler', 'Rachel',
+#             'Kim', 'Bonnie']
+# expected = ['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel',
+#             'Sue', 'Tyler']
+# print(merge_sort(original) == expected)
+
+# original = [7, 3, 9, 15, 23, 1, 6, 51, 22, 37, 54,
+#             43, 5, 25, 35, 18, 46]
+# expected = [1, 3, 5, 6, 7, 9, 15, 18, 22, 23, 25,
+#             35, 37, 43, 46, 51, 54]
+# print(merge_sort(original) == expected)
+
+# Binary Search
+# https://launchschool.com/exercises/97414944
+def binary_search(lst, search_item):
+    copy_list = lst[:]
+    idx_counter = 0
+
+    while len(copy_list) > 1:
+        half = len(copy_list) // 2
+
+        if search_item > copy_list[half]:
+            idx_counter += half
+            copy_list = copy_list[half:]
+
+        elif search_item < copy_list[half]:
+            copy_list = copy_list[:half]
+
+        else:
+            idx_counter += half
+
+            return idx_counter
+
+    return idx_counter + len(copy_list) // 2 if search_item == copy_list[0] else -1
 
 # All of these examples should print True
-print(merge_sort([9, 5, 7, 1]) == [1, 5, 7, 9])
-print(merge_sort([5, 3]) == [3, 5])
-print(merge_sort([6, 2, 7, 1, 4]) == [1, 2, 4, 6, 7])
-print(merge_sort([9, 2, 7, 6, 8, 5, 0, 1]) == [0, 1, 2, 5, 6, 7, 8, 9])
+businesses = ['Apple Store', 'Bags Galore', 'Bike Store',
+              'Donuts R Us', 'Eat a Lot', 'Good Food',
+              'Pasta Place', 'Pizzeria', 'Tiki Lounge',
+              'Zooper']
+print(binary_search(businesses, 'Pizzeria') == 7)
+print(binary_search(businesses, 'Apple Store') == 0)
 
-original = ['Sue', 'Pete', 'Alice', 'Tyler', 'Rachel',
-            'Kim', 'Bonnie']
-expected = ['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel',
-            'Sue', 'Tyler']
-print(merge_sort(original) == expected)
+print(binary_search([1, 5, 7, 11, 23, 65, 89, 102], 77) == -1)
+print(binary_search([1, 5, 7, 11, 23, 65, 89, 102], 89) == 6)
+print(binary_search([1, 5, 7, 11, 23, 65, 89, 102], 5) == 1)
 
-original = [7, 3, 9, 15, 23, 1, 6, 51, 22, 37, 54,
-            43, 5, 25, 35, 18, 46]
-expected = [1, 3, 5, 6, 7, 9, 15, 18, 22, 23, 25,
-            35, 37, 43, 46, 51, 54]
-print(merge_sort(original) == expected)
+names = ['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel', 'Sue',
+         'Tyler']
+print(binary_search(names, 'Peter') == -1)
+print(binary_search(names, 'Tyler') == 6)
+
+# # Egyptian Fractions
+# # https://launchschool.com/exercises/17162736
+
+
+# from fractions import Fraction
+
+# # Using the egyptian function
+# # Your results may differ for these first 3 examples
+# print(egyptian(Fraction(2, 1)))      # [1, 2, 3, 6]
+# print(egyptian(Fraction(137, 60)))   # [1, 2, 3, 4, 5]
+# print(egyptian(Fraction(3, 1)))
+# # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 230, 57960]
+
+# # Using the unegyptian function
+# # All of these examples should print True
+# print(unegyptian(egyptian(Fraction(1, 2))) == Fraction(1, 2))
+# print(unegyptian(egyptian(Fraction(3, 4))) == Fraction(3, 4))
+# print(unegyptian(egyptian(Fraction(39, 20))) == Fraction(39, 20))
+# print(unegyptian(egyptian(Fraction(127, 130))) == Fraction(127, 130))
+# print(unegyptian(egyptian(Fraction(5, 7))) == Fraction(5, 7))
+# print(unegyptian(egyptian(Fraction(1, 1))) == Fraction(1, 1))
+# print(unegyptian(egyptian(Fraction(2, 1))) == Fraction(2, 1))
+# print(unegyptian(egyptian(Fraction(3, 1))) == Fraction(3, 1))
