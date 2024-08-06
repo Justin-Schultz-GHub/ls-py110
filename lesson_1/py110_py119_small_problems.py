@@ -2145,10 +2145,26 @@
 # Merge Sorted Lists
 # https://launchschool.com/exercises/64bea0a1
 def merge(list1, list2):
-    print('')
+    copy1 = sorted(list1.copy())
+    copy2 = sorted(list2.copy())
+    new_list = []
 
-# All of these examples should print True
-print(merge([9, 5, 1], [2, 8, 6]) == [1, 2, 5, 6, 8, 9])
+    while copy1 and copy2:
+        if copy1[0] <= copy2[0]:
+            new_list.append(copy1.pop(0))
+        else:
+            new_list.append(copy2.pop(0))
+
+    while copy1:
+        new_list.append(copy1.pop(0))
+
+    while copy2:
+        new_list.append(copy2.pop(0))
+
+    return new_list
+
+# # All of these examples should print True
+# print(merge([9, 5, 1], [2, 8, 6]) == [1, 2, 5, 6, 8, 9])
 # print(merge([1, 1, 3], [2, 2]) == [1, 1, 2, 2, 3])
 # print(merge([], [1, 4, 5]) == [1, 4, 5])
 # print(merge([1, 4, 5], []) == [1, 4, 5])
@@ -2158,3 +2174,63 @@ print(merge([9, 5, 1], [2, 8, 6]) == [1, 2, 5, 6, 8, 9])
 # names_expected = ['Alice', 'Bonnie', 'Kim', 'Pete',
 #                   'Rachel', 'Sue', 'Tyler']
 # print(merge(names1, names2) == names_expected)
+
+# Merge Sort
+# https://launchschool.com/exercises/f62ab8aa
+def merge_sort(lst):
+    # Keeping this code, just because
+    # list1 = lst[:]
+
+    # list1 = [list1[:len(list1) // 2], list1[len(list1) // 2:]]
+
+    # list1[0] = [list1[0][:len(list1[0]) // 2], list1[0][len(list1[0]) // 2:]]
+    # list1[1] = [list1[1][:len(list1[1]) // 2], list1[1][len(list1[1]) // 2:]]
+
+    # list1[0][0] = [list1[0][0][:len(list1[0][0]) // 2], list1[0][0][len(list1[0][0]) // 2:]]
+    # list1[0][1] = [list1[0][1][:len(list1[0][1]) // 2], list1[0][1][len(list1[0][1]) // 2:]]
+
+    # list1[1][0] = [list1[1][0][:len(list1[1][0]) // 2], list1[1][0][len(list1[1][0]) // 2:]]
+    # list1[1][1] = [list1[1][1][:len(list1[1][1]) // 2], list1[1][1][len(list1[1][1]) // 2:]]
+
+
+    # list1[0][0] = merge(list1[0][0][0], list1[0][0][1])
+    # list1[0][1] = merge(list1[0][1][0], list1[0][1][1])
+
+    # list1[1][0] = merge(list1[1][0][0], list1[1][0][1])
+    # list1[1][1] = merge(list1[1][1][0], list1[1][1][1])
+
+    # list1[0] = merge(list1[0][0], list1[0][1])
+    # list1[1] = merge(list1[1][0], list1[1][1])
+
+    # list1 = merge(list1[0], list1[1])
+
+    # return list1
+
+    if len(lst) == 1:
+        return lst
+
+    sublist2 = lst[len(lst) // 2:]
+    sublist1 = lst[:len(lst) // 2]
+
+    sublist2 = merge_sort(sublist2)
+    sublist1 = merge_sort(sublist1)
+
+    return merge(sublist1, sublist2)
+
+# All of these examples should print True
+print(merge_sort([9, 5, 7, 1]) == [1, 5, 7, 9])
+print(merge_sort([5, 3]) == [3, 5])
+print(merge_sort([6, 2, 7, 1, 4]) == [1, 2, 4, 6, 7])
+print(merge_sort([9, 2, 7, 6, 8, 5, 0, 1]) == [0, 1, 2, 5, 6, 7, 8, 9])
+
+original = ['Sue', 'Pete', 'Alice', 'Tyler', 'Rachel',
+            'Kim', 'Bonnie']
+expected = ['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel',
+            'Sue', 'Tyler']
+print(merge_sort(original) == expected)
+
+original = [7, 3, 9, 15, 23, 1, 6, 51, 22, 37, 54,
+            43, 5, 25, 35, 18, 46]
+expected = [1, 3, 5, 6, 7, 9, 15, 18, 22, 23, 25,
+            35, 37, 43, 46, 51, 54]
+print(merge_sort(original) == expected)

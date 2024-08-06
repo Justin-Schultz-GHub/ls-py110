@@ -3181,12 +3181,80 @@ Data Structures:
 Programmatic Algorithm:
 1. Start
     - define function 'merge(list1, list2)'
-2. for each index in list1 and list2
-3. if the item at the index is less than every other item
-4. append it to a new list
-5. and delete it from the old list
-
+    - copy1 = sorted(list1.copy())
+    - copy2 = sorted(list2.copy())
+    - new_list = []
+2. while copy1 and copy2 are not empty:
+    - for each element in copy2:
+        - if copy1 idx 0 <= copy2 idx 0:
+            - pop copy1 idx 0 and append to new_list
+    - for each element in copy1:
+        - if copy2 idx 0 <= copy1 idx 0:
+            - pop copy2 idx 0 and append to new_list
+3. while copy1:
+        - pop copy1 idx 0 and append to new_list
+4. while copy2:
+        - pop copy2 idx 0 and append to new_list
+5. return new_list
 
 Notes:
--
+- I made mine so it works even if the lists aren't sorted. It says you can't
+  sort the result list, but it doesn't say anything about sorting anything else.
 
+### Merge Sort
+A merge sort is a recursive sorting algorithm that works by breaking down a
+list's elements into nested sub-lists, then combining those nested sub-lists
+back together in sorted order. It is best explained with an example. Given the
+list [9, 5, 7, 1, 8, 2, 0, 6], let's walk through the process of sorting it with
+merge sort. We'll start off by breaking the list down into nested sub-lists:
+
+```Python
+[9, 2, 7, 6, 8, 5, 0, 1] -->              # initial list
+[[9, 2, 7, 6], [8, 5, 0, 1]] -->          # divide into two lists
+[[[9, 2], [7, 6]], [[8, 5], [0, 1]]] -->  # divide each sub-list in two
+# repeat until each sub-list contains only 1 value
+[[[[9], [2]], [[7], [6]]], [[[8], [5]], [[0], [1]]]]
+```
+In the first step, we partition the list into a list of two sub-lists, so that
+each sub-list contains approximately half of the entries. In the next step, we
+partition each sub-list in the same way. This process repeats until each of the
+innermost lists contains exactly one element.
+
+We now work our way back to a flat list by merging each pair of nested sub-lists
+in the proper ascending order:
+
+```Python
+[[[[9], [2]], [[7], [6]]], [[[8], [5]], [[0], [1]]]] -->
+[[[2, 9], [6, 7]], [[5, 8], [0, 1]]] -->
+[[2, 6, 7, 9], [0, 1, 5, 8]] -->
+[0, 1, 2, 5, 6, 7, 8, 9]
+```
+For example, on the 2nd line, we merge `[2, 9]` with `[6, 7]`, which becomes
+`[2, 6, 7, 9]`.
+
+Write a function that takes a list argument and returns a new list that contains
+the values from the input list in sorted order. The function should sort the
+list using the merge sort algorithm as described above. You may assume that
+every element of the list will have the same data type: either all numbers or
+all strings.
+
+Feel free to use the merge function you wrote in the previous exercise.
+
+- Input: A list argument
+- Output: A new list that contains the values from the input list in sorted
+    order
+
+Rules:
+- Explicit:
+    - Assume that every element of the list will have the same data type
+- Implicit:
+    - None
+
+Notes:
+- Well, I didn't know how to solve this, but I did understand what it was doing
+  and how to write out what was happening... So I did that. It'll sort the
+  lists, but the problem is, I've only gone 3 nested lists deep, so it's
+  technically not coded to specification. But that's because I just didn't think
+  to use recursion. It's still new to me and I think probably shouldn't be doing
+  this problem as it seems to cover material I haven't really learned about yet.
+  I'll keep my original code for this since it's just kind of funny.
