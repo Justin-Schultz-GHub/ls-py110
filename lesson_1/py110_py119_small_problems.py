@@ -2235,45 +2235,45 @@ def merge(list1, list2):
 #             35, 37, 43, 46, 51, 54]
 # print(merge_sort(original) == expected)
 
-# Binary Search
-# https://launchschool.com/exercises/97414944
-def binary_search(lst, search_item):
-    copy_list = lst[:]
-    idx_counter = 0
+# # Binary Search
+# # https://launchschool.com/exercises/97414944
+# def binary_search(lst, search_item):
+#     copy_list = lst[:]
+#     idx_counter = 0
 
-    while len(copy_list) > 1:
-        half = len(copy_list) // 2
+#     while len(copy_list) > 1:
+#         half = len(copy_list) // 2
 
-        if search_item > copy_list[half]:
-            idx_counter += half
-            copy_list = copy_list[half:]
+#         if search_item > copy_list[half]:
+#             idx_counter += half
+#             copy_list = copy_list[half:]
 
-        elif search_item < copy_list[half]:
-            copy_list = copy_list[:half]
+#         elif search_item < copy_list[half]:
+#             copy_list = copy_list[:half]
 
-        else:
-            idx_counter += half
+#         else:
+#             idx_counter += half
 
-            return idx_counter
+#             return idx_counter
 
-    return idx_counter + len(copy_list) // 2 if search_item == copy_list[0] else -1
+#     return idx_counter + len(copy_list) // 2 if search_item == copy_list[0] else -1
 
-# All of these examples should print True
-businesses = ['Apple Store', 'Bags Galore', 'Bike Store',
-              'Donuts R Us', 'Eat a Lot', 'Good Food',
-              'Pasta Place', 'Pizzeria', 'Tiki Lounge',
-              'Zooper']
-print(binary_search(businesses, 'Pizzeria') == 7)
-print(binary_search(businesses, 'Apple Store') == 0)
+# # All of these examples should print True
+# businesses = ['Apple Store', 'Bags Galore', 'Bike Store',
+#               'Donuts R Us', 'Eat a Lot', 'Good Food',
+#               'Pasta Place', 'Pizzeria', 'Tiki Lounge',
+#               'Zooper']
+# print(binary_search(businesses, 'Pizzeria') == 7)
+# print(binary_search(businesses, 'Apple Store') == 0)
 
-print(binary_search([1, 5, 7, 11, 23, 65, 89, 102], 77) == -1)
-print(binary_search([1, 5, 7, 11, 23, 65, 89, 102], 89) == 6)
-print(binary_search([1, 5, 7, 11, 23, 65, 89, 102], 5) == 1)
+# print(binary_search([1, 5, 7, 11, 23, 65, 89, 102], 77) == -1)
+# print(binary_search([1, 5, 7, 11, 23, 65, 89, 102], 89) == 6)
+# print(binary_search([1, 5, 7, 11, 23, 65, 89, 102], 5) == 1)
 
-names = ['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel', 'Sue',
-         'Tyler']
-print(binary_search(names, 'Peter') == -1)
-print(binary_search(names, 'Tyler') == 6)
+# names = ['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel', 'Sue',
+#          'Tyler']
+# print(binary_search(names, 'Peter') == -1)
+# print(binary_search(names, 'Tyler') == 6)
 
 # # Egyptian Fractions
 # # https://launchschool.com/exercises/17162736
