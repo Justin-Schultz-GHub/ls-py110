@@ -6,6 +6,9 @@ MAX_TURNS = 9
 
 UNCHANGED_CELLS = [['_', '_', '_'], [' ', ' ', ' ']]
 
+VALID_CELLS = [1, 2, 3]
+
+
 def tic_tac_toe():
     r1_c1, r1_c2, r1_c3 = ['_', '_', '_'], ['_', '_', '_'], ['_', '_', '_']
     r2_c1, r2_c2, r2_c3 = ['_', '_', '_'], ['_', '_', '_'], ['_', '_', '_']
@@ -16,6 +19,7 @@ def tic_tac_toe():
     turn = 0
 
     is_game_over = False
+
 
     def player1_win(r1_c1, r1_c2, r1_c3, r2_c1, r2_c2, r2_c3, r3_c1, r3_c2, r3_c3):
         if r1_c1[1] == 'X' and r1_c2[1] == 'X' and r1_c3[1] == 'X':
@@ -35,6 +39,7 @@ def tic_tac_toe():
         elif r3_c1[1] == 'X' and r2_c2[1] == 'X' and r1_c3[1] == 'X':
             return True
 
+
     def player2_win(r1_c1, r1_c2, r1_c3, r2_c1, r2_c2, r2_c3, r3_c1, r3_c2, r3_c3):
         if r1_c1[1] == 'O' and r1_c2[1] == 'O' and r1_c3[1] == 'O':
             return True
@@ -52,6 +57,7 @@ def tic_tac_toe():
             return True
         elif r3_c1[1] == 'O' and r2_c2[1] == 'O' and r1_c3[1] == 'O':
             return True
+
 
     def is_valid_choice(row, column):
         match row:
@@ -100,6 +106,7 @@ def tic_tac_toe():
 
                 return False
 
+
     def update_board(row, column, marker):
         match row:
             case 1:
@@ -147,8 +154,16 @@ def tic_tac_toe():
         row = int(input(f'{player}, enter a row (1-3): '))
         column = int(input(f'{player}, enter a column (1-3): '))
 
+        while row not in VALID_CELLS or column not in VALID_CELLS:
+            os.system('clear')
+            print(board)
+
+            print('Please enter a valid row and cell.')
+            row = int(input(f'{player}, enter a row (1-3): '))
+            column = int(input(f'{player}, enter a column (1-3): '))
+
         while not is_valid_choice(row, column):
-            print('This cell has already been taken.')
+            print('This cell has already been taken. Please enter a valid cell.')
             row = int(input(f'{player}, enter a row (1-3): '))
             column = int(input(f'{player}, enter a column (1-3): '))
 
@@ -165,13 +180,7 @@ def tic_tac_toe():
             print('Player 1 wins!')
             print(board)
             is_game_over = True
-        elif turn == MAX_TURNS:
-            os.system('clear')
-            print(board)
-            print('All squares are filled! It\'s a tie!')
-            is_game_over = True
-
-        if player2_win(r1_c1, r1_c2, r1_c3, r2_c1, r2_c2, r2_c3, r3_c1, r3_c2, r3_c3):
+        elif player2_win(r1_c1, r1_c2, r1_c3, r2_c1, r2_c2, r2_c3, r3_c1, r3_c2, r3_c3):
             os.system('clear')
             print('Player 2 wins!')
             print(board)
