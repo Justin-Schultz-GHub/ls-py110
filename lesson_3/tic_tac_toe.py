@@ -1,3 +1,10 @@
+"""
+My solo attempt at tic tac toe. I made it PvP instead of PvC. I definitely
+think there's too much happening with all the if statements, especially in the
+win checks, but I was already too far along to change how it worked at that
+point and so I was commited to seeing it through.
+"""
+
 import os
 
 VALID_CONTINUE = 'yn'
@@ -39,6 +46,8 @@ def tic_tac_toe():
         elif r3_c1[1] == 'X' and r2_c2[1] == 'X' and r1_c3[1] == 'X':
             return True
 
+        return False
+
 
     def player2_win(r1_c1, r1_c2, r1_c3, r2_c1, r2_c2, r2_c3, r3_c1, r3_c2, r3_c3):
         if r1_c1[1] == 'O' and r1_c2[1] == 'O' and r1_c3[1] == 'O':
@@ -58,6 +67,7 @@ def tic_tac_toe():
         elif r3_c1[1] == 'O' and r2_c2[1] == 'O' and r1_c3[1] == 'O':
             return True
 
+        return False
 
     def is_valid_choice(row, column):
         match row:

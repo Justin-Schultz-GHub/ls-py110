@@ -36,7 +36,7 @@ def prompt(message):
 
 
 def display_board(board):
-    # os.system('clear')
+    os.system('clear')
 
     prompt(f'Player is {PLAYER_MARKER}')
     print('     |     |')
@@ -151,7 +151,7 @@ def detect_winner(board):
                 and board[sq3] == PLAYER_MARKER):
 
             return 'Player'
-        elif (board[sq1] == COMPUTER_MARKER
+        if (board[sq1] == COMPUTER_MARKER
                 and board[sq2] == COMPUTER_MARKER
                 and board[sq3] == COMPUTER_MARKER):
 
