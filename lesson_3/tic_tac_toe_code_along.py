@@ -4,13 +4,39 @@ import random
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+PLAYERS = ['Player', 'Computer']
+
+WINNING_LINES = [
+                    [1, 2, 3], [4, 5, 6], [7, 8, 9], # rows
+
+                    [1, 4, 7], [2, 5, 8], [3, 6, 9],# columns
+
+                    [1, 5, 9], [3, 5, 7], # diagonals
+                ]
+
+
+def find_player1():
+    prompt('Choose who will go first (1. Player, 2. Computer, 3. Random): ')
+    player1 = input()
+
+    while player1 not in '123':
+        prompt('Please input a valid choice (1. Player, 2. Computer, 3. Random): ')
+        player1 = input()
+
+    match player1:
+        case '1':
+            return 'Player'
+        case '2':
+            return 'Computer'
+        case '3':
+            return 'Random'
 
 def prompt(message):
     print(f'==> {message}')
 
 
 def display_board(board):
-    os.system('clear')
+    # os.system('clear')
 
     prompt(f'Player is {PLAYER_MARKER}')
     print('     |     |')
@@ -64,25 +90,60 @@ def player_choice(board):
 
 
 def computer_choice(board):
-    if empty_squares(board):
+    square = find_vulnerable_square(board)
+    if square:
+        board[square] = COMPUTER_MARKER
+        print(square)
+
+    elif empty_squares(board):
         square = random.choice(empty_squares(board))
 
         board[square] = COMPUTER_MARKER
 
+def find_vulnerable_square(board):
+    for line in WINNING_LINES:
+        sq1, sq2, sq3 = line
+
+        markers = [board[sq1], board[sq2], board[sq3]]
+
+        if markers.count(COMPUTER_MARKER) == 2 and markers.count(INITIAL_MARKER) == 1:
+            return line[markers.index(INITIAL_MARKER)]
+
+    for line in WINNING_LINES:
+        sq1, sq2, sq3 = line
+
+        markers = [board[sq1], board[sq2], board[sq3]]
+
+        if markers.count(PLAYER_MARKER) == 2 and markers.count(INITIAL_MARKER) == 1:
+            return line[markers.index(INITIAL_MARKER)]
+
+    if board[5] == INITIAL_MARKER:
+        return 5
+
+    for line in WINNING_LINES:
+        sq1, sq2, sq3 = line
+
+        markers = [board[sq1], board[sq2], board[sq3]]
+
+        if markers.count(COMPUTER_MARKER) >= 1 and markers.count(PLAYER_MARKER) == 0:
+            return line[markers.index(INITIAL_MARKER)]
+
+    for line in WINNING_LINES:
+        sq1, sq2, sq3 = line
+
+        markers = [board[sq1], board[sq2], board[sq3]]
+
+        if markers.count(COMPUTER_MARKER) == 2 and markers.count(PLAYER_MARKER) == 0:
+            return line[markers.index(INITIAL_MARKER)]
+
+    return None
 
 def is_winner(board):
     return bool(detect_winner(board))
 
 
 def detect_winner(board):
-    winning_lines = [
-                    [1, 2, 3], [4, 5, 6], [7, 8, 9], # rows
-
-                    [1, 4, 7], [2, 5, 8], [3, 6, 9],# columns
-
-                    [1, 5, 9], [3, 5, 7], # diagonals
-                ]
-    for line in winning_lines:
+    for line in WINNING_LINES:
         sq1, sq2, sq3 = line
 
         if (board[sq1] == PLAYER_MARKER
@@ -106,17 +167,45 @@ def board_full(board):
 def tic_tac_toe():
     board = initialize_board()
 
+    player1 = find_player1()
+    player2 = random.choice(PLAYERS)
+
+    if player1 not in PLAYERS:
+        player1 = random.choice(PLAYERS)
+
+        while player1 == player2:
+            player1 = random.choice(PLAYERS)
+
+    while player2 == player1:
+        player2 = random.choice(PLAYERS)
+
+        while player2 == player1:
+            player2 = random.choice(PLAYERS)
+
     while True:
         display_board(board)
-        player_choice(board)
 
-        if is_winner(board) or board_full(board):
-            break
+        if player1 == PLAYERS[0]:
+            player_choice(board)
 
-        computer_choice(board)
+            if is_winner(board) or board_full(board):
+                break
 
-        if is_winner(board) or board_full(board):
-            break
+            computer_choice(board)
+
+            if is_winner(board) or board_full(board):
+                break
+        if player1 == PLAYERS[1]:
+            computer_choice(board)
+
+            if is_winner(board) or board_full(board):
+                break
+
+            display_board(board)
+            player_choice(board)
+
+            if is_winner(board) or board_full(board):
+                break
 
     display_board(board)
 
