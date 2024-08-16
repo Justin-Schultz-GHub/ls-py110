@@ -39,65 +39,68 @@ TWENTY_ONE = 21
 
 ACE_VALUE = 11
 
-dealt_cards = {
-    'Clubs': [],
-    'Diamonds': [],
-    'Hearts': [],
-    'Spades': [],
-}
-
 def clear_screen():
     os.system('clear')
+
+def initialize_dealt():
+    return {
+        'Clubs': [],
+        'Diamonds': [],
+        'Hearts': [],
+        'Spades': [],
+    }
 
 def initialize_hand():
     return {}, {}, {}
 
-def announce_hand(hand, dealer_unseen):
-    if hand is player_hand:
-        prompt('Your current hand is: ')
+def announce_player_hand(hand):
+    prompt('Your current hand is: ')
 
-        for suit, cards in hand.items():
-            for card in cards:
+    for suit, cards in hand.items():
+        for card in cards:
+            prompt(f'{card} of {suit}')
+
+def announce_dealer_hand(hand, dealer_unseen):
+    prompt('The dealer\'s hand is: ')
+
+    for suit, cards in hand.items():
+        for card in cards:
+            if {suit: card} != dealer_unseen:
                 prompt(f'{card} of {suit}')
 
-    else:
-        prompt('The dealer\'s hand is: ')
-        for suit, cards in hand.items():
-            for card in cards:
-                if {suit: card} != dealer_unseen:
-                    prompt(f'{card} of {suit}')
-
-def deal_cards():
+def deal_cards(dealt, p_hand, d_hand, dealer_unseen):
     for i in range(4):
         card_suit = random.choice(SUITS)
-        card_value = DECK[card_suit][random.choice(range(0, CARDS_PER_SUIT))]
+        card_value = DECK[card_suit][
+            random.choice(range(0, CARDS_PER_SUIT))]
         card = {
             card_suit: card_value
         }
 
-        while card[card_suit] in dealt_cards[card_suit]:
+        while card[card_suit] in dealt[card_suit]:
             card_suit = random.choice(SUITS)
-            card_value = DECK[card_suit][random.choice(range(0, CARDS_PER_SUIT))]
+            card_value = DECK[card_suit][
+                random.choice(range(0, CARDS_PER_SUIT))]
             card = {
             card_suit: card_value
             }
 
-        dealt_cards[card_suit].append(card_value)
+        dealt[card_suit].append(card_value)
 
         if i <= 1:
-            if card_suit in player_hand:
-                player_hand[card_suit].append(card_value)
+            if card_suit in p_hand:
+                p_hand[card_suit].append(card_value)
             else:
-                player_hand[card_suit] = [card_value]
+                p_hand[card_suit] = [card_value]
 
         if i > 1:
-            if not dealer_hand:
-                dealer_face_down[card_suit] = card_value
+            if not d_hand:
+                dealer_unseen[card_suit] = card_value
 
-            if card_suit in dealer_hand:
-                dealer_hand[card_suit].append(card_value)
+            if card_suit in d_hand:
+                d_hand[card_suit].append(card_value)
             else:
-                dealer_hand[card_suit] = [card_value]
+                d_hand[card_suit] = [card_value]
 
 def total_hand(hand):
     hand_total = 0
@@ -122,70 +125,51 @@ def total_hand(hand):
 def announce_total(total):
     prompt(f'Hand total is: {total}')
 
-def card_hit(hand):
-    if hand is player_hand:
+def card_hit(hand, dealt):
+    card_suit = random.choice(SUITS)
+    card_value = DECK[card_suit][random.choice(range(0, CARDS_PER_SUIT))]
+    card = {
+        card_suit: card_value
+    }
+
+    while card[card_suit] in dealt[card_suit]:
         card_suit = random.choice(SUITS)
         card_value = DECK[card_suit][random.choice(range(0, CARDS_PER_SUIT))]
         card = {
-            card_suit: card_value
+        card_suit: card_value
         }
 
-        while card[card_suit] in dealt_cards[card_suit]:
-            card_suit = random.choice(SUITS)
-            card_value = DECK[card_suit][random.choice(range(0, CARDS_PER_SUIT))]
-            card = {
-            card_suit: card_value
-            }
+    dealt[card_suit].append(card_value)
 
-        dealt_cards[card_suit].append(card_value)
-
-        if card_suit in player_hand:
-            player_hand[card_suit].append(card_value)
-        else:
-            player_hand[card_suit] = [card_value]
-
+    if card_suit in hand:
+        hand[card_suit].append(card_value)
     else:
-        card_suit = random.choice(SUITS)
-        card_value = DECK[card_suit][random.choice(range(0, CARDS_PER_SUIT))]
-        card = {
-            card_suit: card_value
-        }
+        hand[card_suit] = [card_value]
 
-        while card[card_suit] in dealt_cards[card_suit]:
-            card_suit = random.choice(SUITS)
-            card_value = DECK[card_suit][random.choice(range(0, CARDS_PER_SUIT))]
-            card = {
-            card_suit: card_value
-            }
-
-        dealt_cards[card_suit].append(card_value)
-
-        if card_suit in dealer_hand:
-            dealer_hand[card_suit].append(card_value)
-        else:
-            dealer_hand[card_suit] = [card_value]
-
-def player_turn(hand, dealers_hand, dealer_unseen):
+def player_turn(hand, dealers_hand, dealer_unseen, dealt):
     player_hand_total = total_hand(hand)
 
     if player_hand_total == TWENTY_ONE:
-        announce_hand(hand, dealer_unseen)
+        announce_player_hand(hand)
         prompt(f'You were dealt {TWENTY_ONE}!')
         input('Enter to continue. ')
         return player_hand_total
 
-
     while not busted(player_hand_total):
         clear_screen()
 
-        announce_hand(dealers_hand, dealer_unseen)
+        announce_dealer_hand(dealers_hand, dealer_unseen)
         prompt('And one face down card.')
         print('')
 
-        announce_hand(hand, dealer_unseen)
+        announce_player_hand(hand)
         print('')
 
         announce_total(player_hand_total)
+
+        if player_hand_total == TWENTY_ONE:
+            input('Enter to continue. ')
+            break
 
         prompt('Hit or stay? (h/s)')
         hit_or_stay = input().strip()
@@ -196,8 +180,8 @@ def player_turn(hand, dealers_hand, dealer_unseen):
 
         if hit_or_stay.lower() in ['h', 'hit']:
             clear_screen()
-            card_hit(hand)
-            announce_hand(hand, dealer_unseen)
+            card_hit(hand, dealt)
+            announce_player_hand(hand)
             player_hand_total = total_hand(hand)
             announce_total(player_hand_total)
             print('')
@@ -217,13 +201,13 @@ def player_turn(hand, dealers_hand, dealer_unseen):
 
     return player_hand_total
 
-def dealer_turn(hand, player_pts):
+def dealer_turn(hand, player_pts, dealt, dealer_unseen):
     clear_screen()
     dealer_hand_total = total_hand(hand)
 
     if dealer_hand_total == TWENTY_ONE:
         prompt('The dealer\'s hand is:')
-        announce_hand(hand, dealer_face_down)
+        announce_dealer_hand(hand, dealer_unseen)
         prompt('The dealer has TWENTY_ONE!')
 
     else:
@@ -233,13 +217,13 @@ def dealer_turn(hand, player_pts):
 
             dealer_hand_total = total_hand(hand)
 
-            announce_hand(hand, dealer_face_down)
+            announce_dealer_hand(hand, dealer_unseen)
             prompt('And one face down card.')
 
             input('The dealer hits! (enter to continue).')
             print('')
 
-            card_hit(hand)
+            card_hit(hand, dealt)
             clear_screen()
 
             dealer_hand_total = total_hand(hand)
@@ -251,8 +235,8 @@ def dealer_turn(hand, player_pts):
     print('')
 
 
-    announce_hand(hand, dealer_face_down)
-    for suit, card in dealer_face_down.items():
+    announce_dealer_hand(hand, dealer_unseen)
+    for suit, card in dealer_unseen.items():
         prompt(f'And the face down card was the {card} of {suit}!')
         print('')
 
@@ -298,32 +282,38 @@ def play_again():
 
         print("Invalid input. Please enter a valid input (y/n).")
 
-while True:
-    clear_screen()
+def twenty_one():
+    while True:
+        clear_screen()
+        dealt_cards = initialize_dealt()
 
-    player_hand, dealer_hand, dealer_face_down = initialize_hand()
+        player_hand, dealer_hand, dealer_face_down = initialize_hand()
+        deal_cards(dealt_cards, player_hand, dealer_hand, dealer_face_down)
+        player_points = player_turn(
+            player_hand,
+            dealer_hand,
+            dealer_face_down,
+            dealt_cards
+        )
 
-    deal_cards()
-    player_points = player_turn(player_hand, dealer_hand, dealer_face_down)
+        if player_points <= TWENTY_ONE:
+            dealer_points = dealer_turn(
+                dealer_hand,
+                player_points,
+                dealt_cards,
+                dealer_face_down
+            )
 
-    if player_points <= TWENTY_ONE:
-        dealer_points = dealer_turn(dealer_hand, player_points)
+            if dealer_points > TWENTY_ONE:
+                prompt('The dealer busts! You win!')
+            else:
+                winner = get_winner(player_points, dealer_points)
+                announce_winner(winner, player_points, dealer_points)
 
-        if dealer_points > TWENTY_ONE:
-            prompt('The dealer busts! You win!')
-        else:
-            winner = get_winner(player_points, dealer_points)
-            announce_winner(winner, player_points, dealer_points)
+        if not play_again():
+            break
 
-    if not play_again():
-        break
-
-    dealt_cards = {
-        'Clubs': [],
-        'Diamonds': [],
-        'Hearts': [],
-        'Spades': [],
-    }
+twenty_one()
 
 clear_screen()
 prompt('Thanks for playing!')
