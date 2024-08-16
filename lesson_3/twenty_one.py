@@ -286,9 +286,9 @@ def twenty_one():
     while True:
         clear_screen()
         dealt_cards = initialize_dealt()
-
         player_hand, dealer_hand, dealer_face_down = initialize_hand()
         deal_cards(dealt_cards, player_hand, dealer_hand, dealer_face_down)
+
         player_points = player_turn(
             player_hand,
             dealer_hand,
