@@ -1,8 +1,5 @@
 '''
-My solo attempt at twenty one. I don't think my implementation was the worst,
-but I feel like the way I set the game up wasn't great because it required some
-functions to be somewhat redundant (deal_cards()) or require certain arguments
-for minor things.
+My solo attempt at twenty one.
 '''
 
 import random
