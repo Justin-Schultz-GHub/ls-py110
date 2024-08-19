@@ -82,7 +82,7 @@ def deal_cards(dealt, p_hand, d_hand, dealer_unseen):
             card_value = DECK[card_suit][
                 random.choice(range(0, CARDS_PER_SUIT))]
             card = {
-            card_suit: card_value
+                card_suit: card_value
             }
 
         dealt[card_suit].append(card_value)
@@ -136,7 +136,7 @@ def card_hit(hand, dealt):
         card_suit = random.choice(SUITS)
         card_value = DECK[card_suit][random.choice(range(0, CARDS_PER_SUIT))]
         card = {
-        card_suit: card_value
+            card_suit: card_value
         }
 
     dealt[card_suit].append(card_value)
